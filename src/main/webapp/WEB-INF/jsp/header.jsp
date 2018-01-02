@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Critter</title>
+		<title>UrbanAdvisor</title>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
@@ -23,18 +23,17 @@
 				
 				var pathname = window.location.pathname;
 				$("nav a[href='"+pathname+"']").parent().addClass("active");
-				
 			});
-			
-			
 		</script>
+		
+		<script src="//use.edgefonts.net/yeseva-one;source-sans-pro.js"></script>
 		
 	</head>
 	<body>
 		<header>
 			<c:url var="homePageHref" value="/" />
-			<c:url var="imgSrc" value="/img/logo.png" />
-			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
+			<c:url var="imgSrc" value="/img/urban-logo.gif" />
+			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /><h1>Urban</h1><h2>Advisor</h2></a>
 		</header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
