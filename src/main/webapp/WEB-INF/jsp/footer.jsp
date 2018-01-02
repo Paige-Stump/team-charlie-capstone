@@ -1,7 +1,7 @@
 		</div>
 		
 		<footer>
-			Copyright 2016 Critter Inc.
+			Copyright 2018 UrbanAdvisor Inc.
 		</footer>
 	</body>
 </html>

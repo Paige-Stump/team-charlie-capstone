@@ -2,7 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<h2>Latest Messages</h2>
+<h2>UrbanAdvisor</h2>
 <ol class="message-list">
 	<c:forEach items="${messages}" var="message">
 		<li class="message">

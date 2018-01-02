@@ -83,4 +83,6 @@ ALTER TABLE app_user_itinerary ADD FOREIGN KEY (user_name) REFERENCES app_user(u
 ALTER TABLE app_user_itinerary ADD FOREIGN KEY (itinerary_id) REFERENCES itinerary(itinerary_id);
 
 
+
+
 COMMIT;
