@@ -16,6 +16,7 @@ DROP SEQUENCE IF EXISTS message_message_id_seq;
 CREATE TABLE app_user (
   user_name varchar(32) NOT NULL,
   password varchar(32) NOT NULL,
+  salt varchar(256) NOT NULL,
   first_name varchar(32) NOT NULL,
   last_name varchar(32) NOT NULL,
   admin boolean NOT NULL DEFAULT FALSE,

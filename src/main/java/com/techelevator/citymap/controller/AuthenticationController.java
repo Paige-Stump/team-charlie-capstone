@@ -1,10 +1,11 @@
 package com.techelevator.citymap.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,19 +30,31 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
-	public String login(@RequestParam String userName, 
-						@RequestParam String password, 
-						ModelMap model) {
+	public String login(Map<String, Object> model, 
+						@RequestParam String userName, 
+						@RequestParam String password,
+						@RequestParam(required=false) String destination,
+						HttpSession session) {
+		
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
+			session.invalidate();
 			model.put("currentUser", userName);
-			return "redirect:/users/"+userName;
+			if(isValidRedirect(destination)) {
+				return "redirect:"+destination;
+			} else {
+				return "redirect:/users/"+userName;
+			}
 		} else {
 			return "redirect:/login";
 		}
 	}
 
+	private boolean isValidRedirect(String destination) {
+		return destination != null && destination.startsWith("http://localhost");
+	}
+
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
-	public String logout(ModelMap model, HttpSession session) {
+	public String logout(Map<String, Object> model, HttpSession session) {
 		model.remove("currentUser");
 		session.removeAttribute("currentUser");
 		return "redirect:/";

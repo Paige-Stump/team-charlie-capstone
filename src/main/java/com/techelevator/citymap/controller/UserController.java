@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.techelevator.citymap.model.MessageDAO;
+// import com.techelevator.citymap.model.MessageDAO;
 import com.techelevator.citymap.model.User;
 import com.techelevator.citymap.model.UserDAO;
 
@@ -20,12 +20,12 @@ import com.techelevator.citymap.model.UserDAO;
 public class UserController {
 
 	private UserDAO userDAO;
-	private MessageDAO messageDAO;
+	//private MessageDAO messageDAO;
 
 	@Autowired
-	public UserController(UserDAO userDAO, MessageDAO messageDAO) {
+	public UserController(UserDAO userDAO) /* , MessageDAO messageDAO) */{
 		this.userDAO = userDAO;
-		this.messageDAO = messageDAO;
+		//this.messageDAO = messageDAO;
 	}
 
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
@@ -35,25 +35,25 @@ public class UserController {
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User newUser) { //server-side validation
-		userDAO.saveUser(newUser.getUserName(), newUser.getPassword());
+		userDAO.saveUser(newUser.getUserName(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName());
 		return "redirect:/login";
 	}
 	
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
 	public String displayDashboard(Map<String, Object> model, @PathVariable String userName) {
-		model.put("conversations", messageDAO.getConversationsForUser(userName));
+	//	model.put("conversations", messageDAO.getConversationsForUser(userName));
 		return "userDashboard";
 	}
 	
 	@RequestMapping(path="/users/{forUserName}/conversations/{withUserName}", method=RequestMethod.GET)
 	public String displayConversation(Map<String, Object> model, @PathVariable String forUserName, @PathVariable String withUserName) {
-		model.put("conversation", messageDAO.getConversation(forUserName, withUserName));
+	//	model.put("conversation", messageDAO.getConversation(forUserName, withUserName));
 		return "conversation";
 	}
 	
 	@RequestMapping(path="/users/{userName}/messages", method=RequestMethod.GET)
 	public String displaySentMessages(Map<String, Object> model, @PathVariable String userName) {
-		model.put("messages", messageDAO.getMessagesSentByUser(userName));		
+	//	model.put("messages", messageDAO.getMessagesSentByUser(userName));		
 		return "sentMessages";
 	}
 	

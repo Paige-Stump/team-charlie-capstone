@@ -3,7 +3,7 @@ package com.techelevator.citymap.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+/*
 public class Conversation {
 	
 	private String forUser;
@@ -36,3 +36,4 @@ public class Conversation {
 		messages.add(message);
 	}
 }
+*/

@@ -10,7 +10,9 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 import org.bouncycastle.util.encoders.Base64;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PasswordHasher {
 	
 	private static final int KEY_LENGTH = 128;

@@ -1,7 +1,7 @@
 package com.techelevator.citymap.model;
 
 import java.time.LocalDateTime;
-
+/*
 public class Message {
 
 	private Long id;
@@ -47,4 +47,4 @@ public class Message {
 	public void setCreateTime(LocalDateTime createTime) {
 		this.createTime = createTime;
 	}
-}
+} */

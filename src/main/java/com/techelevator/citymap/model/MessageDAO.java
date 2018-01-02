@@ -1,6 +1,7 @@
 package com.techelevator.citymap.model;
 
 import java.util.List;
+/*
 
 public interface MessageDAO {
 
@@ -17,3 +18,4 @@ public interface MessageDAO {
 	public Conversation getConversation(String forUserName, String withUserName);
 
 }
+*/

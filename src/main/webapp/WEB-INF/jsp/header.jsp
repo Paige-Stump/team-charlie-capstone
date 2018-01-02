@@ -10,7 +10,7 @@
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 	    <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	    <c:url var="cssHref" value="/site.css" />
+	    <c:url var="cssHref" value="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="${cssHref}">
 		
 		<script type="text/javascript">
@@ -32,8 +32,9 @@
 	<body>
 		<header>
 			<c:url var="homePageHref" value="/" />
-			<c:url var="imgSrc" value="/img/urban-logo.gif" />
-			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /><h1>Urban</h1><h2>Advisor</h2></a>
+			<c:url var="imgSrc" value="/img/urban-logo.png" />
+			<div id="logo" >
+			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive logo" /><h1 class="logo" >Urban</h1><h2 class="logo" >Advisor</h2></a></div>
 		</header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -42,11 +43,13 @@
 					<li><a href="${homePageHref}">Home</a></li>
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
+						<!--  
 						<li><a href="${dashboardHref}">Private Messages</a></li>
 						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
 						<li><a href="${newMessageHref}">New Message</a></li>
 						<c:url var="sentMessagesHref" value="/users/${currentUser}/messages" />
 						<li><a href="${sentMessagesHref}">Sent Messages</a></li>
+						-->
 						<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 						<li><a href="${changePasswordHref}">Change Password</a></li>
 					</c:if>

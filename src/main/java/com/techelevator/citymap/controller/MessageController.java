@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.techelevator.citymap.model.Message;
-import com.techelevator.citymap.model.MessageDAO;
+// import com.techelevator.citymap.model.Message;
+// import com.techelevator.citymap.model.MessageDAO;
 
-@Controller
+/*@Controller
 public class MessageController {
 	
 	private MessageDAO messageDAO;
@@ -53,5 +53,5 @@ public class MessageController {
 		messageDAO.saveMessage(message);
 		
 		return "redirect:/users/"+userName+"/messages";
-	}
 }
+	} */

@@ -54,6 +54,14 @@
 				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
 			</div>
 			<div class="form-group">
+				<label for="userName">First Name: </label>
+				<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="userName">Last Name: </label>
+				<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
+			</div>
+			<div class="form-group">
 				<label for="password">Password: </label>
 				<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
 			</div>
