@@ -117,10 +117,7 @@ footer {
 
 .featuredLandmark img {
 	max-width: 200px;
-}
-
-.featuredLandmark {
-	
+	display: inline-block;
 }
 
 .landmarkTitle {
@@ -130,6 +127,3 @@ footer {
 	display: inline-block;
 }
 
-.landmarkDescription {
-	display: inline-block;
-}
