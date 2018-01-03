@@ -17,7 +17,7 @@
 			},
 			messages : {			
 				confirmPassword : {
-					equalTo : "Passwords do not match"
+					equalTo : "Password incorrect"
 				}
 			},
 			errorClass : "error"
@@ -28,6 +28,7 @@
 <div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
+	<div class="error">${error}</div>
 		<c:url var="formAction" value="/login" />
 		<form method="POST" action="${formAction}">
 			<div class="form-group">

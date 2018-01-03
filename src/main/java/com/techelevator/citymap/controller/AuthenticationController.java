@@ -36,17 +36,20 @@ public class AuthenticationController {
 						@RequestParam(required=false) String destination,
 						HttpSession session) {
 		
+		String jspPage = "";
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
 			session.invalidate();
 			model.put("currentUser", userName);
 			if(isValidRedirect(destination)) {
-				return "redirect:"+destination;
+				jspPage = "redirect:"+destination;
 			} else {
-				return "redirect:/users/"+userName;
+				jspPage = "redirect:/users/"+userName;
 			}
 		} else {
-			return "redirect:/login";
+			model.put("error", "Invalid password");
+			jspPage = "login";
 		}
+		return jspPage;
 	}
 
 	private boolean isValidRedirect(String destination) {

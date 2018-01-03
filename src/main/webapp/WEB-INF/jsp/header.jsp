@@ -11,7 +11,7 @@
 	    <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	    <c:url var="cssHref" value="/css/site.css" />
-		<link rel="stylesheet" type="text/css" href="${cssHref}">
+		<link rel="stylesheet" href="${cssHref}">
 		
 		<script type="text/javascript">
 			$(document).ready(function() {

@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,13 +35,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
-	public String createUser(@Valid @ModelAttribute User newUser) { //server-side validation
+	public String createUser(@Valid @ModelAttribute User newUser, ModelMap model) { //server-side validation
+		String jspPage = "redirect:/login";
 		if(userDAO.saveUser(newUser.getUserName(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName())){
-			return "redirect:/login";
 		}
 		else{
-			return "redirect:/";
+			model.put("error", "User Name already exists. Please try another one.");
+			jspPage = "newUser";
 		}
+		return jspPage;
 	}
 	
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)

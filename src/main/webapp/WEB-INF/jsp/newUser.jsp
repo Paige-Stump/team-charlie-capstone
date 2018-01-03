@@ -44,6 +44,7 @@
 	});
 </script>
 
+				
 <c:url var="formAction" value="/users" />
 <form method="POST" action="${formAction}">
 	<div class="row">
@@ -52,6 +53,7 @@
 			<div class="form-group">
 				<label for="userName">User Name: </label>
 				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
+				<div class="error">${error}</div>
 			</div>
 			<div class="form-group">
 				<label for="userName">First Name: </label>
