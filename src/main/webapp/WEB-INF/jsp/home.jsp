@@ -3,18 +3,17 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <h2>UrbanAdvisor</h2>
-<ol class="message-list">
-	<c:forEach items="${messages}" var="message">
-		<li class="message">
-			<c:url var="messageHref" value="/messages">
-				<c:param name="userName" value="${message.fromUsername}" />
-			</c:url>
-			<span class="username"><a href="${messageHref}">${message.fromUsername}</a></span>
-			<span class="message-text">${message.text}</span>
-			<time class="timeago" datetime="${message.createTime}">${message.createTime}</time>
+<div class="landmark-list">
+	<c:forEach items="${landmarks}" var="landmark">
+		<li class="landmark">
+			<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
+			<c:url var="landmarkImage" value="/img/${landmark.landmarkLocation}.jpg"></c:url>
+			<span class="landmarkThumb"><a href="${landmarkHref}"><img src="${landmarkImage}"/></a></span>
+			<span class="landmarkTitle">${landmark.landmarkName}</span>
+			<span class="landmarkDescription">${landmark.landmarkDescription}</span>
 		</li>
 	</c:forEach>
-</ol>
+</div>
 		
 <c:import url="/WEB-INF/jsp/footer.jsp" />
 		
