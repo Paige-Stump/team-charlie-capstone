@@ -25,7 +25,7 @@ public class JDBCUserDAO implements UserDAO {
 	
 	
 	@Override
-	public void saveUser(String userName, String password, String firstName, String lastName) {
+	public boolean saveUser(String userName, String password, String firstName, String lastName) {
 		String sqlSearchForUsername = "SELECT user_name "+
 			      "FROM app_user "+
 			      "WHERE UPPER(user_name) = ?";
@@ -35,6 +35,10 @@ public class JDBCUserDAO implements UserDAO {
 			String hashedPassword = passwordHasher.computeHash(password, salt);
 			String saltString = new String(Base64.encode(salt));
 			jdbcTemplate.update("INSERT INTO app_user(user_name, password, salt, first_name, last_name) VALUES (?, ?, ?, ?, ?)", userName, hashedPassword, saltString, firstName, lastName);
+			return true;
+		}
+		else{
+			return false;
 		}
 	}
 

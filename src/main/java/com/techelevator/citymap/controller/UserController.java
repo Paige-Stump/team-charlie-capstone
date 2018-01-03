@@ -35,8 +35,12 @@ public class UserController {
 	
 	@RequestMapping(path="/users", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User newUser) { //server-side validation
-		userDAO.saveUser(newUser.getUserName(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName());
-		return "redirect:/login";
+		if(userDAO.saveUser(newUser.getUserName(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName())){
+			return "redirect:/login";
+		}
+		else{
+			return "redirect:/";
+		}
 	}
 	
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
