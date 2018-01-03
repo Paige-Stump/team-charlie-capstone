@@ -7,11 +7,13 @@ BEGIN;
 -- CREATE statements go here
 DROP TABLE IF EXISTS message;
 DROP TABLE IF EXISTS itinerary;
+DROP TABLE IF EXISTS app_user_itinerary;
 DROP TABLE IF EXISTS app_user;
 DROP TABLE IF EXISTS landmark;
 
 DROP SEQUENCE IF EXISTS itinerary_itinerary_id_seq;
 DROP SEQUENCE IF EXISTS message_message_id_seq;
+DROP SEQUENCE IF EXISTS landmark_landmark_id_seq;
 
 CREATE TABLE app_user (
   user_name varchar(32) NOT NULL,
@@ -34,7 +36,7 @@ CREATE TABLE itinerary (
   itinerary_name varchar(32) NOT NULL,
   user_name varchar(32) NOT NULL,
   starting_point varchar(32) NOT NULL,
-  landmark_id varchar(32) NOT NULL,
+  landmark_id integer NOT NULL,
   --figure out how to have a sequence of landmarks--
   CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id)
 );
@@ -45,22 +47,22 @@ CREATE TABLE app_user_itinerary (
   CONSTRAINT pk_app_user_itinerary_user_name PRIMARY KEY (user_name, itinerary_id)
 );
 
-
-CREATE TABLE landmark (
-  landmark_id varchar(32) NOT NULL,
-  landmark_title varchar(32) NOT NULL,
-  landmark_description varchar(250) NOT NULL,
-  landmark_location varchar(250) NOT NULL,
-  CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id)
-);
-
 CREATE SEQUENCE landmark_landmark_id_seq
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
+
+CREATE TABLE landmark (
+  landmark_id integer DEFAULT nextval('landmark_landmark_id_seq'::regclass) NOT NULL,
+  landmark_title varchar(500) NOT NULL,
+  landmark_description varchar(2500) NOT NULL,
+  landmark_location varchar(500) NOT NULL,
+  wikipedia varchar(500),
+  CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id)
+);
   
-  CREATE SEQUENCE message_message_id_seq
+CREATE SEQUENCE message_message_id_seq
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
