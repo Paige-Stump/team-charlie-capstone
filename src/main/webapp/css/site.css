@@ -114,3 +114,22 @@ footer {
 	top:1px;
 	text-decoration: none;
 }
+
+.featuredLandmark img {
+	max-width: 200px;
+}
+
+.featuredLandmark {
+	
+}
+
+.landmarkTitle {
+	font-size: 12pt;
+	font-weight: bold;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.landmarkDescription {
+	display: inline-block;
+}
