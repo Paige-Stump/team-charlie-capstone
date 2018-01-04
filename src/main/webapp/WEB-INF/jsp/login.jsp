@@ -28,7 +28,6 @@
 <div class="row">
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
-	<div class="error">${error}</div>
 		<c:url var="formAction" value="/login" />
 		<form method="POST" action="${formAction}">
 			<div class="form-group">
@@ -38,9 +37,17 @@
 			<div class="form-group">
 				<label for="password">Password: </label>
 				<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
+				<div class="error">${error}</div>
 			</div>
 			<button type="submit" class="btn btn-default">Login</button>
 		</form>
+		
+		<hr>
+		
+		<div style="margin-top:1rem">
+			<c:url var="newUserHref" value="/users/new" />
+			<a href="${newUserHref}"><button class="btn btn-default">Sign Up</button></a>
+		</div>
 	</div>
 	<div class="col-sm-4"></div>
 </div>
