@@ -4,7 +4,8 @@
 <c:url var="newUserHref" value="/users/new" />
 
 <div class="row">
-<p>UrbanAdvisor helps you map your city tour based on the most efficient route to see as many local landmarks as possible. <a href="${newUserHref}">Sign up now</a> to create your custom itinerary!</p>
+<p>UrbanAdvisor helps you map your city tour based on the most efficient route to see as many local landmarks as possible.</p>
+<a href="${newUserHref}"><button type="button" class="btn-block btn-primary btn-lg" id="registerButton"><p>Register Now!</p></button></a>
 </div>
 <div class="row">
 	<div class="col-sm-12 features">

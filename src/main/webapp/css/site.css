@@ -108,17 +108,22 @@ footer {
 	margin: 9px auto;
 }
 
-.uaButton a {
+.uaButton:hover a {
 	color: #bbb;
 	text-decoration:none;
 }
 
 .uaButton:hover {
-	box-shadow:inset 0px 0px 7px 2px aqua;
+	box-shadow:inset 0px 0px 7px 2px #a0b9fe;
 }
 .uaButton:active {
 	position:relative;
 	top:1px;
+	text-decoration: none;
+}
+
+#registerButton {
+	color: #fff;
 	text-decoration: none;
 }
 

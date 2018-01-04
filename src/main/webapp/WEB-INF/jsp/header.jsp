@@ -32,34 +32,20 @@
 	<body>
 		<header>
 			<div class="container-fluid">
-			<c:url var="homePageHref" value="/" />
-			<c:url var="imgSrc" value="/img/urban-logo.png" />
-			<div id="logo" >
-			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive logo" /><h1 class="logo" >urban</h1><h2 class="logo" >advisor</h2></a></div>
-		
-				<ul class="nav navbar-nav navbar-right">
-					<c:choose>
-						<c:when test="${empty currentUser}">
-							<c:url var="newUserHref" value="/users/new" />
-							<li><a href="${newUserHref}">Sign Up</a></li>
-							<c:url var="loginHref" value="/login" />
-							<li><a href="${loginHref}">Log In</a></li>
-						</c:when>
-						<c:otherwise>
-							<c:url var="logoutAction" value="/logout" />
-							<form id="logoutForm" action="${logoutAction}" method="POST"></form>
-							<li><a id="logoutLink" href="#">Log Out</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-		<c:if test="${not empty currentUser}">
-			<p id="currentUser">Welcome, ${currentUser}</p>
-		</c:if>		
+				<c:url var="homePageHref" value="/" />
+				<c:url var="imgSrc" value="/img/urban-logo.png" />
+				<div id="logo" >
+					<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive logo" />
+					<h1 class="logo" >urban</h1><h2 class="logo">advisor</h2></a>
+				</div>
+			
+				<c:if test="${not empty currentUser}">
+					<p id="currentUser">Welcome, ${currentUser}</p>
+				</c:if>		
 			</div>
 		</header>
 		
-		
-		<%-- <nav class="navbar navbar-default">
+		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
@@ -93,5 +79,5 @@
 					</c:choose>
 				</ul>
 			</div>
-		</nav> --%>
+		</nav>
 		<div class="container">
