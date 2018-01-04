@@ -1,6 +1,5 @@
 package com.techelevator.citymap.model;
 
-import java.time.LocalDateTime;
 
 public class Landmark {
 	private int landmarkId; 
