@@ -7,8 +7,7 @@
 <p>UrbanAdvisor helps you map your city tour based on the most efficient route to see as many local landmarks as possible. <a href="${newUserHref}">Sign up now</a> to create your custom itinerary!</p>
 </div>
 <div class="row">
-	<div class="col-sm-2"></div>
-	<div class="col-sm-8">
+	<div class="col-sm-12 features">
 		<h2>Featured Landmarks</h2>
 		<c:forEach items="${landmarks}" var="landmark">
 			<div class="featuredLandmark">
@@ -25,7 +24,6 @@
 			</div>
 		</c:forEach>
 	</div>
-	<div class="col-sm-2"></div>
 </div>
 	
 		

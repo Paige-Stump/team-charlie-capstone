@@ -1,7 +1,4 @@
 
-div {
-    display: block;
-}
 
 body {
     background-color: #fff;
@@ -12,7 +9,7 @@ header {
 	height: 85px;
 	border-bottom: solid thin #DDD;
 	margin-bottom: 2rem;
-	background-color: #edf8fc;
+	background-color: #f2f1fe;
 }
 
 .logo {
@@ -20,12 +17,22 @@ header {
 	display: inline;
 }
 
+header a:hover {
+    text-decoration: none;
+}
 
 header h1 {
 	font-family: yeseva-one, serif;
 	display : inline;
 	margin-left: 2rem;
-	font-size: 30px;
+	font-size: 31px;
+	letter-spacing: -3px;
+	color: #a0b9fe;
+}
+
+header h2 {
+	font-weight: 200 !important;
+	margin-left:2px;
 }
 
 container {
@@ -115,28 +122,31 @@ footer {
 	text-decoration: none;
 }
 
+.features {
+	margin-bottom: 4rem;
+}
+
 .featuredLandmark {
-	background: yellow;
 	padding: 2rem;
 	margin: 2rem;
+	background: #f2f1fe;
+	min-height: 190px;
 	border-radius: 12px;
 }
 
 .landmarkThumb {
-	display: inline;
+	display: inline-block;
+	float: left;
 }
 
 .landmarkThumb img {
 	max-width: 200px;
+	margin-right: 3rem;
 }
 
-.landmarkText {
-	display: inline;
-}
 
 .landmarkTitle {
 	font-size: 12pt;
 	font-weight: bold;
-	vertical-align: top;
 }
 
