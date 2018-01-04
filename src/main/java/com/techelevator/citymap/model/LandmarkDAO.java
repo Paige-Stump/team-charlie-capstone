@@ -6,5 +6,6 @@ public interface LandmarkDAO {
 	
 	public Landmark getLandmarkById(int landmarkId);
 	public List<Landmark> getFeaturedLandmarks();
+	public List<Landmark> getAllLandmarks();
 
 }

@@ -48,12 +48,23 @@ public class JDBCLandmarkDAO implements LandmarkDAO {
 		return myFeaturedLandmarks;
 	}
 
-	private Landmark mapRowToLandmark(SqlRowSet results) {
+	public Landmark mapRowToLandmark(SqlRowSet results) {
 		Landmark myLandmark = new Landmark();myLandmark.setLandmarkName(results.getString("landmark_title"));
 		myLandmark.setLandmarkDescription(results.getString("landmark_description"));
 		myLandmark.setLandmarkLocation(results.getString("landmark_location"));
 		myLandmark.setLandmarkLink(results.getString("wikipedia"));
 		return myLandmark;
+	}
+
+	@Override
+	public List<Landmark> getAllLandmarks() {
+		List<Landmark> allLandmarks = new ArrayList<>();
+		String sqlGetAllLandmarks = "SELECT * " + "FROM landmark";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllLandmarks);
+		while(results.next()) {
+			allLandmarks.add(mapRowToLandmark(results));
+		}
+		return allLandmarks;
 	}
 
 }

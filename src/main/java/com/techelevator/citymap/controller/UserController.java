@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techelevator.citymap.model.LandmarkDAO;
 // import com.techelevator.citymap.model.MessageDAO;
 import com.techelevator.citymap.model.User;
 import com.techelevator.citymap.model.UserDAO;
@@ -21,6 +22,7 @@ import com.techelevator.citymap.model.UserDAO;
 public class UserController {
 
 	private UserDAO userDAO;
+	private LandmarkDAO landmarkDAO;
 	//private MessageDAO messageDAO;
 
 	@Autowired
@@ -47,7 +49,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
-	public String displayDashboard(Map<String, Object> model, @PathVariable String userName) {
+	public String displayDashboard(ModelMap model, @PathVariable String userName) {
 	//	model.put("conversations", messageDAO.getConversationsForUser(userName));
 		return "userDashboard";
 	}

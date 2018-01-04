@@ -24,7 +24,7 @@ header a:hover {
 header h1 {
 	font-family: yeseva-one, serif;
 	display : inline;
-	margin-left: 2rem;
+	margin-left: 1rem;
 	font-size: 31px;
 	letter-spacing: -3px;
 	color: #a0b9fe;
@@ -43,6 +43,16 @@ container {
     font-weight: 400;
 	font-family: source-sans-pro, sans-serif;
     -webkit-font-smoothing: antialiased;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .content {
+  padding-top: 60px;
 }
 
 .message {
@@ -155,3 +165,9 @@ footer {
 	font-weight: bold;
 }
 
+footer {
+	margin-top: 2rem;
+	padding-top: 20px;
+    height: 80px;
+	background-color: #f2f1fe;
+}

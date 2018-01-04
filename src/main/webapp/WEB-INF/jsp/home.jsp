@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
-<c:url var="newUserHref" value="/users/new" />
 
-<div class="row">
-<p>UrbanAdvisor helps you map your city tour based on the most efficient route to see as many local landmarks as possible.</p>
-<a href="${newUserHref}"><button type="button" class="btn-block btn-primary btn-lg" id="registerButton"><p>Register Now!</p></button></a>
+<div class="jumbotron">
+	<p>UrbanAdvisor helps you map your city tour based on the most efficient route to see as many local landmarks as possible.</p>
+	<c:url var="loginHref" value="/login" />
+	<a href="${loginHref}"><button type="button" class="btn-primary btn-lg" id="registerButton"><p>Get Started!</p></button></a>
 </div>
 <div class="row">
 	<div class="col-sm-12 features">
