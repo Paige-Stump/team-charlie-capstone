@@ -39,9 +39,7 @@ public class UserController {
 	@RequestMapping(path="/users", method=RequestMethod.POST)
 	public String createUser(@Valid @ModelAttribute User newUser, ModelMap model) { //server-side validation
 		String jspPage = "redirect:/login";
-		if(userDAO.saveUser(newUser.getUserName(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName())){
-		}
-		else{
+		if(!userDAO.saveUser(newUser.getUserName(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName())){
 			model.put("error", "User Name already exists. Please try another one.");
 			jspPage = "newUser";
 		}

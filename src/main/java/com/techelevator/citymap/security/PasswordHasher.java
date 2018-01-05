@@ -1,4 +1,4 @@
-package com.techelevator.security;
+package com.techelevator.citymap.security;
 
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;

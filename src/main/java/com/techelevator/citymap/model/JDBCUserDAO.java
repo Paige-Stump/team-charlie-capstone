@@ -8,7 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.security.PasswordHasher;
+import com.techelevator.citymap.security.PasswordHasher;
+import com.techelevator.citymap.model.User;
 
 @Component
 public class JDBCUserDAO implements UserDAO {
@@ -21,8 +22,6 @@ public class JDBCUserDAO implements UserDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.passwordHasher = passwordHasher;
 	}
-	
-	
 	
 	@Override
 	public boolean saveUser(String userName, String password, String firstName, String lastName) {
@@ -43,7 +42,7 @@ public class JDBCUserDAO implements UserDAO {
 	}
 
 	@Override
-	public boolean searchForUsernameAndPassword(String userName, String password) {
+	public boolean validatePassword(String userName, String password) {
 		String sqlSearchForUser = "SELECT * "+
 							      "FROM app_user "+
 							      "WHERE UPPER(user_name) = ?";
@@ -57,7 +56,6 @@ public class JDBCUserDAO implements UserDAO {
 		} else {
 			return false;
 		}
-	
 	}
 
 	@Override
@@ -66,6 +64,27 @@ public class JDBCUserDAO implements UserDAO {
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
 		jdbcTemplate.update("UPDATE app_user SET password = ?, salt = ? WHERE user_name = ?", hashedPassword, saltString, userName);
+	}
+	
+	@Override
+	public User getUser(String userName) {
+		User newUser = new User();
+		String sqlGetUser = "Select * FROM app_user WHERE user_name = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetUser, userName);
+		if (results.next()) {
+			newUser = mapRowToUser(results);
+		}
+		return newUser;
+	}
+	
+	private User mapRowToUser(SqlRowSet results) {
+		User u = new User();
+		u.setUserName(results.getString("user_name"));
+		u.setPassword(results.getString("password"));
+		u.setFirstName(results.getString("first_name"));
+		u.setLastName(results.getString("last_name"));
+		u.setSalt(results.getString("salt"));
+		return u;
 	}
 
 }

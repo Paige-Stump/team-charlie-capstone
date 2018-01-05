@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.citymap.model.UserDAO;
+import com.techelevator.citymap.security.Security;
+import com.techelevator.citymap.model.Constants;
+import com.techelevator.citymap.model.User;
 
 @Controller
 @SessionAttributes("currentUser")
@@ -37,9 +40,12 @@ public class AuthenticationController {
 						HttpSession session) {
 		
 		String jspPage = "";
-		if(userDAO.searchForUsernameAndPassword(userName, password)) {
-			session.invalidate();
-			model.put("currentUser", userName);
+		User user = userDAO.getUser(userName);
+		
+		if(Security.IsUserValid(user, password)) {
+			/*session.invalidate();*/
+			session.setAttribute(Constants.NAME, user);
+			model.put("currentUser", user.getFirstName());
 			if(isValidRedirect(destination)) {
 				jspPage = "redirect:"+destination;
 			} else {

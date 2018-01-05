@@ -8,7 +8,6 @@
 		$("#changePasswordForm").validate({
 			
 			rules : {
-				
 				password : {
 					required : true
 				},
@@ -26,7 +25,6 @@
 		});
 	});
 </script>
-
 
 <h2>Change Password</h2>
 

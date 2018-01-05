@@ -16,7 +16,14 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private String salt;
 
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
