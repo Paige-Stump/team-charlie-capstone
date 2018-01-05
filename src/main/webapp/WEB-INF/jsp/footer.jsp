@@ -1,9 +1,7 @@
 		</div>
 		
-	    <footer class="footer">
-	      <div class="container">
+	    <footer class="navbar fixed-bottom navbar-light">
 	        <p class="text-muted">Copyright 2018 UrbanAdvisor Inc.</p>
-	      </div>
 	    </footer>
 	</body>
 </html>

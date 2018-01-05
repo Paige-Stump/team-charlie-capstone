@@ -1,24 +1,12 @@
-
-
-body {
-    background-color: #fff;
-    color: #000;
-}
-
 header {
-	height: 85px;
 	border-bottom: solid thin #DDD;
-	margin-bottom: 2rem;
 	background-color: #f2f1fe;
+	margin-bottom: 2rem;
+	height: 100px;
 }
 
-.logo {
-	height: 80px;
-	display: inline;
-}
-
-header a:hover {
-    text-decoration: none;
+.d-inline-block img, .align-middle {
+	height: 65px;
 }
 
 header h1 {
@@ -31,8 +19,26 @@ header h1 {
 }
 
 header h2 {
-	font-weight: 200 !important;
+	display: inline;
+}
+
+header .tagline {
+	font-size: 18px;
+	color: #a0b9fe;
+	margin-left: 1rem;
+}
+
+header h2 {
+	font-weight: 200;
 	margin-left:2px;
+}
+
+navbar {
+	margin: none;
+}
+
+.navbar-brand img{
+	display: inline;
 }
 
 container {
@@ -45,14 +51,22 @@ container {
     -webkit-font-smoothing: antialiased;
 }
 
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%
+.jumbotron {
+/*    opacity: .3;*/
+	background-image: url("../img/jumbotron01.jpg");
+    background-position: 50% 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
 }
 
-.sticky + .content {
-  padding-top: 60px;
+.jumbotron img {
+	opacity: .3;
+}
+
+.jumbotron p {
+	color: white;
+    text-shadow: 2px 2px #000;
 }
 
 .message {
@@ -82,10 +96,6 @@ container {
 	border-right : 1px solid #c0c0c0;
 }
 
-footer {
-	text-align : center;
-}
-
 .to {
 	background-color : #f0f0f0;
 }
@@ -95,79 +105,70 @@ footer {
 }
 
 #currentUser {
-	text-align : right;
-	font-weight : bold;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
 
-.uaButton {
-	-moz-box-shadow:inset 0px -1px 8px 3px #eee;
-	-webkit-box-shadow:inset 0px -1px 8px 3px #eee;
-	box-shadow:inset 0px -1px 8px 3px #eee;
-	-moz-border-radius:9px;
-	-webkit-border-radius:9px;
-	border-radius:9px;
-	border:1px solid #bbb;
-	width:100px;
-	display:inline;
-	cursor:pointer;
-	font-size:15px;
-	text-align: center;
-	color: #FFF;
-	padding:6px 13px;
-	text-shadow:0px 1px 0px #263666;
-	margin: 9px auto;
+#currentUser p {
+	display: inline-block;
 }
 
-.uaButton:hover a {
-	color: #bbb;
-	text-decoration:none;
+.dropdown-toggle {
+	margin-top : -6px;
+	border: solid thin white; 
+	border-radius: 6px;
 }
 
-.uaButton:hover {
-	box-shadow:inset 0px 0px 7px 2px #a0b9fe;
-}
-.uaButton:active {
-	position:relative;
-	top:1px;
-	text-decoration: none;
+
+user agent stylesheet
+input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+	background-color: transparent;
 }
 
-#registerButton {
-	color: #fff;
-	text-decoration: none;
+#jumboButton p {
+	padding-top: 10%;
+	line-height: 30%;
 }
 
 .features {
 	margin-bottom: 4rem;
 }
 
-.featuredLandmark {
+.feature {
+	display: block;
 	padding: 2rem;
-	margin: 2rem;
+	margin: 2rem 0 2rem 0 ;
 	background: #f2f1fe;
 	min-height: 190px;
 	border-radius: 12px;
+	clear: left;
 }
 
-.landmarkThumb {
-	display: inline-block;
+.featureThumb {
+	display: block;
 	float: left;
 }
 
-.landmarkThumb img {
+.featureThumb img {
 	max-width: 200px;
 	margin-right: 3rem;
+	margin-bottom: 3rem;
 }
 
+.featuresText {
+	display: block;
+}
 
-.landmarkTitle {
-	font-size: 12pt;
+.title {
+	font-size: large;
 	font-weight: bold;
 }
 
 footer {
+	text-align : center;
 	margin-top: 2rem;
 	padding-top: 20px;
-    height: 80px;
+    height: 6rem;
 	background-color: #f2f1fe;
 }
