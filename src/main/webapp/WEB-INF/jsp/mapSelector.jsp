@@ -2,7 +2,7 @@
 
  <c:import url="/WEB-INF/jsp/header.jsp" />  
 
-
+</div>
 <style>
       #right-panel {
         font-family: 'Roboto','sans-serif';
@@ -27,57 +27,63 @@
         padding: 0;
       }
       #map {
-        height: 100%;
+        height: 500px;
         float: left;
         width: 70%;
-        height: 70%;
+        margin-top: 100px;
+        margin-left: 40px;
       }
       #right-panel {
         margin: 20px;
-        border-width: 2px;
         width: 20%;
         height: 400px;
         float: left;
         text-align: left;
-        padding-top: 0;
+        padding-top: 36px;
       }
       #directions-panel {
         margin-top: 10px;
-        background-color: #FFEE77;
+        background-color: #f2f1fe;
         padding: 10px;
         overflow: scroll;
-        height: 174px;
+        height: 500px;
+      }
+      #footer {
+      	margin-top: 600px;
       }
     </style>
 
 
 
-<div id="map"></div>
+<div id="map"></div> 
 <div id="right-panel">
-	<div>
+	 <div> <!-- 
 		<b>Start:</b> <select id="start">
 			<option value="Cincinnati, OH">Cincinnati, OH</option>
 			<option value="Westin Cincinnati, OH">Cincinnati Westin</option>
 			<option value="21C Hotel, Cincinnati, OH">21 C Hotel</option>
 			<option value="Cincinnatian Hotel, Cincinnati, OH">The Cincinnatian</option>
-		</select> <br> <b>Waypoints:</b> <br> <i>(Ctrl+Click or Cmd+Click
-			for multiple selection)</i> <br> <select multiple id="waypoints">
+		</select> <br> <b>Places to Add to My Itinerary:</b> <br> <i>(Ctrl+Click or Cmd+Click
+			for multiple)</i> <br> <select multiple id="waypoints">
 			<option value="Spring Grove Cemetery, Cincinnati, OH">Spring Grove Cemetery</option>
 			<option value="Reds Stadium, Cincinnati, OH">Reds Stadium</option>
-			<option value="montreal, quebec">Montreal, QBC</option>
-			<option value="toronto, ont">Toronto, ONT</option>
-			<option value="chicago, il">Chicago</option>
-			<option value="winnipeg, mb">Winnipeg</option>
-			<option value="fargo, nd">Fargo</option>
-			<option value="calgary, ab">Calgary</option>
-			<option value="spokane, wa">Spokane</option>
+			<option value="Carew Tower, Cincinnati, OH">Carew Tower</option>
+			<option value="John Roebling Bridge, Cincinnati, OH">John Roebling Bridge</option>
+			<option value="Fountain Square, Cincinnati, OH">Fountain Square</option>
+			<option value="Cathedral Basilica, Cincinnati, OH">Cathedral Basilica</option>
+			<option value="William Howard Taft National Historic Site, Cincinnati, OH">William H Taft Historic Site</option>
+			<option value="Paul Brown Stadium, Cincinnati, OH">Paul Brown Stadium</option>
+			<option value="Mount Adams, Cincinnati, OH">Mount Adams</option>
+			<option value="Winton Woods Park, Cincinnati, OH">Winton Woods</option>
 		</select> <br> <b>End:</b> <select id="end">
 			<option value="Cincinnati, OH">Cincinnati, OH</option>
-			<option value="Seattle, WA">Seattle, WA</option>
-			<option value="San Francisco, CA">San Francisco, CA</option>
-			<option value="Los Angeles, CA">Los Angeles, CA</option>
-		</select> <br> <input type="submit" id="submit">
-	</div>
+			<option value="Westin Cincinnati, OH">Cincinnati Westin</option>
+			<option value="21C Hotel, Cincinnati, OH">21 C Hotel</option>
+			<option value="Cincinnatian Hotel, Cincinnati, OH">The Cincinnatian</option>
+			
+		</select> //--> 
+	</div> 
+	<button class="btn btn-primary" type="submit" id="submit">Generate my Route</button>
 	<div id="directions-panel"></div>
 </div>
 <script type="text/javascript">
@@ -105,20 +111,22 @@
 
 	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 		var waypts = [];
-		var checkboxArray = document.getElementById('waypoints');
-		for (var i = 0; i < checkboxArray.length; i++) {
-			if (checkboxArray.options[i].selected) {
-				waypts.push({
-					location : checkboxArray[i].value,
-					stopover : true
-				});
-			}
-		}
+		//var checkboxArray = document.getElementById('waypoints');
+		//for (var i = 0; i < checkboxArray.length; i++) {
+		//	if (checkboxArray.options[i].selected) {
+		//		waypts.push({
+		//			location : checkboxArray[i].value,
+		//			stopover : true
+		//		});
+		//	}
+	//	}
 
 		directionsService.route({
-			origin : document.getElementById('start').value,
-			destination : document.getElementById('end').value,
-			waypoints : waypts,
+			origin : "Spring Grove Cemetery, Cincinnati, OH",
+			destination : "Hyde Park, Cincinnati, OH",
+			waypoints : [{location: "Reds Stadium, Cincinnati, OH", stopover: true}, 
+				{location: "John Roebling Bridge, Cincinnati, OH", stopover: true} 
+				],
 			optimizeWaypoints : true,
 			travelMode : 'DRIVING'
 		}, function(response, status) {
@@ -151,5 +159,5 @@
 	
 </script>
 
-
+<p id="footer"></p>
 <c:import url="/WEB-INF/jsp/footer.jsp" />
