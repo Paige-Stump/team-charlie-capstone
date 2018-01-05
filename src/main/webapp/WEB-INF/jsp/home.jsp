@@ -3,28 +3,34 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <div class="jumbotron">
-	<p>UrbanAdvisor helps you map your city tour based on the most efficient route to see as many local landmarks as possible.</p>
-	<c:url var="loginHref" value="/login" />
-	<a href="${loginHref}"><button type="button" class="btn-primary btn-lg" id="registerButton"><p>Get Started!</p></button></a>
+	<div>
+		<p>UrbanAdvisor helps you map a customized city tour based on the most efficient route to experience all your city has to offer.</p>
+		<c:url var="loginHref" value="/login" />
+		<div class="text-center" id="registerButton">
+			<a href="${loginHref}"><button type="button" class="btn-primary btn-lg"><p>Get Started!</p></button></a>
+		</div>
+	</div>
 </div>
 <div class="row">
-	<div class="col-sm-12 features">
-		<h2>Featured Landmarks</h2>
+	<div class="col-sm-1 features"></div>
+	<div class="col-sm-10 features">
+		<h3>Featured Landmarks</h3>
 		<c:forEach items="${landmarks}" var="landmark">
-			<div class="featuredLandmark">
+			<div class="feature">
 				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
 				<c:url var="landmarkImage" value="/img/${landmark.landmarkLocation}.jpg"></c:url>
 				
-				<div class="landmarkThumb">
+				<div class="featureThumb">
 					<a href="${landmarkHref}" target="_blank"><img src="${landmarkImage}"/></a>
 				</div>
-				<div class="landmarkText">
-					<p class="landmarkTitle">${landmark.landmarkName}</p>
-					<p class="landmarkDescription">${landmark.landmarkDescription}</p>
+				<div class="featureText">
+					<p class="title">${landmark.landmarkName}</p>
+					<p class="description">${landmark.landmarkDescription}</p>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
+	<div class="col-sm-1 features"></div>
 </div>
 	
 		
