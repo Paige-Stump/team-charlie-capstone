@@ -82,6 +82,14 @@
 			<option value="Cincinnatian Hotel, Cincinnati, OH">The Cincinnatian</option>
 			
 		</select> //--> 
+		
+		<!-- BELOW IS WHAT I'M WORKING ON FOR THE ARRAY -->
+		<div id="waypoints">
+		
+		
+		
+		</div>
+		
 	</div> 
 	<button class="btn btn-primary" type="submit" id="submit">Generate my Route</button>
 	<div id="directions-panel"></div>
@@ -111,22 +119,19 @@
 
 	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 		var waypts = [];
-		//var checkboxArray = document.getElementById('waypoints');
-		//for (var i = 0; i < checkboxArray.length; i++) {
-		//	if (checkboxArray.options[i].selected) {
-		//		waypts.push({
-		//			location : checkboxArray[i].value,
-		//			stopover : true
-		//		});
-		//	}
-	//	}
+		var itineraryArray = document.getElementById('waypoints');
+		for (var i = 0; i < itineraryArray.length; i++) {
+				waypts.push({
+					location : checkboxArray[i].value,
+					stopover : true
+				});
+		
+		}
 
 		directionsService.route({
-			origin : "Spring Grove Cemetery, Cincinnati, OH",
-			destination : "Hyde Park, Cincinnati, OH",
-			waypoints : [{location: "Reds Stadium, Cincinnati, OH", stopover: true}, 
-				{location: "John Roebling Bridge, Cincinnati, OH", stopover: true} 
-				],
+			origin : "${start}",
+			destination : "${end}",
+			waypoints : ${waypts},
 			optimizeWaypoints : true,
 			travelMode : 'DRIVING'
 		}, function(response, status) {

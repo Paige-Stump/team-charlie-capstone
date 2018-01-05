@@ -50,6 +50,7 @@ CREATE TABLE landmark (
   landmark_title varchar(500) NOT NULL,
   landmark_description varchar(2500) NOT NULL,
   landmark_location varchar(500) NOT NULL,
+  landmark_city varchar(250) NOT NULL,
   wikipedia varchar(500),
   CONSTRAINT pk_landmark_landmark_id PRIMARY KEY (landmark_id)
 );

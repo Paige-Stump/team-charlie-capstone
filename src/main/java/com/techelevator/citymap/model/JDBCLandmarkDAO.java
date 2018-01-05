@@ -53,6 +53,7 @@ public class JDBCLandmarkDAO implements LandmarkDAO {
 		myLandmark.setLandmarkDescription(results.getString("landmark_description"));
 		myLandmark.setLandmarkLocation(results.getString("landmark_location"));
 		myLandmark.setLandmarkLink(results.getString("wikipedia"));
+		myLandmark.setLandmarkCity(results.getString("landmark_city"));
 		return myLandmark;
 	}
 
