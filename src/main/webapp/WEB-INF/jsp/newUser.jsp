@@ -56,11 +56,11 @@
 				<div class="error">${error}</div>
 			</div>
 			<div class="form-group">
-				<label for="userName">First Name: </label>
+				<label for="firstName">First Name: </label>
 				<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
 			</div>
 			<div class="form-group">
-				<label for="userName">Last Name: </label>
+				<label for="lastName">Last Name: </label>
 				<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
 			</div>
 			<div class="form-group">
