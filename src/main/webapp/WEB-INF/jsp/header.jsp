@@ -100,4 +100,4 @@
 				</ul>
 			</div>
 		</nav>
-		<div class="container">
+	<!--  	<div class="container"> THIS IS THE CODE THAT WAS BREAKING THE MAP --> 

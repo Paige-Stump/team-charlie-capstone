@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!--  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> -->
 
-<c:import url="/WEB-INF/jsp/header.jsp" />
+ <c:import url="/WEB-INF/jsp/header.jsp" />  
 
 
 <style>
@@ -30,7 +30,7 @@
         height: 100%;
         float: left;
         width: 70%;
-        height: 100%;
+        height: 70%;
       }
       #right-panel {
         margin: 20px;
@@ -57,11 +57,13 @@
 	<div>
 		<b>Start:</b> <select id="start">
 			<option value="Cincinnati, OH">Cincinnati, OH</option>
-			<option value="Boston, MA">Boston, MA</option>
-			<option value="New York, NY">New York, NY</option>
-			<option value="Miami, FL">Miami, FL</option>
+			<option value="Westin Cincinnati, OH">Cincinnati Westin</option>
+			<option value="21C Hotel, Cincinnati, OH">21 C Hotel</option>
+			<option value="Cincinnatian Hotel, Cincinnati, OH">The Cincinnatian</option>
 		</select> <br> <b>Waypoints:</b> <br> <i>(Ctrl+Click or Cmd+Click
 			for multiple selection)</i> <br> <select multiple id="waypoints">
+			<option value="Spring Grove Cemetery, Cincinnati, OH">Spring Grove Cemetery</option>
+			<option value="Reds Stadium, Cincinnati, OH">Reds Stadium</option>
 			<option value="montreal, quebec">Montreal, QBC</option>
 			<option value="toronto, ont">Toronto, ONT</option>
 			<option value="chicago, il">Chicago</option>
@@ -70,7 +72,7 @@
 			<option value="calgary, ab">Calgary</option>
 			<option value="spokane, wa">Spokane</option>
 		</select> <br> <b>End:</b> <select id="end">
-			<option value="Vancouver, BC">Vancouver, BC</option>
+			<option value="Cincinnati, OH">Cincinnati, OH</option>
 			<option value="Seattle, WA">Seattle, WA</option>
 			<option value="San Francisco, CA">San Francisco, CA</option>
 			<option value="Los Angeles, CA">Los Angeles, CA</option>
@@ -94,6 +96,11 @@
 		document.getElementById('submit').addEventListener('click', function() {
 			calculateAndDisplayRoute(directionsService, directionsDisplay);
 		});
+		
+		function loadScript() {
+			var script = document.createElement("script");
+			script.src = "http://"
+		}
 	}
 
 	function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -116,6 +123,7 @@
 			travelMode : 'DRIVING'
 		}, function(response, status) {
 			if (status === 'OK') {
+				
 				directionsDisplay.setDirections(response);
 				var route = response.routes[0];
 				var summaryPanel = document.getElementById('directions-panel');
