@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
-
+<h3 id="#h3Maps">My UrbanAdventure</h3>
 <script type="text/javascript">
 	var markers = [ {
 		"lat" : "39.1031",
@@ -9,21 +9,25 @@
 		"description" : "Cincinnati, OH"
 
 	}, {
-		"lat" : "36.1031",
-		"lng" : "-83.5120",
-		"description" : "Unsure"
+		"lat" : "39.0979",
+		"lng" : "-84.5082",
+		"description" : "Reds Ballpark"
 
 	}, {
-		"lat" : '38.1031',
-		"lng" : '-84.1120',
-		"description" : "Middle of the Woods"
+		"lat" : '39.1743',
+		"lng" : '-84.5250',
+		"description" : "Spring Grove Cemetery"
+	}, {
+		"lat" : "39.0930",
+		"lng" : "-84.5099",
+		"description" : "John Roebling Bridge"
 	}
 
 	];
 	window.onload = function() {
 		var mapOptions = {
 			center : new google.maps.LatLng(39.1031, -84.5120),
-			zoom : 10,
+			zoom : 9,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
 		var map = new google.maps.Map(document.getElementById("dvMap"),
@@ -38,6 +42,7 @@
 			var marker = new google.maps.Marker({
 				position : myLatlng,
 				map : map,
+				optimizeWaypoints: true,
 				title : data.title
 			});
 			latlngbounds.extend(marker.position);
@@ -96,17 +101,6 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyG_Bzw3pK-8mlytLJy-JgUvNzgkzO4d4&callback=initMap">
 	
 </script>
-
-
-
-<!-- Below is the section that should take the information the user submits and update the page -->
-
-<!-- Could also run through the legs between waypoints and print them out here or to the right -->
-
-
-
-
-
 
 
 

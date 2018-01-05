@@ -20,8 +20,18 @@ public class MapController {
 	}
 
 	@RequestMapping(path = "/map", method = RequestMethod.GET)
-	public String showHomePage(ModelMap model) {
+	public String showMap(ModelMap model) {
 		return "map";
+	}
+	
+	@RequestMapping(path = "/mapOld", method = RequestMethod.GET)
+	public String showOldMap(ModelMap model) {
+		return "mapOld";
+	}
+	
+	@RequestMapping(path = "/mapSelector", method = RequestMethod.GET)
+	public String showMapSelector(ModelMap model) {
+		return "mapSelector";
 	}
 
 }
