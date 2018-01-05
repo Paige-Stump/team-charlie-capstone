@@ -5,13 +5,14 @@
 	<head>
 		<title>UrbanAdvisor</title>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	    <c:url var="cssHref" value="/css/site.css" />
+		<link rel="stylesheet" href="${cssHref}">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 	    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 	    <script src="https://cdn.jsdelivr.net/jquery.timeago/1.4.1/jquery.timeago.min.js"></script>
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	    <c:url var="cssHref" value="/css/site.css" />
-		<link rel="stylesheet" href="${cssHref}">
+		
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("time.timeago").timeago();
@@ -23,34 +24,20 @@
 				var pathname = window.location.pathname;
 				$("nav a[href='"+pathname+"']").parent().addClass("active");
 			});
-			
-			// When the user scrolls the page, execute myFunction 
-			window.onscroll = function() {myFunction()};
-
-			// Get the navbar
-			var navbar = document.getElementById("navbar");
-
-			// Get the offset position of the navbar
-			var sticky = navbar.offsetTop;
-
-			// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-			function myFunction() {
-			  if (window.pageYOffset >= sticky) {
-			    navbar.classList.add("sticky")
-			  } else {
-			    navbar.classList.remove("sticky");
-			  }
-			};
 		</script>
+		
 		<script src="//use.edgefonts.net/yeseva-one;source-sans-pro.js"></script>
+		
 	</head>
+	
+	
 	<body>
-		<header class="navbar navbar-light">
+		<header class="navbar">
 			<div class="container">
-  				<nav class="fixed-top navbar-light">
+  				<nav class="sticky-top navbar-light">
 					<c:url var="homePageHref" value="/" />
 					<c:url var="imgSrc" value="/img/urban-logo.png" />
-					<a class="navbar-brand" href="${homePageHref}"><img src="${imgSrc}" class="logo" />
+					<a class="navbar-brand" href="${homePageHref}"><img src="${imgSrc}" class="d-inline-block align-middle" />
 					<h1>urban</h1><h2>advisor</h2></a>
 				</nav>
 				<nav class="navbar">
@@ -64,22 +51,24 @@
 							<div id="currentUser">
 								<p>Welcome,<p>
 								<div class="dropdown">
-								  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">${currentUser}
+								  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+								  ${currentUser}
 								  <span class="caret"></span></button>
 									  <ul class="dropdown-menu">
 										<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
-										<li><a href="${changePasswordHref}">User Settings</a></li>
+										<li><a href="${changePasswordHref}">
+										User Settings</a></li>
 										
 										<c:url var="dashboardHref" value="/users/${currentUser}" />
-										<li><a href="${dashboardHref}">View Dashboard</a></li>
-										
-										<!-- <c:url var="itinerariesHref" value="/users/${currentUser}/itineraries" /> -->
+										<li><a href="${dashboardHref}">
+										View Dashboard</a></li>
 										
 										<li class="divider"></li>
 										
 										<c:url var="logoutAction" value="/logout" />
 										<form id="logoutForm" action="${logoutAction}" method="POST"></form>
-										<li><a id="logoutLink" href="#">Log Out</a></li>
+										<li><a id="logoutLink" href="#">
+										Log Out</a></li>
 									  </ul>
 								</div>
 							</div>

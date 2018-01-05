@@ -3,13 +3,23 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <div class="jumbotron">
-	<div>
-		<p>UrbanAdvisor helps you map a customized city tour based on the most efficient route to experience all your city has to offer.</p>
-		<c:url var="loginHref" value="/login" />
-		<div class="text-center" id="registerButton">
-			<a href="${loginHref}"><button type="button" class="btn-primary btn-lg"><p>Get Started!</p></button></a>
-		</div>
-	</div>
+	<c:choose>
+		<c:when test="${empty currentUser}">
+			<p>UrbanAdvisor helps you map a customized city tour based on the most efficient route to experience all your city has to offer.</p>
+			<c:url var="loginHref" value="/login" />
+			<div class="text-center" id="jumboButton">
+				<a href="${loginHref}"><button type="button" class="btn-primary btn-lg"><p>Get Started!</p></button></a>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<p>Welcome back, ${currentUser}! UrbanAdvisor helps you map a customized city tour based on the most efficient route to experience all your city has to offer.</p>
+			<c:url var="itinerariesHref" value="/users/${currentUser}/itineraries" /> 
+			<div class="text-center" id="jumboButton">
+				<a href="${itinerariesHref}"><button type="button" class="btn-primary btn-lg"><p>View My Itineraries</p></button></a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+		
 </div>
 <div class="row">
 	<div class="col-sm-1 features"></div>
