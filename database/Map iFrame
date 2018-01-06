@@ -1,4 +1,3 @@
-waypts = [{location: cincinnati, stopover: true}, 
-			{location: columbus, stopover: true}, 
-			{location: detroit, stopover: true}, 
-			{location: dayton, stopover: true}];
+waypts = [{location: "Reds Stadium, Cincinnati, OH", stopover: true}, 
+			{location: "John Roebling Bridge, Cincinnati, OH", stopover: true}
+			];

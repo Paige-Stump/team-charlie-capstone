@@ -4,9 +4,18 @@ package com.techelevator.citymap.model;
 public class Landmark {
 	private int landmarkId; 
 	private String landmarkName;
+	private String landmarkCity;
 	private String landmarkDescription;
 	private String landmarkLocation;
 	private String landmarkLink;
+	private String nameAndCity;
+	
+	public String getNameAndCity() {
+		return nameAndCity;
+	}
+	public void setNameAndCity() {
+		this.nameAndCity = this.landmarkName + ", " + this.landmarkCity;
+	}
 	
 	public int getLandmarkId() {
 		return landmarkId;
@@ -38,5 +47,13 @@ public class Landmark {
 	public void setLandmarkLink(String landmarkLink) {
 		this.landmarkLink = landmarkLink;
 	}
+	public String getLandmarkCity() {
+		return landmarkCity;
+	}
+	public void setLandmarkCity(String landmarkCity) {
+		this.landmarkCity = landmarkCity;
+	}
+	
+	
 
 }
