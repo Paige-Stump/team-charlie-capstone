@@ -58,8 +58,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 
 	private List<String> getItineraryName(String userName) {
 		List<String> itineraryNames = new ArrayList<>();
-		String sqlGetItineraryName = "SELECT itinerary.itinerary_name FROM itinerary "
-				+ "JOIN app_user ON app_user.user_name = itinerary.user_name " + "WHERE app_user.user_name = ?";
+		String sqlGetItineraryName = "SELECT itinerary_name FROM itinerary WHERE user_name = '" +  "?" + "' GROUP BY itinerary_name";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetItineraryName, userName);
 		while (results.next()) {
 			itineraryNames.add(results.getString("user_name"));
