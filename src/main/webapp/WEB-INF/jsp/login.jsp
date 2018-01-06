@@ -44,7 +44,7 @@
 		
 		<hr>
 		
-		<div style="margin-top:1rem">
+		<div class="form-group">
 			<c:url var="newUserHref" value="/users/new" />
 			<a href="${newUserHref}"><button class="btn btn-default">Sign Up</button></a>
 		</div>

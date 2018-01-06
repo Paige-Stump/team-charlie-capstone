@@ -2,28 +2,24 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<h2>Itinerary Dashboard</h2>
+<h2>${username}'s Itinerary Dashboard</h2>
 
-This is the TEST one ${username} is working on<p>	
+<p>	
 <button type="button" class="btn btn-primary">Create New Itinerary</button>
 <p>
-<p>
 	<c:forEach items="${itineraries}" var="itinerary">
-			<div class="feature">
-				<c:url var="itineraryHref" value="/mapSelector">
-				<c:param name="itineraryObject">${itinerary}</c:param></c:url>
-		
-				<div class="featureText">
-				
-					<a href = "${itineraryHref}"><h3>${itinerary.itineraryName}</h3></a>
-					<p>${itinerary.startingPoint}</p>
-					<a href = ""><button type="button" class="btn btn-primary">Edit Itinerary</button></a>
-				<button type="button" class="btn btn-primary">Delete Itinerary</button>
-				</div>
+		<div class="feature">
+			<c:url var="itineraryHref" value="/itinerary">
+				<c:param name="itineraryObject">${itinerary}</c:param>
+			</c:url>
+			<div class="featureText">
+				<h3><a href = "${itineraryHref}">${itinerary.itineraryName}</a></h3>
+				<p>${itinerary.startingPoint}</p>
+				<a href = ""><button type="button" class="btn btn-primary">Edit Itinerary</button></a>
+			<button type="button" class="btn btn-primary">Delete Itinerary</button>
 			</div>
-		</c:forEach>
-
-</p>
+		</div>
+	</c:forEach>
 </p>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
