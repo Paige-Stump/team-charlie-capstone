@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.techelevator.citymap.model.LandmarkDAO;
+import com.techelevator.citymap.model.ItineraryDAO;
 // import com.techelevator.citymap.model.MessageDAO;
 import com.techelevator.citymap.model.User;
 import com.techelevator.citymap.model.UserDAO;
@@ -22,7 +22,7 @@ import com.techelevator.citymap.model.UserDAO;
 public class UserController {
 
 	private UserDAO userDAO;
-	private LandmarkDAO landmarkDAO;
+	private ItineraryDAO itineraryDAO;
 	//private MessageDAO messageDAO;
 
 	@Autowired
