@@ -3,7 +3,6 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <h2>Itinerary Dashboard</h2>
-<p>My Itineraries</p>
 
 This is the TEST one ${username} is working on<p>	
 <button type="button" class="btn btn-primary">Create New Itinerary</button>

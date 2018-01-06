@@ -45,14 +45,15 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		List<Itinerary> itineraries = new ArrayList<>();
 		List<String> itineraryNames = getItineraryName(userName); //this works
 		for (String itinerary : itineraryNames) { 
+			Itinerary thisItinerary = new Itinerary();
 			List<Landmark> landmarks = getAllLandmarksForItinerary(userName, itinerary);
 			String sqlGetItineraryBasedOnName = "SELECT * FROM itinerary " + 
 										"WHERE itinerary.itinerary_name = ? AND itinerary.user_name = ?";
-			SqlRowSet itineraryResults = jdbcTemplate.queryForRowSet(sqlGetItineraryBasedOnName, itinerary, userName);
-			while (itineraryResults.next()) {
-				//itineraries.add(
-				mapRowToItinerary(itineraryResults, landmarks);
+			SqlRowSet itineraryLandmarkResults = jdbcTemplate.queryForRowSet(sqlGetItineraryBasedOnName, itinerary, userName);
+			while (itineraryLandmarkResults.next()) {
+				thisItinerary = mapRowToItinerary(itineraryLandmarkResults, landmarks);
 			} 
+			itineraries.add(thisItinerary);
 		}
 		return itineraries;
 	}

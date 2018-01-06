@@ -29,7 +29,7 @@ public class ItineraryController {
 		String username = "CINDY";
 		model.put("username", username);
 		model.put("itineraries", itineraryDAO.getAllItineraries(username));
-		
+	
 		return "userDash";
 	}
 
