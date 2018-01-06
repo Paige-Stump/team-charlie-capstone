@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.techelevator.citymap.model.Itinerary;
 import com.techelevator.citymap.model.Landmark;
-import com.techelevator.citymap.model.LandmarkDAO;
 import com.techelevator.citymap.model.MapMarkerDAO;
 
 @Controller

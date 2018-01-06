@@ -43,14 +43,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		List<Itinerary> itineraries = new ArrayList<>();
 		List<String> itineraryNames = getItineraryName(userName);
 		for (String itinerary : itineraryNames) {
-			List<Landmark> landmarks = new ArrayList<>();
-			String sqlGetLandmarksFromItinerary = "SELECT * FROM landmark "
-					+ "JOIN itinerary ON itinerary.landmark_id = landmark.landmark_id "
-					+ "WHERE itinerary.user_name = ? AND WHERE itinerary.itinerary_name = ?";
-			SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetLandmarksFromItinerary, userName, itinerary);
-			while (results.next()) {
-				landmarks.add(mapRowToLandmark(results));
-			}
+			List<Landmark> landmarks = getAllLandmarksForItinerary(userName, itinerary);
 			String sqlGetItineraryBasedOnName = "SELECT * FROM itinerary " + 
 										"WHERE itinerary_name = ? AND WHERE itinerary.user_name = ?";
 			SqlRowSet itineraryResults = jdbcTemplate.queryForRowSet(sqlGetItineraryBasedOnName, itinerary, userName);
@@ -80,17 +73,19 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		return itinerary;
 	}
 
-	private List<Landmark> getAllLandmarksForItinerary() {
+	private List<Landmark> getAllLandmarksForItinerary(String userName, String itinerary) {
 		List<Landmark> allLandmarks = new ArrayList<>();
-		String sqlGetAllLandmarks = "SELECT * " + "FROM landmark";
-		// need sql to get all landmark for a particular itinerary
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllLandmarks);
+		String sqlGetLandmarksFromItinerary = "SELECT * FROM landmark "
+				+ "JOIN itinerary ON itinerary.landmark_id = landmark.landmark_id "
+				+ "WHERE itinerary.user_name = ? AND WHERE itinerary.itinerary_name = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetLandmarksFromItinerary, userName, itinerary);
 		while (results.next()) {
 			allLandmarks.add(mapRowToLandmark(results));
 		}
 		return allLandmarks;
 	}
 
+	//can't remember why we need this method
 	@Override
 	public Landmark getLandmarkById(int landmarkId) {
 		Landmark myLandmark = new Landmark();
@@ -105,20 +100,24 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 
 	@Override
 	public List<Landmark> getFeaturedLandmarks() {
+		List<Landmark> landmarks = new ArrayList<>();
 		String sqlGetFeaturedLandmarks = "SELECT * " + "FROM landmark " + "ORDER BY random()" + "LIMIT 3";
 
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetFeaturedLandmarks);
-		return mapRowSetToFeaturedLandmarks(results);
+		while(results.next()){
+			landmarks.add(mapRowToLandmark(results));
+		}
+		return landmarks;
 	}
 
-	// might be redundant? could use something else
-	private List<Landmark> mapRowSetToFeaturedLandmarks(SqlRowSet results) {
+	// redundant - just using general mapRowToLandmark - changed in getFeaturedLandmarks
+	/*private List<Landmark> mapRowSetToFeaturedLandmarks(SqlRowSet results) {
 		List<Landmark> myFeaturedLandmarks = new ArrayList<Landmark>();
 		while (results.next()) {
 			myFeaturedLandmarks.add(mapRowToLandmark(results));
 		}
 		return myFeaturedLandmarks;
-	}
+	}*/
 
 	private Landmark mapRowToLandmark(SqlRowSet results) {
 		Landmark myLandmark = new Landmark();

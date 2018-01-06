@@ -8,23 +8,24 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.techelevator.citymap.model.LandmarkDAO;
+import com.techelevator.citymap.model.ItineraryDAO;
+
 
 // import com.techelevator.citymap.model.MessageDAO;
 
 @Controller
 public class HomeController {
 	
-private LandmarkDAO landmarkDAO;
+private ItineraryDAO itineraryDAO;
 
 @Autowired
-public HomeController(LandmarkDAO landmarkDAO) {
-		this.landmarkDAO = landmarkDAO;
+public HomeController(ItineraryDAO itineraryDAO) {
+		this.itineraryDAO = itineraryDAO;
 	}
 	
 	@RequestMapping(path="/", method=RequestMethod.GET)
 	public String showHomePage(ModelMap model) {
-	model.put("landmarks", landmarkDAO.getFeaturedLandmarks());
+	model.put("landmarks", itineraryDAO.getFeaturedLandmarks());
 	return "home";
 	}
 }
