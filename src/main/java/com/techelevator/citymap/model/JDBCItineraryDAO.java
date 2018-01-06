@@ -139,4 +139,18 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		}
 		return allLandmarks;
 	}
+	
+	@Override
+	public String getWaypointArray(List<Landmark> landmarks) {
+		String wayPointBuilder = "[";
+		List<String> nameAndCityBuilder = new ArrayList<>();
+		for(Landmark landmark: landmarks) {
+			nameAndCityBuilder.add(landmark.getNameAndCity());
+		}
+		for(String nameAndCityConcat : nameAndCityBuilder) {
+			wayPointBuilder += "{location: \"" + nameAndCityConcat + "\", stopover: true}, ";
+		}
+		wayPointBuilder += "]";
+		return wayPointBuilder;
+	}
 }

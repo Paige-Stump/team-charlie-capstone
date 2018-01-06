@@ -9,4 +9,5 @@ public interface ItineraryDAO {
 	public Landmark getLandmarkById(int landmarkId);
 	public List<Landmark> getFeaturedLandmarks();
 	public List<Landmark> getAllLandmarks();
+	public String getWaypointArray(List<Landmark> landmarks);
 }

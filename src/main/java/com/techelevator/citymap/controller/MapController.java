@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.techelevator.citymap.model.Itinerary;
+import com.techelevator.citymap.model.ItineraryDAO;
 import com.techelevator.citymap.model.Landmark;
-import com.techelevator.citymap.model.MapMarkerDAO;
+
 
 @Controller
 public class MapController {
 
-	private MapMarkerDAO mapMarkerDAO;
+	private ItineraryDAO itineraryDAO;
 
 	@Autowired
-	public MapController(MapMarkerDAO mapMarkerDAO) {
-		this.mapMarkerDAO = mapMarkerDAO;
+	public MapController(ItineraryDAO itineraryDAO) {
+		this.itineraryDAO = itineraryDAO;
 	}
 
 	@RequestMapping(path = "/map", method = RequestMethod.GET)
@@ -55,26 +56,12 @@ public class MapController {
 		ourLandmarks.add(landmark);
 		String start = "Hyde Park, Cincinnati, OH";
 		String end = "Mount Adams, Cincinnati, OH";
-		model.put("waypts", getWaypointArray(ourLandmarks)); //this is a theory fingers crossed
+		model.put("waypts", itineraryDAO.getWaypointArray(ourLandmarks)); //this is a theory fingers crossed
 		// for test: String waypoints = "[{location: \"Reds Stadium, Cincinnati, OH\", stopover: true}, {location: \"John Roebling Bridge, Cincinnati, OH\", stopover: true}, {location: \"HCDC, Cincinnati, OH\", stopover: true}]";
 		model.put("start", start);
 		model.put("end", end);
 		
 		return "mapSelector";
-	}
-	
-	//This method will be put elsewhere (Itinerary or Map)
-	private String getWaypointArray(List<Landmark> landmarks) {
-		String wayPointBuilder = "[";
-		List<String> nameAndCityBuilder = new ArrayList<>();
-		for(Landmark landmark: landmarks) {
-			nameAndCityBuilder.add(landmark.getNameAndCity());
-		}
-		for(String nameAndCityConcat : nameAndCityBuilder) {
-			wayPointBuilder += "{location: \"" + nameAndCityConcat + "\", stopover: true}, ";
-		}
-		wayPointBuilder += "]";
-		return wayPointBuilder;
 	}
 
 }
