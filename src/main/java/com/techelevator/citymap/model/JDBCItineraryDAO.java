@@ -128,6 +128,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		myLandmark.setLandmarkLocation(results.getString("landmark_location"));
 		myLandmark.setLandmarkLink(results.getString("wikipedia"));
 		myLandmark.setLandmarkCity(results.getString("landmark_city"));
+		myLandmark.setLandmarkId(results.getInt("landmark_id"));
 		return myLandmark;
 	}
 
@@ -166,4 +167,29 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		}
 		return itineraryNames;
 	} */
+
+	
+	public void createNewItinerary(String itineraryName, String startingPoint, String userName, List<Landmark> landmarks) {
+		for (Landmark landmark : landmarks) {
+			String sqlCreateNewItinerary = "INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) " +
+					"VALUES ?, ?, ?, ?";
+			jdbcTemplate.update(sqlCreateNewItinerary, userName, itineraryName, startingPoint, landmark.getLandmarkId());
+		}
+	}
+	
+	public void addLandmarkToItinerary(String itineraryName, String startingPoint, String userName, Landmark landmark) {
+		String sqlAddLandmarkToItinerary = "INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) " +
+					"VALUES ?, ?, ?, ?";
+		jdbcTemplate.update(sqlAddLandmarkToItinerary, userName, itineraryName, startingPoint, landmark.getLandmarkId());
+	}
+	
+	public void removeLandmarkFromItinerary(String itineraryName, String userName, int landmarkId) {
+		String sqlRemoveLandmarkFromItinerary = "DELETE FROM itinerary WHERE itinerary.itinerary_name = '?' AND itinerary.user_name = '?' AND landmark_id = '?'";
+		jdbcTemplate.update(sqlRemoveLandmarkFromItinerary, itineraryName, userName, landmarkId);
+	}
+	
+	public void deleteItinerary(String itineraryName, String userName) {
+		String sqlDeleteItinerary = "DELETE FROM itinerary WHERE itinerary.itinerary_name='?' AND itinerary.user_name='?'";
+		jdbcTemplate.update(sqlDeleteItinerary, itineraryName, userName);
+	}
 }
