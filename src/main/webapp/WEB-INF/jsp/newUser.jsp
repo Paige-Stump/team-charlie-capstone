@@ -19,11 +19,21 @@
 				userName : {
 					required : true
 				},
+				
+				firstName : {
+					required : true
+				},
+				
+				lastName : {
+					required : true
+				},
+				
 				password : {
 					required : true,
 					minlength: 10,
 					hasUppercase: true // must have an uppercase letter b/t A and Z
 				},
+				
 				confirmPassword : {
 					required : true,		
 					equalTo : "#password"  
