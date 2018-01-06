@@ -10,4 +10,5 @@ public interface ItineraryDAO {
 	public List<Landmark> getFeaturedLandmarks();
 	public List<Landmark> getAllLandmarks();
 	public String getWaypointArray(List<Landmark> landmarks);
+	//public List<String> getItineraryNamesForDashboard(String username);
 }

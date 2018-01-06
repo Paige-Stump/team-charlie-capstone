@@ -5,17 +5,21 @@
 <h2>Itinerary Dashboard</h2>
 <p>My Itineraries</p>
 
-This is the TEST one ${username} is working on
-
+This is the TEST one ${username} is working on<p>	
+<button type="button" class="btn btn-primary">Create New Itinerary</button>
 <p>
 <p>
 	<c:forEach items="${itineraries}" var="itinerary">
 			<div class="feature">
-				<c:url var="itineraryHref" value=""></c:url>
+				<c:url var="itineraryHref" value="/mapSelector">
+				<c:param name="itineraryName">${itinerary.itineraryName}</c:param></c:url>
 		
 				<div class="featureText">
-					<p>${itinerary.itineraryName}</p>
+				
+					<a href = "${itineraryHref}"><h3>${itinerary.itineraryName}</h3></a>
 					<p>${itinerary.startingPoint}</p>
+					<a href = ""><button type="button" class="btn btn-primary">Edit Itinerary</button></a>
+				<button type="button" class="btn btn-primary">Delete Itinerary</button>
 				</div>
 			</div>
 		</c:forEach>

@@ -43,25 +43,26 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	@Override
 	public List<Itinerary> getAllItineraries(String userName) {
 		List<Itinerary> itineraries = new ArrayList<>();
-		List<String> itineraryNames = getItineraryName(userName);
-		for (String itinerary : itineraryNames) {
+		List<String> itineraryNames = getItineraryName(userName); //this works
+		for (String itinerary : itineraryNames) { 
 			List<Landmark> landmarks = getAllLandmarksForItinerary(userName, itinerary);
 			String sqlGetItineraryBasedOnName = "SELECT * FROM itinerary " + 
-										"WHERE itinerary_name = ? AND WHERE itinerary.user_name = ?";
+										"WHERE itinerary.itinerary_name = ? AND itinerary.user_name = ?";
 			SqlRowSet itineraryResults = jdbcTemplate.queryForRowSet(sqlGetItineraryBasedOnName, itinerary, userName);
 			while (itineraryResults.next()) {
-				itineraries.add(mapRowToItinerary(itineraryResults, landmarks));
-			}
+				//itineraries.add(
+				mapRowToItinerary(itineraryResults, landmarks);
+			} 
 		}
 		return itineraries;
 	}
 
 	private List<String> getItineraryName(String userName) {
 		List<String> itineraryNames = new ArrayList<>();
-		String sqlGetItineraryName = "SELECT itinerary_name FROM itinerary WHERE user_name = '" +  "?" + "' GROUP BY itinerary_name";
+		String sqlGetItineraryName = "SELECT itinerary_name FROM itinerary WHERE itinerary.user_name = ? GROUP BY itinerary.itinerary_name";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetItineraryName, userName);
 		while (results.next()) {
-			itineraryNames.add(results.getString("user_name"));
+			itineraryNames.add(results.getString("itinerary_name"));
 		}
 		return itineraryNames;
 	}
@@ -78,7 +79,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		List<Landmark> allLandmarks = new ArrayList<>();
 		String sqlGetLandmarksFromItinerary = "SELECT * FROM landmark "
 				+ "JOIN itinerary ON itinerary.landmark_id = landmark.landmark_id "
-				+ "WHERE itinerary.user_name = ? AND WHERE itinerary.itinerary_name = ?";
+				+ "WHERE itinerary.user_name = ? AND itinerary.itinerary_name = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetLandmarksFromItinerary, userName, itinerary);
 		while (results.next()) {
 			allLandmarks.add(mapRowToLandmark(results));
@@ -154,4 +155,15 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		wayPointBuilder += "]";
 		return wayPointBuilder;
 	}
+	
+	
+	/*public List<String> getItineraryNamesForDashboard(String userName) {
+		List<String> itineraryNames = new ArrayList<>();
+		String sqlGetItineraryName = "SELECT itinerary_name FROM itinerary WHERE itinerary.user_name = ? GROUP BY itinerary.itinerary_name";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetItineraryName, userName);
+		while (results.next()) {
+			itineraryNames.add(results.getString("itinerary_name"));
+		}
+		return itineraryNames;
+	} */
 }
