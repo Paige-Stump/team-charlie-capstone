@@ -7,6 +7,7 @@ BEGIN;
 -- INSERT statements go here
 
 INSERT INTO app_user (user_name, password, salt, first_name, last_name) VALUES ('CINDY', 'WzYbaCzcPr6PSX0W50gUWw==', 'SDJydqT014UpMj7hCx+1/aeV7HJ82PA+CxZm0BeelT75HfxhbnAH/w5AVIHoX+A6eGiyzIMPflQlLiYhQxtB8LqddoMPWIW6jsX3MrjuKZKlRdd52az4DXdV3jWzFb+CwkGjVlLZ0SE/NvNmMxoEcwKPEEnGevnkZ8T0ZJJdh/s=', 'Cindy', 'Edington');
+INSERT INTO app_user (user_name, password, salt, first_name, last_name) VALUES ('GENWASHINGTON76RULZ', 'n2F1UR9Dlcw8Q9ocTD+ZCg==', 'C0jvMsVC78ZC5Mg22kRQSjFOGwLMEJN+d9mqJ44mvofdXtEo/eoZv7i/jdU6A7yzPgAqmuf2R1QglrpJA7HNkqkU1ZlXVp4kv++diE1GchiH/Yz8Vux9ZhvgczBzAcp8C748pwCLWSUOYGL02CKqLE6fkR6Itj8M1eWG+m9AZMA=', 'George', 'Washington');
 
 INSERT INTO landmark (landmark_title, landmark_description, landmark_location, landmark_city, wikipedia) VALUES ('Great American Ball Park','Great American Ball Park is a baseball stadium in Cincinnati, Ohio, which is the home field of Major League Baseball''s Cincinnati Reds. It opened in 2003, replacing Cinergy Field, their home field from 1970 to 2002.','ChIJLwacWEOxQYgRcu3UJQuLYwc','Cincinnati, OH','https://en.wikipedia.org/wiki/Great_American_Ball_Park');
 INSERT INTO landmark (landmark_title, landmark_description, landmark_location, landmark_city, wikipedia) VALUES ('Spring Grove Cemetery & Arboretum','Spring Grove Cemetery and Arboretum is a nonprofit garden cemetery and arboretum located at 4521 Spring Grove Avenue, Cincinnati, Ohio. It is the fourth largest cemetery in the United States and is recognized as a US National Historic Landmark.','ChIJh5T69aG0QYgRYy2pedvhx_0', 'Cincinnati, OH','https://en.wikipedia.org/wiki/Spring_Grove_Cemetery');
@@ -28,6 +29,16 @@ INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) V
 INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('CINDY', 'daytwo', '21 C Hotel, Cincinnati, OH', '3');
 INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('CINDY', 'daytwo', '21 C Hotel, Cincinnati, OH', '6');
 INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('CINDY', 'myItinerary', '21 C Hotel, Cincinnati, OH', '2');
+
+
+INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('GENWASHINGTON76RULZ', 'myItinerary', '21 C Hotel, Cincinnati, OH', '1');
+INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('GENWASHINGTON76RULZ', 'myItinerary', '21 C Hotel, Cincinnati, OH', '4');
+INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('GENWASHINGTON76RULZ', 'myItinerary', '21 C Hotel, Cincinnati, OH', '7');
+INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('GENWASHINGTON76RULZ', 'myItinerary', '21 C Hotel, Cincinnati, OH', '3');
+INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('GENWASHINGTON76RULZ', 'daytwo', '21 C Hotel, Cincinnati, OH', '1');
+INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('GENWASHINGTON76RULZ', 'daytwo', '21 C Hotel, Cincinnati, OH', '3');
+INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('GENWASHINGTON76RULZ', 'daytwo', '21 C Hotel, Cincinnati, OH', '6');
+INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) VALUES ('GENWASHINGTON76RULZ', 'myItinerary', '21 C Hotel, Cincinnati, OH', '2');
 
 
 

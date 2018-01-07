@@ -20,25 +20,15 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	/*@Override
-	public List<Itinerary> getItineraryByName(String userName, String itineraryName) {
-		List<Itinerary> itineraries = new ArrayList<>();
-		List<Landmark> landmarks = new ArrayList<>();
-		String sqlGetLandmarksFromItinerary = "SELECT * FROM landmark "
-				+ "JOIN itinerary ON itinerary.landmark_id = landmark.landmark_id "
-				+ "WHERE itinerary.user_name = ? AND WHERE itinerary.itinerary_name = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetLandmarksFromItinerary, userName, itineraryName);
-		while (results.next()) {
-			landmarks.add(mapRowToLandmark(results));
-		}
-		String sqlGetItineraryByUserName = "SELECT * FROM itinerary "
-				+ "WHERE user_name = ? AND WHERE itinerary.itinerary_name = ?";
-		SqlRowSet itineraryResults = jdbcTemplate.queryForRowSet(sqlGetItineraryByUserName, userName, itineraryName);
-		while (itineraryResults.next()) {
-			itineraries.add(mapRowToItinerary(itineraryResults, landmarks));
-		}
-		return itineraries;
-	}*/
+	@Override
+	public Itinerary getItineraryByName(String userName, String itineraryName, String startingPoint) {
+		Itinerary itinerary = new Itinerary();
+		List<Landmark> landmarks = getAllLandmarksForItinerary(userName, itineraryName);
+		itinerary.setItineraryName(itineraryName);
+		itinerary.setStartingPoint(startingPoint);
+		itinerary.setLandmarks(landmarks);
+		return itinerary;
+	}
 
 	@Override
 	public List<Itinerary> getAllItineraries(String userName) {
@@ -150,7 +140,9 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		List<String> nameAndCityBuilder = new ArrayList<>();
 		for(Landmark landmark: landmarks) {
 			nameAndCityBuilder.add(landmark.getNameAndCity());
+			System.out.println(landmark.getNameAndCity());
 		}
+		
 		for(String nameAndCityConcat : nameAndCityBuilder) {
 			wayPointBuilder += "{location: \"" + nameAndCityConcat + "\", stopover: true}, ";
 		}

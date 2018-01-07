@@ -49,7 +49,7 @@ public class UserController {
 	@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
 	public String displayDashboard(ModelMap model, @PathVariable String userName) {
 	//	model.put("conversations", messageDAO.getConversationsForUser(userName));
-		return "userDashboard";
+		return "userDash";
 	}
 	
 	@RequestMapping(path="/users/{forUserName}/conversations/{withUserName}", method=RequestMethod.GET)
@@ -73,6 +73,6 @@ public class UserController {
 	@RequestMapping(path="/users/{userName}/changePassword", method=RequestMethod.POST)
 	public String changePassword(@PathVariable String userName, @RequestParam String password) {
 		userDAO.updatePassword(userName, password);
-		return "userDashboard";
+		return "userDash";
 	}
 }

@@ -11,6 +11,7 @@ public class Landmark {
 	private String nameAndCity;
 	
 	public String getNameAndCity() {
+		this.nameAndCity = this.landmarkName + ", " + this.landmarkCity; 
 		return nameAndCity;
 	}
 	public void setNameAndCity() {

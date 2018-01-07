@@ -4,9 +4,10 @@ import java.util.List;
 
 public interface ItineraryDAO {
 
-	//public List<Itinerary> getItineraryByName(String userName, String itineraryName);
+	public Itinerary getItineraryByName(String userName, String itineraryName, String startingPoint);
 	public List<Itinerary> getAllItineraries(String userName);
 	public Landmark getLandmarkById(int landmarkId);
+	//public List<Landmark> getLandmarksByItinerary(String itineraryName, String userName);
 	public List<Landmark> getFeaturedLandmarks();
 	public List<Landmark> getAllLandmarks();
 	public String getWaypointArray(List<Landmark> landmarks);

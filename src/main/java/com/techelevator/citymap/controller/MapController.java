@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.techelevator.citymap.model.Itinerary;
 import com.techelevator.citymap.model.ItineraryDAO;
@@ -41,29 +42,23 @@ public class MapController {
 	}
 	
 	@RequestMapping(path = "/mapSelector", method = RequestMethod.GET)
-	public String showMapSelector(ModelMap model, Itinerary itinerary) {
-		//List<Landmark> landmarks = itinerary.getLandmarks();
-		Landmark landmark = new Landmark();
-		landmark.setLandmarkCity("Cincinnati, OH");
-		landmark.setLandmarkDescription("my description");
-		landmark.setLandmarkId(1);
-		landmark.setLandmarkLink("www.google.com");
-		landmark.setLandmarkLocation("fndsljfhsdkjfsdlkfjs");
-		landmark.setLandmarkName("HCDC");
-		landmark.setNameAndCity();
-		System.out.println(landmark.getNameAndCity());
+	public String showMapSelector(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName) {
 		List<Landmark> ourLandmarks = new ArrayList<>();
-		ourLandmarks.add(landmark);
-		String start = "Hyde Park, Cincinnati, OH";
-		String end = "Mount Adams, Cincinnati, OH";
+		String username = "CINDY";
+		model.put("username", username);
+		model.put("itineraryName", itineraryName);
+		model.put("itineraryStart", itineraryStart);
+		Itinerary itinerary = itineraryDAO.getItineraryByName(username, itineraryName, itineraryStart);
+		//model.put("itinerary", itinerary);
+		ourLandmarks = itinerary.getLandmarks();
 		//get parameter name and then run sql statement to populate the data 
 		
 		model.put("waypts", itineraryDAO.getWaypointArray(ourLandmarks)); //this is a theory fingers crossed
+		
 		// for test: String waypoints = "[{location: \"Reds Stadium, Cincinnati, OH\", stopover: true}, {location: \"John Roebling Bridge, Cincinnati, OH\", stopover: true}, {location: \"HCDC, Cincinnati, OH\", stopover: true}]";
-		model.put("start", start);
-		model.put("end", end);
+		model.put("start", itineraryStart);
+		model.put("end", itineraryStart);
 		
 		return "mapSelector";
 	}
-
 }

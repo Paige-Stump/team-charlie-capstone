@@ -2,15 +2,15 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<h2>${username}'s Itinerary Dashboard</h2>
-
-<p>	
-<button type="button" class="btn btn-primary">Create New Itinerary</button>
+<h2>${currentUser}'s Itinerary Dashboard</h2>
+<c:url var="allLandmarks" value="/landmarks"/>
+<a href="${allLandmarks}"><button type="button" class="btn btn-primary">Create New Itinerary</button></a>
 <p>
 	<c:forEach items="${itineraries}" var="itinerary">
 		<div class="feature">
 			<c:url var="itineraryHref" value="/itinerary">
-				<c:param name="itineraryObject">${itinerary}</c:param>
+				<c:param name="itineraryStart">${itinerary.startingPoint}</c:param>
+				<c:param name = "itineraryName">${itinerary.itineraryName}</c:param>
 			</c:url>
 			<div class="featureText">
 				<h3><a href = "${itineraryHref}">${itinerary.itineraryName}</a></h3>

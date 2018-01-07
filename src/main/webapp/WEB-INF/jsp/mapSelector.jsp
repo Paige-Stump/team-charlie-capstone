@@ -86,12 +86,10 @@
 		<!-- BELOW IS WHAT I'M WORKING ON FOR THE ARRAY -->
 		<div id="waypoints">
 		
-		
-		
 		</div>
 		
 	</div> 
-	<button class="btn btn-primary" type="submit" id="submit">Generate my Route</button>
+	
 	<div id="directions-panel"></div>
 </div>
 <script type="text/javascript">
@@ -107,9 +105,9 @@
 		});
 		directionsDisplay.setMap(map);
 
-		document.getElementById('submit').addEventListener('click', function() {
+		window.onload = function() {
 			calculateAndDisplayRoute(directionsService, directionsDisplay);
-		});
+		};
 		
 		function loadScript() {
 			var script = document.createElement("script");

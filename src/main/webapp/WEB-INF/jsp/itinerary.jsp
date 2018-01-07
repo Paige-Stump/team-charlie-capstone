@@ -2,28 +2,28 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<h2>Itinerary Dashboard</h2>
+<h2>${currentUser}'s Itinerary Dashboard</h2>
 
-This is the TEST one ${username} is working on<p>	
-<button type="button" class="btn btn-primary">Create New Itinerary</button>
-<p>
-<p>
-	<c:forEach items="${itineraries}" var="itinerary">
+<c:url var="mapHref" value="/mapSelector">
+	<c:param name="itineraryStart">${itinerary.startingPoint}</c:param>
+	<c:param name="itineraryName">${itinerary.itineraryName}</c:param>
+</c:url>
+
+<a href="${mapHref}"><button type="button" class="btn btn-primary">Generate Travel Route</button></a>
+	<c:forEach items="${itinerary.landmarks}" var="landmark">
 			<div class="feature">
-				<c:url var="itineraryHref" value="/mapSelector">
-				<c:param name="itineraryObject">${itinerary}</c:param></c:url>
-		
-				<div class="featureText">
+				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
+				<c:url var="landmarkImage" value="/img/${landmark.landmarkLocation}.jpg"></c:url>
 				
-					<a href = "${itineraryHref}"><h3>${itinerary.itineraryName}</h3></a>
-					<p>${itinerary.startingPoint}</p>
-					<a href = ""><button type="button" class="btn btn-primary">Edit Itinerary</button></a>
-				<button type="button" class="btn btn-primary">Delete Itinerary</button>
+				<div class="featureThumb">
+					<a href="${landmarkHref}" target="_blank"><img src="${landmarkImage}"/></a>
+				</div>
+				<div class="featureText">
+					<p class="title">${landmark.landmarkName}</p>
+					<p class="description">${landmark.landmarkDescription}</p>
+					<button type="button" class="btn btn-danger">Delete From My Itinerary</button>
 				</div>
 			</div>
 		</c:forEach>
-
-</p>
-</p>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
