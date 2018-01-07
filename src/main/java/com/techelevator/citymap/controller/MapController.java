@@ -49,13 +49,8 @@ public class MapController {
 		model.put("itineraryName", itineraryName);
 		model.put("itineraryStart", itineraryStart);
 		Itinerary itinerary = itineraryDAO.getItineraryByName(username, itineraryName, itineraryStart);
-		//model.put("itinerary", itinerary);
 		ourLandmarks = itinerary.getLandmarks();
-		//get parameter name and then run sql statement to populate the data 
-		
-		model.put("waypts", itineraryDAO.getWaypointArray(ourLandmarks)); //this is a theory fingers crossed
-		
-		// for test: String waypoints = "[{location: \"Reds Stadium, Cincinnati, OH\", stopover: true}, {location: \"John Roebling Bridge, Cincinnati, OH\", stopover: true}, {location: \"HCDC, Cincinnati, OH\", stopover: true}]";
+		model.put("waypts", itineraryDAO.getWaypointArray(ourLandmarks));  
 		model.put("start", itineraryStart);
 		model.put("end", itineraryStart);
 		
