@@ -65,7 +65,7 @@
 				</div>
 			</div>
 		</c:forEach>
-
+<p>
 	</p>
 	<button type="submit" class="btn btn-primary">Create My Itinerary</button>
 	<p></p>
