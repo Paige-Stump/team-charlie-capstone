@@ -27,7 +27,6 @@
 				<p class="title">${landmark.landmarkName}</p>
 				<p class="description">${landmark.landmarkDescription}</p>
 				<button type="submit" class="btn btn-danger" name="landmarkId" value="${landmark.landmarkId}">Delete From My Itinerary</button>
-
 			</div>
 		</div>
 	</form>

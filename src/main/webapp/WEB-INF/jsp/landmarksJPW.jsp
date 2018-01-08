@@ -18,10 +18,16 @@
 				}
 			},
 			
-			
-
 		});
 	});
+	
+	/* $("#submitItinerary").click(function(event){
+	    // event.preventDefault();
+	    var landmarks = $(".form-check-input input:checkbox:checked").map(function(){
+	      return $(this).val();
+	    }).get(); 
+	    console.log(landmarks);
+	}); */
 </script>
 
 
@@ -38,13 +44,9 @@
 			type="text" class="form-control" name="startingPoint"
 			placeholder="21 C Hotel, Cincinnati, OH"> <small
 			id="howToEnter" class="form-text text-muted">Please enter
-			starting point like '21 C Hotel, Cincinnati, OH' including all commas</small>
+			starting point like 'Location, City, State' including all commas</small>
 	</div>
 
-
-
-
-	<p>
 		<c:forEach items="${landmarks}" var="landmark">
 			<div class="feature">
 				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
@@ -65,10 +67,16 @@
 				</div>
 			</div>
 		</c:forEach>
+<<<<<<< HEAD:src/main/webapp/WEB-INF/jsp/landmarks.jsp
 <p>
 	</p>
 	<button type="submit" class="btn btn-primary">Create My Itinerary</button>
 	<p></p>
+=======
+
+	<button type="submit" id="submitItinerary" class="btn btn-primary">Create My Itinerary</button>
+
+>>>>>>> f4b399966260b458a7058400a96f334392488b51:src/main/webapp/WEB-INF/jsp/landmarksJPW.jsp
 </form>
 
 <!-- <button type="button" class="btn btn-primary">Add to My Itinerary</button>  -->

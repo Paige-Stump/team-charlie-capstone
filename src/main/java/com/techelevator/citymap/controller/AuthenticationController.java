@@ -91,10 +91,10 @@ public class AuthenticationController {
 		return "userDash";
 	}
 	
-	@RequestMapping(path="/users/userDash", method=RequestMethod.POST)
+	/*@RequestMapping(path="/users/userDash", method=RequestMethod.POST)
 	public String clickOnItinerary(ModelMap model){
 		return"redirect:/itinerary";
-	}
+	}*/
 	
 	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
 	public String displayItinerary(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName){
@@ -108,15 +108,34 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/itinerary", method=RequestMethod.POST)
-	public String deleteFromItinerary(ModelMap model, @RequestParam String itineraryName, @RequestParam (required=false) String landmarkId) {
+	public String deleteLandmarkFromItinerary(ModelMap model, @RequestParam String itineraryName, @RequestParam String landmarkId) {
 		User user = (User)model.get("currentUser");
 		model.put("userName", user.getUserName());
 		model.put("itineraryName", itineraryName);
 		model.put("landmarkId", landmarkId);
-		System.out.println(itineraryName);
-		System.out.println(landmarkId);
-		System.out.println(user.getUserName());
 		itineraryDAO.removeLandmarkFromItinerary(itineraryName, user.getUserName(), landmarkId);
+		return "redirect:/users/userDash";
+	}
+	
+	@RequestMapping(path="/itineraryDelete", method=RequestMethod.GET)
+	public String confirmItineraryDelete(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryDeleteButton) {
+		User user = (User)model.get("currentUser");
+		model.put("userName", user.getUserName());
+		model.put("itineraryName", itineraryDeleteButton);
+		model.put("itineraryStart", itineraryStart);
+		return "itineraryDelete";
+	}
+	
+	@RequestMapping(path="/itineraryDelete", method=RequestMethod.POST)
+	public String deleteItineraryForUser(ModelMap model, @RequestParam String itineraryStart, @RequestParam (required=false) String itineraryName) {
+		User user = (User)model.get("currentUser");
+		model.put("userName", user.getUserName());
+		model.put("itineraryName", itineraryName);
+		model.put("itineraryStart", itineraryStart);
+		System.out.println(itineraryName);
+		System.out.println(user.getUserName());
+		
+		itineraryDAO.deleteItinerary(itineraryName, user.getUserName());
 		return "redirect:/users/userDash";
 	}
 	
