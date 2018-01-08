@@ -116,22 +116,20 @@ public class AuthenticationController {
 	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
 	public String createItinerary(ModelMap model, @RequestParam String startingPoint, @RequestParam String itineraryName, @RequestParam (required=false) String checked1) {
 		
+		User user = (User)model.get("currentUser");
 		if(checked1 != null) {
-			Itinerary itinerary = new Itinerary();
+			
 			Landmark landmark = new Landmark();
 			List<Landmark> landmarks = new ArrayList<>();
 			landmark = itineraryDAO.getLandmarkById(checked1);
 			landmarks.add(landmark);
-			itinerary.setLandmarks(landmarks);
-			itinerary.setItineraryName(itineraryName);
-			itinerary.setStartingPoint(startingPoint);
+			
+			itineraryDAO.createNewItinerary(itineraryName, startingPoint, user.getUserName(), landmarks);
 			System.out.println(landmark.getLandmarkName());
+			System.out.println(checked1);
 		}
-		System.out.println(itineraryName);
-		System.out.println(startingPoint);
 		
 
-		User user = (User)model.get("currentUser");
 		model.put("username", user.getUserName());
 		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
 		return "redirect:/users/userDash";

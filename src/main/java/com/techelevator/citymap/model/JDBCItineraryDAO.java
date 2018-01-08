@@ -165,15 +165,18 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	
 	public void createNewItinerary(String itineraryName, String startingPoint, String userName, List<Landmark> landmarks) {
 		for (Landmark landmark : landmarks) {
+			String ourString = landmark.getLandmarkId();
+			System.out.println(ourString);
+			int ourInt = Integer.parseInt(landmark.getLandmarkId());
 			String sqlCreateNewItinerary = "INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) " +
-					"VALUES ?, ?, ?, ?";
-			jdbcTemplate.update(sqlCreateNewItinerary, userName, itineraryName, startingPoint, landmark.getLandmarkId());
+					"VALUES (?, ?, ?, ?)";
+			jdbcTemplate.update(sqlCreateNewItinerary, userName, itineraryName, startingPoint, ourInt);
 		}
 	}
 	
 	public void addLandmarkToItinerary(String itineraryName, String startingPoint, String userName, Landmark landmark) {
 		String sqlAddLandmarkToItinerary = "INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) " +
-					"VALUES ?, ?, ?, ?";
+					"VALUES (?, ?, ?, ?)";
 		jdbcTemplate.update(sqlAddLandmarkToItinerary, userName, itineraryName, startingPoint, landmark.getLandmarkId());
 	}
 	

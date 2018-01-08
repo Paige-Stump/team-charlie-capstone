@@ -18,8 +18,8 @@ CREATE TABLE app_user (
   user_name varchar(32) NOT NULL,
   password varchar(32) NOT NULL,
   salt varchar(256) NOT NULL,
-  first_name varchar(32) NOT NULL,
-  last_name varchar(32) NOT NULL,
+  first_name varchar(256) NOT NULL,
+  last_name varchar(256) NOT NULL,
   admin boolean NOT NULL DEFAULT FALSE,
   CONSTRAINT pk_app_user_username PRIMARY KEY (user_name)
 );
@@ -33,8 +33,8 @@ CREATE SEQUENCE itinerary_itinerary_id_seq
 CREATE TABLE itinerary (
   itinerary_id integer DEFAULT nextval('itinerary_itinerary_id_seq'::regclass) NOT NULL,
   user_name varchar (32) NOT NULL,
-  itinerary_name varchar(32) NOT NULL,
-  starting_point varchar(32) NOT NULL,
+  itinerary_name varchar(256) NOT NULL,
+  starting_point varchar(256) NOT NULL,
   landmark_id integer ,
   CONSTRAINT pk_itinerary_itinerary_id PRIMARY KEY (itinerary_id)
 );

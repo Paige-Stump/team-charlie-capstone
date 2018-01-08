@@ -8,7 +8,7 @@ BEGIN;
 
 INSERT INTO app_user (user_name, password, salt, first_name, last_name) VALUES ('CINDY', 'WzYbaCzcPr6PSX0W50gUWw==', 'SDJydqT014UpMj7hCx+1/aeV7HJ82PA+CxZm0BeelT75HfxhbnAH/w5AVIHoX+A6eGiyzIMPflQlLiYhQxtB8LqddoMPWIW6jsX3MrjuKZKlRdd52az4DXdV3jWzFb+CwkGjVlLZ0SE/NvNmMxoEcwKPEEnGevnkZ8T0ZJJdh/s=', 'Cindy', 'Edington');
 INSERT INTO app_user (user_name, password, salt, first_name, last_name) VALUES ('GENWASHINGTON76RULZ', 'n2F1UR9Dlcw8Q9ocTD+ZCg==', 'C0jvMsVC78ZC5Mg22kRQSjFOGwLMEJN+d9mqJ44mvofdXtEo/eoZv7i/jdU6A7yzPgAqmuf2R1QglrpJA7HNkqkU1ZlXVp4kv++diE1GchiH/Yz8Vux9ZhvgczBzAcp8C748pwCLWSUOYGL02CKqLE6fkR6Itj8M1eWG+m9AZMA=', 'George', 'Washington');
-INSERT INTO app_user (user_name, password, salt, first_name, last_name) VALUES ('PAIGE', '9IHWx6p8n6f751e+KnK/kQ==', '+mA2OcZBRcGUqjm4oUtcKM8XnmgChLdfxZISB4PmGhDhlHyS/rJRw6GhZkJmlnIuCZhq8ZigXxeKT8bADFSZc3vSxZVsX74+Za9qQQVAz+BchgOehxYyCIuXDL1watZf+eVR7GghqefZZ4z2R5wDLsujgzpwvdTzXr6Ez/lTJVo=', 'Paige', 'Stump');
+INSERT INTO app_user (user_name, password, salt, first_name, last_name, admin) VALUES ('PAIGE', '9IHWx6p8n6f751e+KnK/kQ==', '+mA2OcZBRcGUqjm4oUtcKM8XnmgChLdfxZISB4PmGhDhlHyS/rJRw6GhZkJmlnIuCZhq8ZigXxeKT8bADFSZc3vSxZVsX74+Za9qQQVAz+BchgOehxYyCIuXDL1watZf+eVR7GghqefZZ4z2R5wDLsujgzpwvdTzXr6Ez/lTJVo=', 'Paige', 'Stump', true);
 
 
 INSERT INTO landmark (landmark_title, landmark_description, landmark_location, landmark_city, wikipedia) VALUES ('Great American Ball Park','Great American Ball Park is a baseball stadium in Cincinnati, Ohio, which is the home field of Major League Baseball''s Cincinnati Reds. It opened in 2003, replacing Cinergy Field, their home field from 1970 to 2002.','ChIJLwacWEOxQYgRcu3UJQuLYwc','Cincinnati, OH','https://en.wikipedia.org/wiki/Great_American_Ball_Park');
