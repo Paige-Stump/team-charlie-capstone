@@ -118,7 +118,7 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/itineraryDelete", method=RequestMethod.GET)
-	public String confirmItineraryDelete(ModelMap model, @RequestParam(required=false) String itineraryStart, @RequestParam String itineraryDeleteButton) {
+	public String confirmItineraryDelete(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryDeleteButton) {
 		User user = (User)model.get("currentUser");
 		model.put("userName", user.getUserName());
 		model.put("itineraryName", itineraryDeleteButton);
@@ -127,7 +127,7 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/itineraryDelete", method=RequestMethod.POST)
-	public String deleteItineraryForUser(ModelMap model, @RequestParam (required=false) String itineraryStart, @RequestParam (required=false) String itineraryName) {
+	public String deleteItineraryForUser(ModelMap model, @RequestParam String itineraryStart, @RequestParam (required=false) String itineraryName) {
 		User user = (User)model.get("currentUser");
 		model.put("userName", user.getUserName());
 		model.put("itineraryName", itineraryName);
