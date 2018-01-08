@@ -107,6 +107,19 @@ public class AuthenticationController {
 		return "itinerary";
 	}
 	
+	@RequestMapping(path="/itinerary", method=RequestMethod.POST)
+	public String deleteFromItinerary(ModelMap model, @RequestParam String itineraryName, @RequestParam (required=false) String landmarkId) {
+		User user = (User)model.get("currentUser");
+		model.put("userName", user.getUserName());
+		model.put("itineraryName", itineraryName);
+		model.put("landmarkId", landmarkId);
+		System.out.println(itineraryName);
+		System.out.println(landmarkId);
+		System.out.println(user.getUserName());
+		itineraryDAO.removeLandmarkFromItinerary(itineraryName, user.getUserName(), landmarkId);
+		return "redirect:/users/userDash";
+	}
+	
 	@RequestMapping(path="/landmarks", method=RequestMethod.GET)
 	public String showAllLandmarks(ModelMap model) {
 		model.put("landmarks", itineraryDAO.getAllLandmarks());

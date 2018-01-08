@@ -180,13 +180,13 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		jdbcTemplate.update(sqlAddLandmarkToItinerary, userName, itineraryName, startingPoint, landmark.getLandmarkId());
 	}
 	
-	public void removeLandmarkFromItinerary(String itineraryName, String userName, int landmarkId) {
-		String sqlRemoveLandmarkFromItinerary = "DELETE FROM itinerary WHERE itinerary.itinerary_name = '?' AND itinerary.user_name = '?' AND landmark_id = '?'";
-		jdbcTemplate.update(sqlRemoveLandmarkFromItinerary, itineraryName, userName, landmarkId);
+	public void removeLandmarkFromItinerary(String itineraryName, String userName, String landmarkId) {
+		String sqlRemoveLandmarkFromItinerary = "DELETE FROM itinerary WHERE itinerary.itinerary_name = ? AND itinerary.user_name = ? AND landmark_id = ?";
+		jdbcTemplate.update(sqlRemoveLandmarkFromItinerary, itineraryName, userName, Integer.parseInt(landmarkId));
 	}
 	
 	public void deleteItinerary(String itineraryName, String userName) {
-		String sqlDeleteItinerary = "DELETE FROM itinerary WHERE itinerary.itinerary_name='?' AND itinerary.user_name='?'";
+		String sqlDeleteItinerary = "DELETE FROM itinerary WHERE itinerary.itinerary_name = ? AND itinerary.user_name = ?";
 		jdbcTemplate.update(sqlDeleteItinerary, itineraryName, userName);
 	}
 }
