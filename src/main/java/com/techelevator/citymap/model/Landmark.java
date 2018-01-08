@@ -2,7 +2,7 @@ package com.techelevator.citymap.model;
 
 
 public class Landmark {
-	private int landmarkId; 
+	private String landmarkId; 
 	private String landmarkName;
 	private String landmarkCity;
 	private String landmarkDescription;
@@ -18,10 +18,10 @@ public class Landmark {
 		this.nameAndCity = this.landmarkName + ", " + this.landmarkCity;
 	}
 	
-	public int getLandmarkId() {
+	public String getLandmarkId() {
 		return landmarkId;
 	}
-	public void setLandmarkId(int landmarkId) {
+	public void setLandmarkId(String landmarkId) {
 		this.landmarkId = landmarkId;
 	}
 	public String getLandmarkName() {

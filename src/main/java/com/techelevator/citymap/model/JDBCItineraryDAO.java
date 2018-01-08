@@ -80,11 +80,12 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 
 	//can't remember why we need this method
 	@Override
-	public Landmark getLandmarkById(int landmarkId) {
+	public Landmark getLandmarkById(String landmarkId) {
+		int landmarkInt = Integer.parseInt(landmarkId);
 		Landmark myLandmark = new Landmark();
 		String sqlSearchForLandmark = "SELECT * " + "FROM landmark " + "WHERE landmark_id = ?";
 
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForLandmark, landmarkId);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForLandmark, landmarkInt);
 		if (results.next()) {
 			myLandmark = mapRowToLandmark(results);
 		}
@@ -119,7 +120,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		myLandmark.setLandmarkLocation(results.getString("landmark_location"));
 		myLandmark.setLandmarkLink(results.getString("wikipedia"));
 		myLandmark.setLandmarkCity(results.getString("landmark_city"));
-		myLandmark.setLandmarkId(results.getInt("landmark_id"));
+		myLandmark.setLandmarkId(Integer.toString(results.getInt("landmark_id")));
 		return myLandmark;
 	}
 

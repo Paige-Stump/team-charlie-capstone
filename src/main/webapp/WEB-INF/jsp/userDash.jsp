@@ -4,12 +4,18 @@
 
 <h2>${currentUser.userName}'s Itinerary Dashboard</h2>
 <c:url var="allLandmarks" value="/landmarks"/>
+<c:if test= "${currentUser.admin}" >
+<button type="button" class="btn btn-primary">Create New Landmark</button> 
+</c:if>
+<p>
+<p>
 <a href="${allLandmarks}"><button type="button" class="btn btn-primary">Create New Itinerary</button></a>
 <p>
-<c:if test= "${currentUser.admin}" >
-<p>This user is an admin</p>
 
-</c:if>
+
+
+
+
 	<c:forEach items="${itineraries}" var="itinerary">
 		<div class="feature">
 			<c:url var="itineraryHref" value="/itinerary">

@@ -1,5 +1,7 @@
 package com.techelevator.citymap.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,7 @@ import com.techelevator.citymap.security.Security;
 import com.techelevator.citymap.model.Constants;
 import com.techelevator.citymap.model.Itinerary;
 import com.techelevator.citymap.model.ItineraryDAO;
+import com.techelevator.citymap.model.Landmark;
 import com.techelevator.citymap.model.User;
 
 @Controller
@@ -111,11 +114,26 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
-	public String createItinerary(ModelMap model) {
+	public String createItinerary(ModelMap model, @RequestParam String startingPoint, @RequestParam String itineraryName, @RequestParam (required=false) String checked1) {
+		Itinerary itinerary = new Itinerary();
+		//itinerary.setLandmarks(landmarks);
+		if(checked1 != null) {
+			Landmark landmark = new Landmark();
+			List<Landmark> landmarks = new ArrayList<>();
+			landmark = itineraryDAO.getLandmarkById(checked1);
+			landmarks.add(landmark);
+			itinerary.setLandmarks(landmarks);
+			itinerary.setItineraryName(itineraryName);
+			itinerary.setStartingPoint(startingPoint);
+			System.out.println(itineraryName);
+			System.out.println(startingPoint);
+			System.out.println(landmark.getLandmarkName());
+		}
+		
+
 		User user = (User)model.get("currentUser");
 		model.put("username", user.getUserName());
 		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
-	
 		return "redirect:/users/userDash";
 	}
 }
