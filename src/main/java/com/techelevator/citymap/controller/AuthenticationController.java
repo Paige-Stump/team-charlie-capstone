@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.citymap.model.UserDAO;
 import com.techelevator.citymap.security.Security;
+
 import com.techelevator.citymap.model.Constants;
+import com.techelevator.citymap.model.Itinerary;
+import com.techelevator.citymap.model.ItineraryDAO;
 import com.techelevator.citymap.model.User;
 
 @Controller
@@ -21,16 +25,21 @@ import com.techelevator.citymap.model.User;
 public class AuthenticationController {
 
 	private UserDAO userDAO;
+	private ItineraryDAO itineraryDAO;
+
 
 	@Autowired
-	public AuthenticationController(UserDAO userDAO) {
+	public AuthenticationController(UserDAO userDAO, ItineraryDAO itineraryDAO) {
 		this.userDAO = userDAO;
+		this.itineraryDAO = itineraryDAO;
 	}
 
 	@RequestMapping(path="/login", method=RequestMethod.GET)
 	public String displayLoginForm() {
 		return "login";
 	}
+	
+	
 	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
 	public String login(Map<String, Object> model, 
@@ -45,11 +54,11 @@ public class AuthenticationController {
 		if(Security.IsUserValid(user, password)) {
 			/*session.invalidate();*/
 			session.setAttribute(Constants.NAME, user);
-			model.put("currentUser", user.getFirstName());
+			model.put("currentUser", user);
 			if(isValidRedirect(destination)) {
 				jspPage = "redirect:"+destination;
 			} else {
-				jspPage = "redirect:/users/"+userName;
+				jspPage = "redirect:/users/userDash"; //+userName;
 			}
 		} else {
 			model.put("error", "Invalid password");
@@ -67,5 +76,46 @@ public class AuthenticationController {
 		model.remove("currentUser");
 		session.removeAttribute("currentUser");
 		return "redirect:/";
+	}
+	
+	
+	@RequestMapping(path="/users/userDash", method=RequestMethod.GET) 
+	public String displayDash(ModelMap model) {
+		User user = (User)model.get("currentUser");
+		model.put("username", user.getUserName());
+		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
+	
+		return "userDash";
+	}
+	
+	@RequestMapping(path="/users/userDash", method=RequestMethod.POST)
+	public String clickOnItinerary(ModelMap model){
+		return"redirect:/itinerary";
+	}
+	
+	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
+	public String displayItinerary(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName){
+		User user = (User)model.get("currentUser");
+		model.put("username", user.getUserName());
+		model.put("itineraryName", itineraryName);
+		model.put("itineraryStart", itineraryStart);
+		Itinerary itinerary = itineraryDAO.getItineraryByName(user.getUserName(), itineraryName, itineraryStart);
+		model.put("itinerary", itinerary);
+		return "itinerary";
+	}
+	
+	@RequestMapping(path="/landmarks", method=RequestMethod.GET)
+	public String showAllLandmarks(ModelMap model) {
+		model.put("landmarks", itineraryDAO.getAllLandmarks());
+		return "landmarks";
+	}
+	
+	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
+	public String createItinerary(ModelMap model) {
+		User user = (User)model.get("currentUser");
+		model.put("username", user.getUserName());
+		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
+	
+		return "redirect:/users/userDash";
 	}
 }

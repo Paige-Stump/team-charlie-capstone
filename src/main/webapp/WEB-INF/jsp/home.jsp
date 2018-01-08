@@ -12,7 +12,7 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-			<p>Welcome back, ${currentUser}! UrbanAdvisor helps you map a customized city tour based on the most efficient route to experience all your city has to offer.</p>
+			<p>Welcome back, ${currentUser.userName}! UrbanAdvisor helps you map a customized city tour based on the most efficient route to experience all your city has to offer.</p>
 			<c:url var="itinerariesHref" value="/users/userDash" /> 
 			<div class="text-center" id="jumboButton">
 				<a href="${itinerariesHref}"><button type="button" class="btn-primary btn-lg"><p>View My Itineraries</p></button></a>

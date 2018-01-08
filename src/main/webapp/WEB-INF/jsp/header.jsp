@@ -52,14 +52,14 @@
 								<p>Welcome,<p>
 								<div class="dropdown">
 								  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-								  ${currentUser}
+								  ${currentUser.userName}
 								  <span class="caret"></span></button>
 									  <ul class="dropdown-menu">
 										<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 										<li><a href="${changePasswordHref}">
 										User Settings</a></li>
 										
-										<c:url var="dashboardHref" value="/users/${currentUser}" />
+										<c:url var="dashboardHref" value="/users/userDash" />
 										<li><a href="${dashboardHref}">
 										View Dashboard</a></li>
 										

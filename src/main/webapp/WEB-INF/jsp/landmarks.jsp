@@ -4,9 +4,41 @@
 
 <h2>Landmarks</h2>
 
-This is the TEST one ${username} is working on<p>	
-<button type="button" class="btn btn-primary">Create New Itinerary</button>
+<script type="text/javascript">
+	$(document).ready(function () {
+	
+		$("form").validate({
+			
+			rules : {
+				itineraryName : {
+					required : true
+				},
+				startingPoint : {
+					required : true
+				}
+			},
+			
+		});
+	});
+</script>
+<c:url var="formAction" value="/users/userDash" />
+<form method="POST" action="">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="itineraryName inputGroup-sizing-default">My Itinerary Name</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+</div>
 <p>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="startingPoint inputGroup-sizing-default">My Starting Point</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+</div>
+Please enter starting point like '21 C Hotel, Cincinnati, OH' including all commas
+
+
 <p>
 	<c:forEach items="${landmarks}" var="landmark">
 			<div class="feature">
@@ -25,6 +57,9 @@ This is the TEST one ${username} is working on<p>
 		</c:forEach>
 
 </p>
+<button type="submit" class="btn btn-primary">Create My Itinerary</button>
+<p>
 </p>
+</form>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

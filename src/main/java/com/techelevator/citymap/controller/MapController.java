@@ -44,7 +44,7 @@ public class MapController {
 	@RequestMapping(path = "/mapSelector", method = RequestMethod.GET)
 	public String showMapSelector(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName) {
 		List<Landmark> ourLandmarks = new ArrayList<>();
-		String username = "CINDY";
+		String username = "PAIGE";
 		model.put("username", username);
 		model.put("itineraryName", itineraryName);
 		model.put("itineraryStart", itineraryStart);
@@ -53,6 +53,12 @@ public class MapController {
 		model.put("waypts", itineraryDAO.getWaypointArray(ourLandmarks));  
 		model.put("start", itineraryStart);
 		model.put("end", itineraryStart);
+		System.out.println(username);
+		System.out.println(itineraryName);
+		System.out.println(itineraryStart);
+		System.out.println(itinerary.getStartingPoint());
+		System.out.println(itineraryDAO.getWaypointArray(ourLandmarks));
+				
 		
 		return "mapSelector";
 	}

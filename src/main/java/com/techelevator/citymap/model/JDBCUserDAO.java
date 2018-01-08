@@ -33,7 +33,7 @@ public class JDBCUserDAO implements UserDAO {
 			byte[] salt = passwordHasher.generateRandomSalt();
 			String hashedPassword = passwordHasher.computeHash(password, salt);
 			String saltString = new String(Base64.encode(salt));
-			jdbcTemplate.update("INSERT INTO app_user(user_name, password, salt, first_name, last_name) VALUES (?, ?, ?, ?, ?)", userName, hashedPassword, saltString, firstName, lastName);
+			jdbcTemplate.update("INSERT INTO app_user(user_name, password, salt, first_name, last_name) VALUES (?, ?, ?, ?, ?)", userName.toUpperCase(), hashedPassword, saltString, firstName, lastName);
 			return true;
 		}
 		else{
@@ -63,14 +63,14 @@ public class JDBCUserDAO implements UserDAO {
 		byte[] salt = passwordHasher.generateRandomSalt();
 		String hashedPassword = passwordHasher.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		jdbcTemplate.update("UPDATE app_user SET password = ?, salt = ? WHERE user_name = ?", hashedPassword, saltString, userName);
+		jdbcTemplate.update("UPDATE app_user SET password = ?, salt = ? WHERE user_name = ?", hashedPassword, saltString, userName.toUpperCase());
 	}
 	
 	@Override
 	public User getUser(String userName) {
 		User newUser = new User();
 		String sqlGetUser = "Select * FROM app_user WHERE user_name = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetUser, userName);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetUser, userName.toUpperCase());
 		if (results.next()) {
 			newUser = mapRowToUser(results);
 		}
@@ -84,6 +84,7 @@ public class JDBCUserDAO implements UserDAO {
 		u.setFirstName(results.getString("first_name"));
 		u.setLastName(results.getString("last_name"));
 		u.setSalt(results.getString("salt"));
+		u.setAdmin(results.getBoolean("admin"));
 		return u;
 	}
 

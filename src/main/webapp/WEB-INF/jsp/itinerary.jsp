@@ -2,7 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<h2>${currentUser}'s Itinerary Dashboard</h2>
+<h2>${currentUser.userName}'s Itinerary Dashboard</h2>
 
 <c:url var="mapHref" value="/mapSelector">
 	<c:param name="itineraryStart">${itinerary.startingPoint}</c:param>

@@ -29,9 +29,5 @@ public HomeController(ItineraryDAO itineraryDAO) {
 	return "home";
 	}
 	
-	@RequestMapping(path="/landmarks", method=RequestMethod.GET)
-	public String showAllLandmarks(ModelMap model) {
-		model.put("landmarks", itineraryDAO.getAllLandmarks());
-		return "landmarks";
-	}
+	
 }

@@ -17,7 +17,15 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String salt;
+	private boolean admin;
 
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+	
 	public String getSalt() {
 		return salt;
 	}
