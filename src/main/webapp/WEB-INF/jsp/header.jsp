@@ -36,7 +36,7 @@
 			<div class="container">
   				<nav class="sticky-top navbar-light">
 					<c:url var="homePageHref" value="/" />
-					<c:url var="imgSrc" value="/img/urban-logo.png" />
+					<c:url var="imgSrc" value="/img/logo.png" />
 					<a class="navbar-brand" href="${homePageHref}"><img src="${imgSrc}" class="d-inline-block align-middle" />
 					<h1>urban</h1><h2>advisor</h2></a>
 				</nav>
@@ -45,7 +45,7 @@
 						<c:choose>
 							<c:when test="${empty currentUser}">
 								<c:url var="loginHref" value="/login" />
-								<li><a href="${loginHref}">Log In</a></li>
+								<li><a href="${loginHref}"><button type="button" class="btn btn-default">Log In</button></a></li>
 							</c:when>
 							<c:otherwise>
 							<div id="currentUser">

@@ -6,7 +6,7 @@ header {
 }
 
 .d-inline-block img, .align-middle {
-	height: 65px;
+	height: 75px;
 }
 
 header h1 {
@@ -53,11 +53,12 @@ container {
 
 .jumbotron {
 /*    opacity: .3;*/
-	background-image: url("../img/jumbotron01.jpg");
+	background-image: url("../img/jumbo13.jpg");
     background-position: 50% 0;
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
+    min-height: 320px;
 }
 
 .jumbotron img {

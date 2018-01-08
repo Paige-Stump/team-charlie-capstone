@@ -2,6 +2,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<c:url var="imgSrc" value="/img/logo.png" />
 <div class="jumbotron">
 	<c:choose>
 		<c:when test="${empty currentUser}">
