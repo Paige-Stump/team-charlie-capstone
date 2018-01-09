@@ -193,7 +193,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	public void addLandmarkToItinerary(String itineraryName, String startingPoint, String userName, Landmark landmark) {
 		String sqlAddLandmarkToItinerary = "INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) " +
 					"VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(sqlAddLandmarkToItinerary, userName, itineraryName, startingPoint, landmark.getLandmarkId());
+		jdbcTemplate.update(sqlAddLandmarkToItinerary, userName, itineraryName, startingPoint, Integer.parseInt(landmark.getLandmarkId()));
 	}
 	
 	public void removeLandmarkFromItinerary(String itineraryName, String userName, String landmarkId) {

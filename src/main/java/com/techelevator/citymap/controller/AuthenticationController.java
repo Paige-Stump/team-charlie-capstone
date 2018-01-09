@@ -158,6 +158,39 @@ public class AuthenticationController {
 		return "addLandmarks";
 	}
 	
+	@RequestMapping(path= "/addLandmarks", method = RequestMethod.POST)
+	public String addLandmarksToExistingItinerary(ModelMap model, @RequestParam String itineraryName, @RequestParam String itineraryStart, @RequestParam (required = false) String changeStartingPoint, HttpServletRequest request) {
+		User user = (User)model.get("currentUser");
+		String username = user.getUserName();
+		model.put("username", username);
+		model.put("itineraryName", itineraryName);
+		String[] landmarkIds = request.getParameterValues("landmarkId");
+		if("landmarkId" != null) {
+			List<Landmark> landmarks = new ArrayList<>();
+			for(int i = 0; i < landmarkIds.length; i++) {
+				Landmark landmark = new Landmark();
+				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);
+				landmarks.add(landmark);
+			}
+			
+			if(changeStartingPoint != null){
+				model.put("itineraryStart", changeStartingPoint);
+				for(Landmark landmark: landmarks){
+					itineraryDAO.addLandmarkToItinerary(itineraryName, changeStartingPoint, username, landmark);
+				}
+			}
+			else{
+				model.put("itineraryStart", itineraryStart);
+				for(Landmark landmark: landmarks){
+					itineraryDAO.addLandmarkToItinerary(itineraryName, itineraryStart, username, landmark);
+				}
+			}
+
+		}
+		
+		return "redirect:/users/userDash";
+	}
+	
 	/*
 	 * public String postCreateGamePage(HttpSession session, HttpServletRequest request) {
 User currentUser = new User();

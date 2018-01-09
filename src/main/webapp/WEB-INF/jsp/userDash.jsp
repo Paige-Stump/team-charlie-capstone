@@ -19,14 +19,6 @@
 			<div class="featureText">
 				<h3><a href = "${itineraryHref}">${itinerary.itineraryName}</a></h3>
 				<p>${itinerary.startingPoint}</p>
-				
-			<form>
-				<c:url var="addLandmarks" value="/addLandmarks">
-					<c:param name="itineraryStart">${itinerary.startingPoint}</c:param>
-					<c:param name="itineraryName">${itinerary.itineraryName}</c:param>
-				</c:url>
-				<a href="${addLandmarks}"><button type="submit" class="btn btn-primary" name="addLandmark">Add Landmark to Itinerary</button></a>
-			</form>
 			
 			<c:url var="itineraryDeleteHref" value="/itineraryDelete">
 				<c:param name = "itineraryDeleteButton">${itinerary.itineraryName}</c:param></c:url>

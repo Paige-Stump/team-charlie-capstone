@@ -10,8 +10,8 @@
 <form method="POST" action="">
 	<div class="form-group">
 		<p>Your starting point is: ${itineraryStart}</p>
-		<label for="startingPoint">Change your Starting Point</label> <input
-			type="text" class="form-control" name="startingPoint"
+		<label for="changeStartingPoint">Change your Starting Point</label> <input
+			type="text" class="form-control" name="changeStartingPoint"
 			placeholder="${itineraryStart}"> <small
 			id="howToEnter" class="form-text text-muted">Please enter
 			starting point like '21 C Hotel, Cincinnati, OH' including all commas</small>
