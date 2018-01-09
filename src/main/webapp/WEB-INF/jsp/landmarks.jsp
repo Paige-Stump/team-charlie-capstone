@@ -17,9 +17,6 @@
 					required : true
 				}
 			},
-			
-			
-
 		});
 	});
 </script>
@@ -41,10 +38,6 @@
 			starting point like '21 C Hotel, Cincinnati, OH' including all commas</small>
 	</div>
 
-
-
-
-	<p>
 		<c:forEach items="${landmarks}" var="landmark">
 			<div class="feature">
 				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
@@ -66,9 +59,7 @@
 			</div>
 		</c:forEach>
 
-	</p>
 	<button type="submit" class="btn btn-primary">Create My Itinerary</button>
-	<p></p>
 </form>
 
 <!-- <button type="button" class="btn btn-primary">Add to My Itinerary</button>  -->

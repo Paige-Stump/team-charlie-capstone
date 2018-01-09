@@ -2,53 +2,44 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<h2>Add Landmarks</h2>
+<h2>Add Landmarks to ${itineraryName} Itinerary</h2>
 <!-- ADD JAVASCRIPT BACK IN? -->
 
-<c:url var="formAction" value="/users/userDash" />
+<c:url var="formAction" value="/users/userDash">
+				<c:param name="itineraryStart">${itineraryStart}</c:param></c:url>
 <form method="POST" action="">
 	<div class="form-group">
-		<h3>Add more landmarks to your {itinerary.itinerary_name} itinerary</h3>
-		<!-- CHANGE CONTROLLER - PASS IN AN ITINERARY NAME -->
-	</div>
-	<div class="form-group">
-	<p>Your starting point is: ${startingPoint}</p>
+		<p>Your starting point is: ${itineraryStart}</p>
 		<label for="startingPoint">Change your Starting Point</label> <input
 			type="text" class="form-control" name="startingPoint"
-			placeholder="21 C Hotel, Cincinnati, OH"> <small
+			placeholder="${itineraryStart}"> <small
 			id="howToEnter" class="form-text text-muted">Please enter
 			starting point like '21 C Hotel, Cincinnati, OH' including all commas</small>
 	</div>
 
+	<c:forEach items="${landmarks}" var="landmark">
+		<div class="feature">
+			<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
+			<c:url var="landmarkImage"
+				value="/img/${landmark.landmarkLocation}.jpg"></c:url>
 
-
-
-	<p>
-		<c:forEach items="${landmarks}" var="landmark">
-			<div class="feature">
-				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
-				<c:url var="landmarkImage"
-					value="/img/${landmark.landmarkLocation}.jpg"></c:url>
-
-				<div class="featureThumb">
-					<a href="${landmarkHref}" target="_blank"><img
-						src="${landmarkImage}" /></a>
-				</div>
-				<div class="featureText">
-					<p class="title">${landmark.landmarkName}</p>
-					<p class="description">${landmark.landmarkDescription}</p>
-					<div class="form-check">
-					<!-- MAKE SURE TO CHANGE THIS PORTION BELOW BASED ON CHECKBOX ARRAY -->
-						<input type="checkbox" class="form-check-input" name="checked${landmark.landmarkId}" value="${landmark.landmarkId}">
-						<label class="form-check-label"  for="exampleCheck1">Add to My Itinerary</label>
-					</div>
+			<div class="featureThumb">
+				<a href="${landmarkHref}" target="_blank"><img
+					src="${landmarkImage}" /></a>
+			</div>
+			<div class="featureText">
+				<p class="title">${landmark.landmarkName}</p>
+				<p class="description">${landmark.landmarkDescription}</p>
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" name="landmarkId" value="${landmark.landmarkId}">
+					<label class="form-check-label"  for="exampleCheck1">Add to My Itinerary</label>
 				</div>
 			</div>
-		</c:forEach>
+		</div>
+	</c:forEach>
 
-	</p>
 	<button type="submit" class="btn btn-primary">Change My Itinerary</button>
-	<p></p>
+	
 </form>
 
 <!-- <button type="button" class="btn btn-primary">Add to My Itinerary</button>  -->

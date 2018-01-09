@@ -108,9 +108,9 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	public List<Landmark> getLandmarksNotInItinerary(String userName, String itineraryName) {
 		List<Landmark> landmarks = new ArrayList<>();
 		
-		String sqlGetLandmarksNotInItinerary = "SELECT * FROM landmark WHERE landmark.landmark_id NOT IN" 
-				+ "(SELECT landmark.landmark_id FROM landmark" + 
-				"JOIN itinerary ON itinerary.landmark_id = landmark.landmark_id WHERE"  
+		String sqlGetLandmarksNotInItinerary = "SELECT * FROM landmark WHERE landmark.landmark_id NOT IN " 
+				+ "(SELECT landmark.landmark_id FROM landmark " + 
+				"JOIN itinerary ON itinerary.landmark_id = landmark.landmark_id WHERE "  
 				+ "user_name = ? AND itinerary_name = ?) ";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetLandmarksNotInItinerary, userName, itineraryName);

@@ -133,8 +133,6 @@ public class AuthenticationController {
 		model.put("userName", user.getUserName());
 		model.put("itineraryName", itineraryName);
 		model.put("itineraryStart", itineraryStart);
-
-		
 		itineraryDAO.deleteItinerary(itineraryName, user.getUserName());
 		return "redirect:/users/userDash";
 	}
@@ -143,6 +141,21 @@ public class AuthenticationController {
 	public String showAllLandmarks(ModelMap model) {
 		model.put("landmarks", itineraryDAO.getAllLandmarks());
 		return "landmarks";
+	}
+	
+	@RequestMapping(path= "/addLandmarks", method = RequestMethod.GET)
+	public String showAddLandmarks(ModelMap model, @RequestParam String itineraryName, @RequestParam String itineraryStart) {
+		User user = (User)model.get("currentUser");
+		String username = user.getUserName();
+		List<Landmark> ourLandmarks = new ArrayList<>();
+		ourLandmarks = itineraryDAO.getLandmarksNotInItinerary(username, itineraryName);
+		model.put("username", username);
+		model.put("itineraryName", itineraryName);
+		model.put("itineraryStart", itineraryStart);
+		model.put("landmarks",  ourLandmarks);
+		System.out.println(itineraryStart + itineraryName);
+		
+		return "addLandmarks";
 	}
 	
 	/*

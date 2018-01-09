@@ -67,16 +67,4 @@ public class MapController {
 		return "mapSelector";
 	}*/
 	
-	@RequestMapping(path= "/addLandmarks", method = RequestMethod.GET)
-	public String showAddLandmarks(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName) {
-		List<Landmark> ourLandmarks = new ArrayList<>();
-		User user = new User();
-		String username = user.getUserName();
-		model.put("username", username);
-		model.put("itineraryName", itineraryName);
-		model.put("itineraryStart", itineraryStart);
-		
-		
-		return "addLandmarks";
-	}
 }

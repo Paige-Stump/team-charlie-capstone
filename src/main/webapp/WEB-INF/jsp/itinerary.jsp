@@ -2,15 +2,35 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<h2>${currentUser.firstName}'s Itinerary Dashboard</h2>
+<h2>${itinerary.itineraryName} Itinerary</h2>
+
+<c:url var="itinerariesHref" value="/users/userDash" /> 
+<a href="${itinerariesHref}">
+	<button type="button" class="btn btn-default">
+	Return to Dashboard</button>
+</a>
 
 <c:url var="mapHref" value="/mapSelector">
 	<c:param name="itineraryStart">${itinerary.startingPoint}</c:param>
 	<c:param name="itineraryName">${itinerary.itineraryName}</c:param>
 </c:url>
+<a href="${mapHref}">
+	<button type="button" class="btn btn-primary">
+	View Travel Route</button>
+</a>
+<c:url var="addLandmarks" value="/addLandmarks">
+	<c:param name="itineraryStart">${itinerary.startingPoint}</c:param>
+	<c:param name="itineraryName">${itinerary.itineraryName}</c:param>
+</c:url>
+<a href="${addLandmarks}">
+	<button type="button" class="btn btn-primary">
+	Edit Itinerary</button>
+</a>
 
-<a href="${mapHref}"><button type="button" class="btn btn-primary">Generate
-		Travel Route</button></a>
+<div>
+	<p>Starting Point: ${itinerary.startingPoint}</p>
+</div>
+
 <c:forEach items="${itinerary.landmarks}" var="landmark">
 	<form method="POST" action="">
 
