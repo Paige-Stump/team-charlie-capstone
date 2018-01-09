@@ -52,7 +52,7 @@
 								<p>Welcome,<p>
 								<div class="dropdown">
 								  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-								  ${currentUser.userName}
+								  ${currentUser.firstName}
 								  <span class="caret"></span></button>
 									  <ul class="dropdown-menu">
 										<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />

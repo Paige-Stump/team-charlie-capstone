@@ -216,4 +216,11 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		}
 		return searchedLandmarks;
 	}
+	
+	@Override
+	public void updateItineraryStartingPoint(String changedStartingPoint, String itineraryName, String oldStartingPoint, String userName){
+		String sqlChangeStartingPoint = "UPDATE itinerary SET starting_point = ? WHERE itinerary_name = ? " +
+										"AND starting_point = ? AND user_name = ?";
+		jdbcTemplate.update(sqlChangeStartingPoint, changedStartingPoint, itineraryName, oldStartingPoint, userName);
+	}
 }

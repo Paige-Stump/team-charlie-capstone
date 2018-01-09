@@ -18,4 +18,6 @@ public interface ItineraryDAO {
 	public void deleteItinerary(String itineraryName, String userName);
 	//public List<String> getItineraryNamesForDashboard(String username);
 	public List<Landmark> getLandmarksNotInItinerary(String userName, String itineraryName);
+	public void updateItineraryStartingPoint(String changedStartingPoint, String itineraryName, String oldStartingPoint,
+			String userName);
 }

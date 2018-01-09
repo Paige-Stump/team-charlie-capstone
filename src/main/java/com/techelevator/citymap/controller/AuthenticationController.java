@@ -164,12 +164,25 @@ public class AuthenticationController {
 		String username = user.getUserName();
 		model.put("username", username);
 		model.put("itineraryName", itineraryName);
-		String[] landmarkIds = request.getParameterValues("landmarkId");
+		int landmarksSelected = 0;
+		List<String> landmarkIdsList = new ArrayList<>();
+		if(request.getParameterValues("landmarkId") != null){
+			String[] landmarkIds = request.getParameterValues("landmarkId");
+			for(String id: landmarkIds){
+				landmarkIdsList.add(id);
+			}
+			landmarksSelected =1;
+		}
+	
+		if(landmarksSelected == 0 && changeStartingPoint != null){
+			itineraryDAO.updateItineraryStartingPoint(changeStartingPoint, itineraryName, itineraryStart, username);
+			return "redirect:/users/userDash";
+		}
 		if("landmarkId" != null) {
 			List<Landmark> landmarks = new ArrayList<>();
-			for(int i = 0; i < landmarkIds.length; i++) {
+			for(int i = 0; i < landmarkIdsList.size(); i++) {
 				Landmark landmark = new Landmark();
-				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);
+				landmark = itineraryDAO.getLandmarkById(landmarkIdsList.get(i));
 				landmarks.add(landmark);
 			}
 			
@@ -185,9 +198,7 @@ public class AuthenticationController {
 					itineraryDAO.addLandmarkToItinerary(itineraryName, itineraryStart, username, landmark);
 				}
 			}
-
 		}
-		
 		return "redirect:/users/userDash";
 	}
 	
