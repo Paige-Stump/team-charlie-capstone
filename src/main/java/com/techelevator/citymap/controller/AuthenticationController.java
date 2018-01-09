@@ -153,7 +153,6 @@ public class AuthenticationController {
 		model.put("itineraryName", itineraryName);
 		model.put("itineraryStart", itineraryStart);
 		model.put("landmarks",  ourLandmarks);
-		System.out.println(itineraryStart + itineraryName);
 		
 		return "addLandmarks";
 	}
@@ -178,17 +177,17 @@ public class AuthenticationController {
 			itineraryDAO.updateItineraryStartingPoint(changeStartingPoint, itineraryName, itineraryStart, username);
 			return "redirect:/users/userDash";
 		}
-		if("landmarkId" != null) {
+		if(landmarksSelected == 1) {
 			List<Landmark> landmarks = new ArrayList<>();
 			for(int i = 0; i < landmarkIdsList.size(); i++) {
 				Landmark landmark = new Landmark();
 				landmark = itineraryDAO.getLandmarkById(landmarkIdsList.get(i));
 				landmarks.add(landmark);
 			}
-			
 			if(changeStartingPoint != null){
 				model.put("itineraryStart", changeStartingPoint);
 				for(Landmark landmark: landmarks){
+					itineraryDAO.updateItineraryStartingPoint(changeStartingPoint, itineraryName, itineraryStart, username);
 					itineraryDAO.addLandmarkToItinerary(itineraryName, changeStartingPoint, username, landmark);
 				}
 			}
