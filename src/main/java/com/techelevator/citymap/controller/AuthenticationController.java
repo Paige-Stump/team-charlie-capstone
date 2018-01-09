@@ -133,8 +133,7 @@ public class AuthenticationController {
 		model.put("userName", user.getUserName());
 		model.put("itineraryName", itineraryName);
 		model.put("itineraryStart", itineraryStart);
-		//System.out.println(itineraryName);
-		//System.out.println(user.getUserName());
+
 		
 		itineraryDAO.deleteItinerary(itineraryName, user.getUserName());
 		return "redirect:/users/userDash";
@@ -190,12 +189,7 @@ String[] userIds = request.getParameterValues("userIds");
 		model.put("waypts", itineraryDAO.getWaypointArray(ourLandmarks));  
 		model.put("start", itineraryStart);
 		model.put("end", itineraryStart);
-		System.out.println("This username below should be working: ");
-		System.out.println(user.getUserName());
-		//System.out.println(itineraryName);
-		//System.out.println(itineraryStart);
-		//System.out.println(itinerary.getStartingPoint());
-		//System.out.println(itineraryDAO.getWaypointArray(ourLandmarks));
+	
 				
 		
 		return "mapSelector";
