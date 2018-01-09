@@ -59,7 +59,7 @@
 					<p class="title">${landmark.landmarkName}</p>
 					<p class="description">${landmark.landmarkDescription}</p>
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" name="checked${landmark.landmarkId}" value="${landmark.landmarkId}">
+						<input type="checkbox" class="form-check-input" name="landmarkId" value="${landmark.landmarkId}">
 						<label class="form-check-label"  for="exampleCheck1">Add to My Itinerary</label>
 					</div>
 				</div>
