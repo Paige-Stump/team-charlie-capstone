@@ -172,8 +172,7 @@ public class AuthenticationController {
 			}
 			landmarksSelected =1;
 		}
-	
-		if(landmarksSelected == 0 && changeStartingPoint != null){
+		if(landmarksSelected == 0 && changeStartingPoint.length() > 0){
 			itineraryDAO.updateItineraryStartingPoint(changeStartingPoint, itineraryName, itineraryStart, username);
 			return "redirect:/users/userDash";
 		}
@@ -184,7 +183,7 @@ public class AuthenticationController {
 				landmark = itineraryDAO.getLandmarkById(landmarkIdsList.get(i));
 				landmarks.add(landmark);
 			}
-			if(changeStartingPoint != null){
+			if(changeStartingPoint.length() > 0){
 				model.put("itineraryStart", changeStartingPoint);
 				for(Landmark landmark: landmarks){
 					itineraryDAO.updateItineraryStartingPoint(changeStartingPoint, itineraryName, itineraryStart, username);
@@ -194,6 +193,7 @@ public class AuthenticationController {
 			else{
 				model.put("itineraryStart", itineraryStart);
 				for(Landmark landmark: landmarks){
+					
 					itineraryDAO.addLandmarkToItinerary(itineraryName, itineraryStart, username, landmark);
 				}
 			}
@@ -210,14 +210,20 @@ String[] userIds = request.getParameterValues("userIds");
 	
 	
 	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
-	public String createItinerary(ModelMap model, @RequestParam String startingPoint, @RequestParam String itineraryName, HttpServletRequest request) {
+	public String createItinerary(ModelMap model, @RequestParam (required=false) String startingPoint, @RequestParam (required=false) String itineraryName, HttpServletRequest request, @RequestParam (required=false) String searchForLandmark) {
 		
 		User user = (User)model.get("currentUser");
 		model.put("username", user.getUserName());
-		
-		String[] landmarkIds = request.getParameterValues("landmarkId");
+		List<Landmark> landmarks = new ArrayList<>();
+		String link = "/landmarks";
+		if(searchForLandmark != null){
+			landmarks = itineraryDAO.searchForLandmarks(searchForLandmark);
+			model.put("landmarks", landmarks);
+		}
+		return link;
+
+/*		String[] landmarkIds = request.getParameterValues("landmarkId");
 		if("landmarkId" != null) {
-			List<Landmark> landmarks = new ArrayList<>();
 			for(int i = 0; i < landmarkIds.length; i++) {
 				Landmark landmark = new Landmark();
 				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);
@@ -227,8 +233,8 @@ String[] userIds = request.getParameterValues("userIds");
 			itineraryDAO.createNewItinerary(itineraryName, startingPoint, user.getUserName(), landmarks);
 		}
 
-		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
-		return "redirect:/users/userDash";
+		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));*/
+		//return "redirect:/users/userDash";
 	}
 	
 	@RequestMapping(path = "/mapSelector", method = RequestMethod.GET)

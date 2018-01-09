@@ -209,8 +209,8 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	@Override
 	public List<Landmark> searchForLandmarks(String search) {
 		List<Landmark> searchedLandmarks = new ArrayList<>();
-		String sqlSearchForLandmarks = "SELECT * " + "FROM landmark " + "WHERE landmark.landmark_description ILIKE %?% ";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForLandmarks, search);
+		String sqlSearchForLandmarks = "SELECT * FROM landmark WHERE landmark_description ILIKE ?" ;
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForLandmarks, "%" + search + "%");
 		while (results.next()) {
 			searchedLandmarks.add(mapRowToLandmark(results));
 		}

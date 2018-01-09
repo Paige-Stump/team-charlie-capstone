@@ -1,9 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
-
-<h2>Landmarks</h2>
-
+<h2>Create New Itinerary</h2>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -27,18 +25,25 @@
 <form method="POST" action="">
 	<div class="form-group">
 		<label for="itineraryName">Itinerary Name</label> <input
-			type="text" class="form-control" id="exampleInputPassword1"
+			type="text" class="form-control" id="itineraryName"
 			placeholder="My Itinerary Name" name="itineraryName">
 	</div>
 	<div class="form-group">
 		<label for="startingPoint">Starting address</label> <input
-			type="text" class="form-control" name="startingPoint"
+			type="text" required class="form-control" name="startingPoint"
 			placeholder="21 C Hotel, Cincinnati, OH"> <small
-			id="howToEnter" class="form-text text-muted">Please enter
+			id="startingPoint" class="form-text text-muted">Please enter
 			starting point like '21 C Hotel, Cincinnati, OH' including all commas</small>
 	</div>
+	<h3>Landmarks</h3>
+	<div class="input-group">
+		<span class="input-group-btn">
+			<button class="btn btn-secondary"  type="submit">Find landmark!</button>
+		</span>
+		<input type="text" name="searchForLandmark" id="searchForLandmark" name="search" placeholder="adventure awaits...">
+	</div>
 
-		<c:forEach items="${landmarks}" var="landmark">
+	<c:forEach items="${landmarks}" var="landmark">
 			<div class="feature">
 				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
 				<c:url var="landmarkImage"
