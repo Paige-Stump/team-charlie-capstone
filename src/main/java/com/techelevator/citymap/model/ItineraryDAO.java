@@ -16,4 +16,5 @@ public interface ItineraryDAO {
 	public void removeLandmarkFromItinerary(String itineraryName, String userName, String landmarkId);
 	public void deleteItinerary(String itineraryName, String userName);
 	//public List<String> getItineraryNamesForDashboard(String username);
+	public List<Landmark> getLandmarksNotInItinerary(String userName, String itineraryName);
 }

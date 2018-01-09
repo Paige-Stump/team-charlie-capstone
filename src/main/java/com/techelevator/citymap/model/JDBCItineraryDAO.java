@@ -103,6 +103,22 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		}
 		return landmarks;
 	}
+	
+	@Override
+	public List<Landmark> getLandmarksNotInItinerary(String userName, String itineraryName) {
+		List<Landmark> landmarks = new ArrayList<>();
+		
+		String sqlGetLandmarksNotInItinerary = "SELECT * FROM landmark WHERE landmark.landmark_id NOT IN" 
+				+ "(SELECT landmark.landmark_id FROM landmark" + 
+				"JOIN itinerary ON itinerary.landmark_id = landmark.landmark_id WHERE"  
+				+ "user_name = ? AND itinerary_name = ?) ";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetLandmarksNotInItinerary, userName, itineraryName);
+		while(results.next()) {
+			landmarks.add(mapRowToLandmark(results));
+		}
+		return landmarks;
+	}
 
 	// redundant - just using general mapRowToLandmark - changed in getFeaturedLandmarks
 	/*private List<Landmark> mapRowSetToFeaturedLandmarks(SqlRowSet results) {
@@ -141,7 +157,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		List<String> nameAndCityBuilder = new ArrayList<>();
 		for(Landmark landmark: landmarks) {
 			nameAndCityBuilder.add(landmark.getNameAndCity());
-			System.out.println(landmark.getNameAndCity());
+			
 		}
 		
 		for(String nameAndCityConcat : nameAndCityBuilder) {
@@ -166,7 +182,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	public void createNewItinerary(String itineraryName, String startingPoint, String userName, List<Landmark> landmarks) {
 		for (Landmark landmark : landmarks) {
 			String ourString = landmark.getLandmarkId();
-			System.out.println(ourString);
+			
 			int ourInt = Integer.parseInt(landmark.getLandmarkId());
 			String sqlCreateNewItinerary = "INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) " +
 					"VALUES (?, ?, ?, ?)";

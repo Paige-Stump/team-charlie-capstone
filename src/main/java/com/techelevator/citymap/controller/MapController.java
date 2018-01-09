@@ -9,13 +9,16 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.citymap.model.Itinerary;
 import com.techelevator.citymap.model.ItineraryDAO;
 import com.techelevator.citymap.model.Landmark;
+import com.techelevator.citymap.model.User;
 
 
 @Controller
+@SessionAttributes("currentUser")
 public class MapController {
 
 	private ItineraryDAO itineraryDAO;
@@ -41,10 +44,11 @@ public class MapController {
 		return "mapOld";
 	}
 	
-	@RequestMapping(path = "/mapSelector", method = RequestMethod.GET)
+	/*@RequestMapping(path = "/mapSelector", method = RequestMethod.GET)
 	public String showMapSelector(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName) {
 		List<Landmark> ourLandmarks = new ArrayList<>();
-		String username = "PAIGE";
+		User user = new User();
+		String username = user.getUserName();
 		model.put("username", username);
 		model.put("itineraryName", itineraryName);
 		model.put("itineraryStart", itineraryStart);
@@ -61,5 +65,18 @@ public class MapController {
 				
 		
 		return "mapSelector";
+	}*/
+	
+	@RequestMapping(path= "/addLandmarks", method = RequestMethod.GET)
+	public String showAddLandmarks(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName) {
+		List<Landmark> ourLandmarks = new ArrayList<>();
+		User user = new User();
+		String username = user.getUserName();
+		model.put("username", username);
+		model.put("itineraryName", itineraryName);
+		model.put("itineraryStart", itineraryStart);
+		
+		
+		return "addLandmarks";
 	}
 }

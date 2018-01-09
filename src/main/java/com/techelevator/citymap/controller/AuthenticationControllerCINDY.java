@@ -1,10 +1,9 @@
-package com.techelevator.citymap.controller;
+/*package com.techelevator.citymap.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +25,14 @@ import com.techelevator.citymap.model.User;
 
 @Controller
 @SessionAttributes("currentUser")
-public class AuthenticationController {
+public class AuthenticationControllerCINDY {
 
 	private UserDAO userDAO;
 	private ItineraryDAO itineraryDAO;
 
 
 	@Autowired
-	public AuthenticationController(UserDAO userDAO, ItineraryDAO itineraryDAO) {
+	public AuthenticationControllerCINDY(UserDAO userDAO, ItineraryDAO itineraryDAO) {
 		this.userDAO = userDAO;
 		this.itineraryDAO = itineraryDAO;
 	}
@@ -56,7 +55,7 @@ public class AuthenticationController {
 		User user = userDAO.getUser(userName);
 		
 		if(Security.IsUserValid(user, password)) {
-			/*session.invalidate();*/
+			session.invalidate();
 			session.setAttribute(Constants.NAME, user);
 			model.put("currentUser", user);
 			if(isValidRedirect(destination)) {
@@ -92,10 +91,10 @@ public class AuthenticationController {
 		return "userDash";
 	}
 	
-	/*@RequestMapping(path="/users/userDash", method=RequestMethod.POST)
+	@RequestMapping(path="/users/userDash", method=RequestMethod.POST)
 	public String clickOnItinerary(ModelMap model){
 		return"redirect:/itinerary";
-	}*/
+	}
 	
 	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
 	public String displayItinerary(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName){
@@ -133,8 +132,8 @@ public class AuthenticationController {
 		model.put("userName", user.getUserName());
 		model.put("itineraryName", itineraryName);
 		model.put("itineraryStart", itineraryStart);
-		//System.out.println(itineraryName);
-		//System.out.println(user.getUserName());
+		System.out.println(itineraryName);
+		System.out.println(user.getUserName());
 		
 		itineraryDAO.deleteItinerary(itineraryName, user.getUserName());
 		return "redirect:/users/userDash";
@@ -146,58 +145,26 @@ public class AuthenticationController {
 		return "landmarks";
 	}
 	
-	/*
-	 * public String postCreateGamePage(HttpSession session, HttpServletRequest request) {
-User currentUser = new User();
-currentUser = (User)session.getAttribute("currentUser");
-String[] userIds = request.getParameterValues("userIds");
-	 */
-	
-	
 	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
-	public String createItinerary(ModelMap model, @RequestParam String startingPoint, @RequestParam String itineraryName, HttpServletRequest request) {
+	public String createItinerary(ModelMap model, @RequestParam String startingPoint, @RequestParam String itineraryName, @RequestParam (required=false) String checked1) {
 		
 		User user = (User)model.get("currentUser");
-		model.put("username", user.getUserName());
-		
-		String[] landmarkIds = request.getParameterValues("landmarkId");
-		if("landmarkId" != null) {
+		if(checked1 != null) {
+			
+			Landmark landmark = new Landmark();
 			List<Landmark> landmarks = new ArrayList<>();
-			for(int i = 0; i < landmarkIds.length; i++) {
-				Landmark landmark = new Landmark();
-				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);
-				landmarks.add(landmark);
-			}
+			landmark = itineraryDAO.getLandmarkById(checked1);
+			landmarks.add(landmark);
 			
 			itineraryDAO.createNewItinerary(itineraryName, startingPoint, user.getUserName(), landmarks);
+			System.out.println(landmark.getLandmarkName());
+			System.out.println(checked1);
 		}
+		
 
+		model.put("username", user.getUserName());
 		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
 		return "redirect:/users/userDash";
 	}
-	
-	@RequestMapping(path = "/mapSelector", method = RequestMethod.GET)
-	public String showMapSelector(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName) {
-		List<Landmark> ourLandmarks = new ArrayList<>();
-		User user = (User)model.get("currentUser");
-		//String username = "PAIGE";
-		model.put("username", user.getUserName());
-		//model.put("userObject", user.getUserName());
-		model.put("itineraryName", itineraryName);
-		model.put("itineraryStart", itineraryStart);
-		Itinerary itinerary = itineraryDAO.getItineraryByName(user.getUserName(), itineraryName, itineraryStart);
-		ourLandmarks = itinerary.getLandmarks();
-		model.put("waypts", itineraryDAO.getWaypointArray(ourLandmarks));  
-		model.put("start", itineraryStart);
-		model.put("end", itineraryStart);
-		System.out.println("This username below should be working: ");
-		System.out.println(user.getUserName());
-		//System.out.println(itineraryName);
-		//System.out.println(itineraryStart);
-		//System.out.println(itinerary.getStartingPoint());
-		//System.out.println(itineraryDAO.getWaypointArray(ourLandmarks));
-				
-		
-		return "mapSelector";
-	}
 }
+*/
