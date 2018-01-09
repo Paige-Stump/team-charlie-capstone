@@ -10,6 +10,7 @@ public interface ItineraryDAO {
 	//public List<Landmark> getLandmarksByItinerary(String itineraryName, String userName);
 	public List<Landmark> getFeaturedLandmarks();
 	public List<Landmark> getAllLandmarks();
+	public List<Landmark> searchForLandmarks(String search);
 	public String getWaypointArray(List<Landmark> landmarks);
 	public void createNewItinerary(String itineraryName, String startingPoint, String userName, List<Landmark> landmarks);
 	public void addLandmarkToItinerary(String itineraryName, String startingPoint, String userName, Landmark landmark);

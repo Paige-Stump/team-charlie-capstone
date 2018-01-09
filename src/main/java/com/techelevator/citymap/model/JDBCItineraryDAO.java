@@ -205,4 +205,15 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		String sqlDeleteItinerary = "DELETE FROM itinerary WHERE itinerary.itinerary_name = ? AND itinerary.user_name = ?";
 		jdbcTemplate.update(sqlDeleteItinerary, itineraryName, userName);
 	}
+
+	@Override
+	public List<Landmark> searchForLandmarks(String search) {
+		List<Landmark> searchedLandmarks = new ArrayList<>();
+		String sqlSearchForLandmarks = "SELECT * " + "FROM landmark " + "WHERE landmark.landmark_description ILIKE %?% ";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForLandmarks, search);
+		while (results.next()) {
+			searchedLandmarks.add(mapRowToLandmark(results));
+		}
+		return searchedLandmarks;
+	}
 }
