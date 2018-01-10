@@ -6,16 +6,13 @@
 	$(document).ready(function() {
 
 		$("form").validate({
-			
+
 			rules : {
 				itineraryName : {
 					required : true
 				},
 				startingPoint : {
 					required : true
-				},
-				landmarkId: {
-					minlength: 1
 				}
 			},
 			messages: {
@@ -27,18 +24,9 @@
 					equalTo: "Please enter a Starting Point",
 				}
 			},
-			errorClass: "error",
-			validClass: "valid"
-		});
-		
-	$("form").submit(function() {
-		
-		alert("You did not enter a required field."); //loop through all the landmarks see if they are checked, 
-		
-		return true;	
+			errorClass: "error"
 		});
 	});
-	
 </script>
 
 
@@ -46,20 +34,20 @@
 <c:url var="formAction" value="/users/userDash" />
 <form method="POST" action="" name="">
 	<div class="form-group">
-		<label class="required" for="itineraryName">Itinerary Name</label> 
-		<input type="text" class="form-control" id="itineraryName" placeholder="My Itinerary Name" name="itineraryName" required>
-		<small id="itineraryName" class="form-text text-muted">Please enter a itinerary name.</small>
-		
+		<label for="itineraryName">Itinerary Name</label> <input
+			type="text" class="form-control" id="itineraryName"
+			placeholder="My Itinerary Name" name="itineraryName" required>
 	</div>
 	<div class="form-group">
-		<label class="required" for="startingPoint">Starting Address</label> 
-		<input type="text" required class="form-control" name="startingPoint" placeholder="21 C Hotel, Cincinnati, OH"> 
-		<small id="startingPoint" class="form-text text-muted">Please enter a starting point.</small>
+		<label for="startingPoint">Starting address</label> <input
+			type="text" required class="form-control" name="startingPoint"
+			placeholder="21 C Hotel, Cincinnati, OH"> <small
+			id="startingPoint" class="form-text text-muted">Please enter
+			starting point like '21 C Hotel, Cincinnati, OH' including all commas</small>
 	</div>
-	<h3 class="required" >Landmarks</h3>
-	<small id="itineraryName" class="form-text text-muted">Please select at least one landmark.</small>
+	<h3>Landmarks</h3>
 	
-	<div class="resultsList">
+
 	<c:forEach items="${landmarks}" var="landmark">
 			<div class="feature">
 				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
@@ -75,12 +63,11 @@
 					<p class="description">${landmark.landmarkDescription}</p>
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" name="landmarkId" value="${landmark.landmarkId}">
-						<label class="form-check-label"  for="landmarkId">Add to My Itinerary</label>
+						<label class="form-check-label"  for="exampleCheck1">Add to My Itinerary</label>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
-		</div>
 
 	<button type="submit" class="btn btn-primary">Create My Itinerary</button>
 </form>

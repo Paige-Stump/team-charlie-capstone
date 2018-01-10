@@ -122,7 +122,7 @@ public class ItineraryController {
 		model.put("username", username);
 		List<Landmark> landmarks = new ArrayList<>();
 		String [] landmarkIds = request.getParameterValues("landmarkId");
-		if("landmarkId" != null) {
+			if("landmarkId" != null && landmarkIds.length > 0) {
 			for(int i = 0; i < landmarkIds.length; i++) {
 				Landmark landmark = new Landmark();
 				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);

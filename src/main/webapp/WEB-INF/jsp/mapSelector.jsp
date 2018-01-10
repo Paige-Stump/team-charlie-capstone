@@ -59,38 +59,12 @@
 
 <div id="map"></div> 
 <div id="right-panel">
-	 <div> <!-- 
-		<b>Start:</b> <select id="start">
-			<option value="Cincinnati, OH">Cincinnati, OH</option>
-			<option value="Westin Cincinnati, OH">Cincinnati Westin</option>
-			<option value="21C Hotel, Cincinnati, OH">21 C Hotel</option>
-			<option value="Cincinnatian Hotel, Cincinnati, OH">The Cincinnatian</option>
-		</select> <br> <b>Places to Add to My Itinerary:</b> <br> <i>(Ctrl+Click or Cmd+Click
-			for multiple)</i> <br> <select multiple id="waypoints">
-			<option value="Spring Grove Cemetery, Cincinnati, OH">Spring Grove Cemetery</option>
-			<option value="Reds Stadium, Cincinnati, OH">Reds Stadium</option>
-			<option value="Carew Tower, Cincinnati, OH">Carew Tower</option>
-			<option value="John Roebling Bridge, Cincinnati, OH">John Roebling Bridge</option>
-			<option value="Fountain Square, Cincinnati, OH">Fountain Square</option>
-			<option value="Cathedral Basilica, Cincinnati, OH">Cathedral Basilica</option>
-			<option value="William Howard Taft National Historic Site, Cincinnati, OH">William H Taft Historic Site</option>
-			<option value="Paul Brown Stadium, Cincinnati, OH">Paul Brown Stadium</option>
-			<option value="Mount Adams, Cincinnati, OH">Mount Adams</option>
-			<option value="Winton Woods Park, Cincinnati, OH">Winton Woods</option>
-		</select> <br> <b>End:</b> <select id="end">
-			<option value="Cincinnati, OH">Cincinnati, OH</option>
-			<option value="Westin Cincinnati, OH">Cincinnati Westin</option>
-			<option value="21C Hotel, Cincinnati, OH">21 C Hotel</option>
-			<option value="Cincinnatian Hotel, Cincinnati, OH">The Cincinnatian</option>
-			
-		</select> //--> 
-		
-		<!-- BELOW IS WHAT I'M WORKING ON FOR THE ARRAY -->
+	
 		<div id="waypoints">
 		
 		</div>
 		
-	</div> 
+	
 	
 	<div id="directions-panel"></div>
 </div>
