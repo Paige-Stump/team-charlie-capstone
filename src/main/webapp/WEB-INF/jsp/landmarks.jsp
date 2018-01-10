@@ -33,18 +33,42 @@
 		
 	$("form").submit(function() {
 		
-		alert("You did not enter a required field."); //loop through all the landmarks see if they are checked, 
+		try {
+		var form = document.getElementById('landmarkForm');
 		
-		return true;	
+		var elements = form.elements;
+		var options = elements.landmarkId;
+		
+		var array = [];
+		var message = "";
+		
+		for (var i = 0; i < options.length; i++) {
+				if (options[i].checked) {
+					array.push(options[i]);
+					message += options[i].value + ",";
+					
+				}
+			}
+		if(array.length < 1) {
+			alert("Choose a landmark");	//Put this in Javascript text instead somewhere on page
+			return false;
+		}
+		}
+		catch(e) {
+			alert(e.message);
+		}
+
+			//alert("You did not enter a required field."); //loop through all the landmarks see if they are checked, 
+
+			return true;
 		});
 	});
-	
 </script>
 
 
 
 <c:url var="formAction" value="/users/userDash" />
-<form method="POST" action="" name="">
+<form method="POST" action="" id="landmarkForm">
 	<div class="form-group">
 		<label class="required" for="itineraryName">Itinerary Name</label> 
 		<input type="text" class="form-control" id="itineraryName" placeholder="My Itinerary Name" name="itineraryName" required>
