@@ -34,20 +34,19 @@
 <c:url var="formAction" value="/users/userDash" />
 <form method="POST" action="" name="">
 	<div class="form-group">
-		<label for="itineraryName">Itinerary Name</label> <input
-			type="text" class="form-control" id="itineraryName"
-			placeholder="My Itinerary Name" name="itineraryName" required>
+		<label for="itineraryName">Itinerary Name</label> 
+		<input type="text" class="form-control" id="itineraryName" placeholder="My Itinerary Name" name="itineraryName" required>
+		<small id="itineraryName" class="form-text text-muted">Please enter itinerary name.</small>
+		
 	</div>
 	<div class="form-group">
-		<label for="startingPoint">Starting address</label> <input
-			type="text" required class="form-control" name="startingPoint"
-			placeholder="21 C Hotel, Cincinnati, OH"> <small
-			id="startingPoint" class="form-text text-muted">Please enter
-			starting point like '21 C Hotel, Cincinnati, OH' including all commas</small>
+		<label for="startingPoint">Starting address</label> 
+		<input type="text" required class="form-control" name="startingPoint" placeholder="21 C Hotel, Cincinnati, OH"> 
+		<small id="startingPoint" class="form-text text-muted">Please enter starting point, like '21 C Hotel, Cincinnati, OH' including all commas.</small>
 	</div>
 	<h3>Landmarks</h3>
 	
-
+	<div class="resultsList">
 	<c:forEach items="${landmarks}" var="landmark">
 			<div class="feature">
 				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
@@ -68,6 +67,7 @@
 				</div>
 			</div>
 		</c:forEach>
+		</div>
 
 	<button type="submit" class="btn btn-primary">Create My Itinerary</button>
 </form>

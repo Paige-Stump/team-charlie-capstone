@@ -205,3 +205,20 @@ footer {
 #map #infowindow-content {
   display: inline;
 }
+
+input:required:focus {
+  border: 1px solid red;
+  outline: none;
+}
+
+.required:after { 
+	content:" *"; 
+	color: red;
+}
+
+.resultsList {
+	overflow:auto; 
+	height:400px;
+	padding-right: 1rem;
+	margin-bottom: 2rem;
+}

@@ -21,7 +21,8 @@
 	</div>
 </form>
 
-<c:forEach items="${landmarks}" var="landmark">
+	<div class="resultsList">
+		<c:forEach items="${landmarks}" var="landmark">
 			<div class="feature">
 				<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
 				<c:url var="landmarkImage"
@@ -37,7 +38,7 @@
 				</div>
 			</div>
 		</c:forEach>
-
+	</div>
 	
 
 
