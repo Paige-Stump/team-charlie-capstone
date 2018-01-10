@@ -2,6 +2,8 @@ package com.techelevator.citymap.model;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 public interface ItineraryDAO {
 
 	public Itinerary getItineraryByName(String userName, String itineraryName, String startingPoint);
@@ -20,4 +22,5 @@ public interface ItineraryDAO {
 	public List<Landmark> getLandmarksNotInItinerary(String userName, String itineraryName);
 	public void updateItineraryStartingPoint(String changedStartingPoint, String itineraryName, String oldStartingPoint,
 			String userName);
+	public void adminCreateNewLandmark(String landmarkTitle, String landmarkDescription, String landmarkLocation,  String landmarkCityState, String landmarkHref);
 }

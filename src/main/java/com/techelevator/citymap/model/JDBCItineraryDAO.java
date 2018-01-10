@@ -223,4 +223,14 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 										"AND starting_point = ? AND user_name = ?";
 		jdbcTemplate.update(sqlChangeStartingPoint, changedStartingPoint, itineraryName, oldStartingPoint, userName);
 	}
+
+	@Override
+	public void adminCreateNewLandmark(String landmarkTitle, String landmarkDescription, String landmarkLocation, String landmarkCityState,
+			String landmarkHref) {
+		
+		String sqlCreateNewLandmark = "INSERT INTO landmark (landmark_title, landmark_description, landmark_location, landmark_city, wikipedia) " +
+				"VALUES (?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sqlCreateNewLandmark, landmarkTitle, landmarkDescription, landmarkLocation, landmarkCityState, landmarkHref);
+		
+	}
 }

@@ -6,16 +6,16 @@
 
 <form method="POST" action="">
 	<div class="form-group">
-		<label for="title">Title</label> 
-		<input type="text" class="form-control" name="title"> 
+		<label for="landmarkTitle">Title</label> 
+		<input type="text" class="form-control" name="landmarkTitle"> 
 		<small id="titleInstruction" class="form-text text-muted">Enter a title for the landmark</small>
 	</div>
 	
-	<div class="form-group"></div>
-	<label for="landmarkCityState">Address</label>
+	<div class="form-group">
+	<label for="landmarkAddress">Address</label>
 <!-- 	Code adapted from Google API "https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder" -->
 
-    <input id="pac-input" class="controls" type="text" name="landmarkCityState"
+    <input id="pac-input" class="controls" type="text" name="landmarkAddress"
         placeholder="Enter a location and use Autocomplete to select the address">
     <div id="map"></div>
     <div id="infowindow-content">
@@ -85,21 +85,26 @@
         });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyG_Bzw3pK-8mlytLJy-JgUvNzgkzO4d4&libraries=places&callback=initMap"
         async defer></script>
         
 <!--        End Google API code -->
-	
-	
+	</div>
 	
 	<div class="form-group">
-		<label for="description">Description</label> 
-		<input type="text" class="form-control" name="description"> 
+		<label for="landmarkCityState">City, State</label> 
+		<input type="text" class="form-control" name="landmarkCityState"> 
+		<small id="cityStateInstruction" class="form-text text-muted">Please enter City and State, like 'Cincinnati, OH'.</small>
+	</div>
+	
+	<div class="form-group">
+		<label for="landmarkDescription">Description</label> 
+		<input type="text" class="form-control" name="landmarkDescription"> 
 		<small id="descriptionInstruction" class="form-text text-muted">Enter a short description (about 100 words). Suggested: use the synopsis provided by Wikipedia on a Google search of this location.</small>
 	</div>
 	<div class="form-group">
-		<label for="location">Google Place ID</label> 
-		<input type="text" class="form-control" name="location"> 
+		<label for="landmarkLocation">Google Place ID</label> 
+		<input type="text" class="form-control" name="landmarkLocation"> 
 		<small id="locationInstruction" class="form-text text-muted">Get the Google Place ID from the address form above.</small>
 	</div>
 	<div class="form-group">
@@ -108,6 +113,7 @@
 		<small id="landmarkHrefInstruction" class="form-text text-muted">Enter the HTTP address from the Wikipedia page for your landmark.</small>
 	</div>
 	<div class="featureText">
+	<h3>Landmark Image</h3>
 		<ol>
 			<li>Find an image of your landmark</li>
 			<li>Name it with the Google Place id</li>

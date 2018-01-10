@@ -1,6 +1,10 @@
 	package com.techelevator.citymap.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,6 +20,7 @@ import com.techelevator.citymap.model.UserDAO;
 import com.techelevator.citymap.security.Security;
 import com.techelevator.citymap.model.Constants;
 import com.techelevator.citymap.model.ItineraryDAO;
+import com.techelevator.citymap.model.Landmark;
 import com.techelevator.citymap.model.User;
 
 @Controller
@@ -63,7 +68,7 @@ public class AuthenticationController {
 	private boolean isValidRedirect(String destination) {
 		return destination != null && destination.startsWith("http://localhost");
 	}
-
+	
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
 	public String logout(Map<String, Object> model, HttpSession session) {
 		model.remove(Constants.NAME);
@@ -97,4 +102,14 @@ public class AuthenticationController {
 		return jspPage;
 	}
 
+	@RequestMapping(path="/adminCreateLandmark", method=RequestMethod.GET)
+	public String displayAdminCreateLandmark() {
+		return "adminCreateLandmark";
+	}
+	
+	@RequestMapping(path="/adminCreateLandmark", method=RequestMethod.POST)
+	public String adminCreateNewLandmark(ModelMap model, @RequestParam String landmarkTitle, @RequestParam String landmarkDescription, @RequestParam String landmarkLocation, @RequestParam String landmarkCityState, @RequestParam String landmarkHref) {
+		itineraryDAO.adminCreateNewLandmark(landmarkTitle, landmarkDescription, landmarkLocation, landmarkCityState, landmarkHref);
+		return "redirect:/users/userDash";
+	}
 }
