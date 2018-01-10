@@ -54,4 +54,16 @@ public class MessageController {
 		
 		return "redirect:/users/"+userName+"/messages";
 }
+
+	/*@RequestMapping(path="/users/{userName}", method=RequestMethod.GET)
+	public String displayDashboard(ModelMap model, @PathVariable String userName) {
+	//	model.put("conversations", messageDAO.getConversationsForUser(userName));
+		return "userDash";
+	}
+	
+	@RequestMapping(path="/users/{userName}/messages", method=RequestMethod.GET)
+	public String displaySentMessages(Map<String, Object> model, @PathVariable String userName) {
+	//	model.put("messages", messageDAO.getMessagesSentByUser(userName));		
+		return "sentMessages";
+	}
 	} */

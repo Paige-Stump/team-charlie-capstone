@@ -2,9 +2,12 @@
 
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,6 +80,21 @@ public class AuthenticationController {
 		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
 	
 		return "userDash";
+	}
+	
+	@RequestMapping(path="/users/new", method=RequestMethod.GET)
+	public String displayNewUserForm() {
+		return "newUser";
+	}
+	
+	@RequestMapping(path="/users", method=RequestMethod.POST)
+	public String createUser(@Valid @ModelAttribute User newUser, ModelMap model) { 
+		String jspPage = "redirect:/login";
+		if(!userDAO.saveUser(newUser.getUserName(), newUser.getPassword(), newUser.getFirstName(), newUser.getLastName())){
+			model.put("error", "User Name already exists. Please try another one.");
+			jspPage = "newUser";
+		}
+		return jspPage;
 	}
 
 }

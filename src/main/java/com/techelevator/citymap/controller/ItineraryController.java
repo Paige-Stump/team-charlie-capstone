@@ -133,12 +133,10 @@ public class ItineraryController {
 				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);
 				landmarks.add(landmark);
 			}
-			
 			itineraryDAO.createNewItinerary(itineraryName, startingPoint, user.getUserName(), landmarks);
 		}
-
-		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));*/
-		//return "redirect:/users/userDash";
+		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
+		return "redirect:/users/userDash";*/
 	}
 	
 	@RequestMapping(path="/landmarks", method=RequestMethod.GET)
