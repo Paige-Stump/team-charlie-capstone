@@ -52,8 +52,10 @@
       	margin-top: 600px;
       }
     </style>
-
-
+<c:url var="goBack" value="/users/userDash"/>
+	<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
+	
+	
 
 <div id="map"></div> 
 <div id="right-panel">

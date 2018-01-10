@@ -123,6 +123,8 @@
 	</div>
 	
 	<button type="submit" class="btn btn-primary">Save Landmark</button>
+	<c:url var="goBack" value="/users/userDash"/>
+	<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
 	
 </form>
 

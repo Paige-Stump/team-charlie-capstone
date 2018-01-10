@@ -115,46 +115,23 @@ public class ItineraryController {
 	
 	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
 	public String createItinerary(ModelMap model, @RequestParam (required=false) String startingPoint, @RequestParam (required=false) String itineraryName, 
-			HttpServletRequest request, @RequestParam (required=false) String searchForLandmark, HttpSession session) {
+			HttpServletRequest request, HttpSession session) {
 		
 		User user = (User)model.get(Constants.NAME);
 		String username = user.getUserName();
 		model.put("username", username);
 		List<Landmark> landmarks = new ArrayList<>();
-		String link = "/landmarks";
-		System.out.println(searchCount);
-		if(searchForLandmark != null){
-			landmarks = itineraryDAO.searchForLandmarks(searchForLandmark);
-			model.put("landmarks", landmarks);
-			searchCount += 1;
-			System.out.println(searchCount);
-			if(startingPoint != null) {
-				model.put("startingPoint", startingPoint);
-			}
-			if(itineraryName != null){
-				model.put("itineraryName", itineraryName);
-			}
-			if(searchCount == 1) {
-				return link;
-			}
-		}
-		
-		String[] landmarkIds = request.getParameterValues("landmarkId");
-		System.out.println(searchCount);
-		if("landmarkId" != null && landmarkIds.length > 0) {
-			model.put("landmarks", landmarks);
-			model.put("itineraryName", itineraryName);
-			
+		String [] landmarkIds = request.getParameterValues("landmarkId");
+		if("landmarkId" != null) {
 			for(int i = 0; i < landmarkIds.length; i++) {
 				Landmark landmark = new Landmark();
 				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);
 				landmarks.add(landmark);
 			}
-			model.put("itineraryName", itineraryName);
-			model.put("startingPoint", startingPoint);
-			itineraryDAO.createNewItinerary(itineraryName, startingPoint, user.getUserName(), landmarks);
 		}
-		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
+		model.put("itineraryName", itineraryName);
+		model.put("startingPoint", startingPoint);
+		itineraryDAO.createNewItinerary(itineraryName, startingPoint, user.getUserName(), landmarks);
 		return "redirect:/users/userDash";
 	}
 	

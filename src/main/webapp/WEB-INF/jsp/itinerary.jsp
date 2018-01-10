@@ -27,6 +27,7 @@
 	Edit Itinerary</button>
 </a>
 
+
 <div>
 	<p>Starting Point: ${itinerary.startingPoint}</p>
 </div>
