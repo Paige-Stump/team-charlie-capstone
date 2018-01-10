@@ -15,8 +15,8 @@
 				<p>${itinerary.startingPoint}</p>
 			</div>
 				
-			<form method="POST" action="">
-				<button type="submit" class="btn btn-danger" name="itineraryName" value="${itineraryName}">Delete Itinerary</button>
+			<form method="POST" action=""><label for="submit">Are you sure you want to delete ${itineraryName}?</label>
+				<button type="submit" class="btn btn-danger" name="itineraryName" value="${itineraryName}">Yes</button>
 			</form>
 		</div>
 

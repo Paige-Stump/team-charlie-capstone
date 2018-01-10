@@ -15,6 +15,16 @@
 					required : true
 				}
 			},
+			messages: {
+				itineraryName: {
+					equalTo: "Please enter an Itinerary Name",
+				},  
+					
+				startingPoint:  {
+					equalTo: "Please enter a Starting Point",
+				}
+			}
+			errorClass: "error"
 		});
 	});
 </script>
@@ -22,11 +32,11 @@
 
 
 <c:url var="formAction" value="/users/userDash" />
-<form method="POST" action="">
+<form method="POST" action="" name="">
 	<div class="form-group">
 		<label for="itineraryName">Itinerary Name</label> <input
 			type="text" class="form-control" id="itineraryName"
-			placeholder="My Itinerary Name" name="itineraryName">
+			placeholder="My Itinerary Name" name="itineraryName" required>
 	</div>
 	<div class="form-group">
 		<label for="startingPoint">Starting address</label> <input
