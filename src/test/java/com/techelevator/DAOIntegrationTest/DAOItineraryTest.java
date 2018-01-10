@@ -44,7 +44,7 @@ public class DAOItineraryTest extends DAOIntegrationTest {
     
     @Test
     public void does_it_get_landmarks_by_id() {
-    	Landmark greatAmerican = itineraryDAO.getLandmarkById(1);
+    	Landmark greatAmerican = itineraryDAO.getLandmarkById("1");
     	assertEquals("ChIJLwacWEOxQYgRcu3UJQuLYwc", greatAmerican.getLandmarkLocation());
     }
     

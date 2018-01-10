@@ -27,7 +27,7 @@ public class LandmarkTest {
 		Landmark landmark = new Landmark();
 		landmark.setLandmarkCity("Cincinnati, OH");
 		landmark.setLandmarkDescription("my description");
-		landmark.setLandmarkId(1);
+		landmark.setLandmarkId("1");
 		landmark.setLandmarkLink("www.google.com");
 		landmark.setLandmarkLocation("fndsljfhsdkjfsdlkfjs");
 		landmark.setLandmarkName("HCDC");
