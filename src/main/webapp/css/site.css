@@ -108,6 +108,12 @@ container {
 	color : red;
 }
 
+.reset {
+	color : red;
+	border-radius : 50%;
+	border : solid red;
+}
+
 #currentUser {
 	position: absolute;
 	top: 10px;
