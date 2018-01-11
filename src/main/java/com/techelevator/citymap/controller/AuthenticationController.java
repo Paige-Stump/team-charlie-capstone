@@ -44,7 +44,6 @@ public class AuthenticationController {
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	public String login(ModelMap model, @RequestParam String userName, @RequestParam String password,
 			@RequestParam(required = false) String destination, HttpSession session) {
-
 		String jspPage = "";
 		if (!userDAO.validateUserName(userName)) {
 			model.put("error", "Invalid password and/or username");
@@ -63,7 +62,6 @@ public class AuthenticationController {
 			model.put("error", "Invalid password and/or username");
 			jspPage = "login";
 		}
-
 		return jspPage;
 	}
 
@@ -87,7 +85,6 @@ public class AuthenticationController {
 		session.getAttribute(Constants.NAME);
 		model.put("username", user.getUserName());
 		model.put("itineraries", itineraryDAO.getAllItineraries(user.getUserName()));
-	
 		return "userDash";
 	}
 	
@@ -120,7 +117,6 @@ public class AuthenticationController {
 	@RequestMapping(path="/adminCreateLandmark", method=RequestMethod.POST)
 	public String adminCreateNewLandmark(ModelMap model, @RequestParam String landmarkTitle, @RequestParam String landmarkDescription, 
 			@RequestParam (required = false) String imageName, @RequestParam String landmarkCityState, @RequestParam String landmarkHref) {
-		
 		imageName = "DEFAULT";
 		itineraryDAO.adminCreateNewLandmark(landmarkTitle, landmarkDescription, imageName, landmarkCityState, landmarkHref);
 		return "redirect:/users/userDash";

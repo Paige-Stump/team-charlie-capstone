@@ -104,8 +104,8 @@
 		<small id="descriptionInstruction" class="form-text text-muted">Enter a short description (about 100 words). Suggested: use the synopsis provided by Wikipedia on a Google search of this location.</small>
 	</div>
 	<div class="form-group">
-		<label for="imageName">Image Name</label> 
-		<input type="text" class="form-control" name="imageName"> 
+		<label for="landmarkLocation">Google Place ID</label> 
+		<input type="text" class="form-control" name="landmarkLocation"> 
 		<small id="locationInstruction" class="form-text text-muted">Get the Google Place ID from the address form above.</small>
 	</div>
 	<div class="form-group">
