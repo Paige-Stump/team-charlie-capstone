@@ -27,9 +27,9 @@
 	Edit Itinerary</button>
 </a>
 
-<div>
-	<p>Starting Point: ${itinerary.startingPoint}</p>
-</div>
+<div class="section">
+	<h3>Beginning at ${itinerary.startingPoint}</h3>
+
 
 <c:forEach items="${itinerary.landmarks}" var="landmark">
 	<form method="POST" action="">
@@ -51,5 +51,6 @@
 		</div>
 	</form>
 </c:forEach>
+</div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
