@@ -1,13 +1,7 @@
 	package com.techelevator.citymap.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,7 +14,6 @@ import com.techelevator.citymap.model.UserDAO;
 import com.techelevator.citymap.security.Security;
 import com.techelevator.citymap.model.Constants;
 import com.techelevator.citymap.model.ItineraryDAO;
-import com.techelevator.citymap.model.Landmark;
 import com.techelevator.citymap.model.User;
 
 @Controller
@@ -63,10 +56,6 @@ public class AuthenticationController {
 			jspPage = "login";
 		}
 		return jspPage;
-	}
-
-	private boolean isValidRedirect(String destination) {
-		return destination != null && destination.startsWith("http://localhost");
 	}
 	
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
@@ -120,5 +109,9 @@ public class AuthenticationController {
 		imageName = "DEFAULT";
 		itineraryDAO.adminCreateNewLandmark(landmarkTitle, landmarkDescription, imageName, landmarkCityState, landmarkHref);
 		return "redirect:/users/userDash";
+	}
+	
+	private boolean isValidRedirect(String destination) {
+		return destination != null && destination.startsWith("http://localhost");
 	}
 }
