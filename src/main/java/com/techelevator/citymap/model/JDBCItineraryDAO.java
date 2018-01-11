@@ -120,15 +120,6 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		return landmarks;
 	}
 
-	// redundant - just using general mapRowToLandmark - changed in getFeaturedLandmarks
-	/*private List<Landmark> mapRowSetToFeaturedLandmarks(SqlRowSet results) {
-		List<Landmark> myFeaturedLandmarks = new ArrayList<Landmark>();
-		while (results.next()) {
-			myFeaturedLandmarks.add(mapRowToLandmark(results));
-		}
-		return myFeaturedLandmarks;
-	}*/
-
 	private Landmark mapRowToLandmark(SqlRowSet results) {
 		Landmark myLandmark = new Landmark();
 		myLandmark.setLandmarkName(results.getString("landmark_title"));
@@ -166,18 +157,6 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		wayPointBuilder += "]";
 		return wayPointBuilder;
 	}
-	
-	
-	/*public List<String> getItineraryNamesForDashboard(String userName) {
-		List<String> itineraryNames = new ArrayList<>();
-		String sqlGetItineraryName = "SELECT itinerary_name FROM itinerary WHERE itinerary.user_name = ? GROUP BY itinerary.itinerary_name";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetItineraryName, userName);
-		while (results.next()) {
-			itineraryNames.add(results.getString("itinerary_name"));
-		}
-		return itineraryNames;
-	} */
-
 	
 	public void createNewItinerary(String itineraryName, String startingPoint, String userName, List<Landmark> landmarks) {
 		for (Landmark landmark : landmarks) {

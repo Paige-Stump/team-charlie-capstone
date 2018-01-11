@@ -36,7 +36,8 @@
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
+          center: {lat : 39.1031,
+				lng : -84.5120},
           zoom: 13
         });
 
@@ -103,8 +104,8 @@
 		<small id="descriptionInstruction" class="form-text text-muted">Enter a short description (about 100 words). Suggested: use the synopsis provided by Wikipedia on a Google search of this location.</small>
 	</div>
 	<div class="form-group">
-		<label for="landmarkLocation">Google Place ID</label> 
-		<input type="text" class="form-control" name="landmarkLocation"> 
+		<label for="imageName">Image Name</label> 
+		<input type="text" class="form-control" name="imageName"> 
 		<small id="locationInstruction" class="form-text text-muted">Get the Google Place ID from the address form above.</small>
 	</div>
 	<div class="form-group">

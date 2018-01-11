@@ -118,8 +118,11 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/adminCreateLandmark", method=RequestMethod.POST)
-	public String adminCreateNewLandmark(ModelMap model, @RequestParam String landmarkTitle, @RequestParam String landmarkDescription, @RequestParam String landmarkLocation, @RequestParam String landmarkCityState, @RequestParam String landmarkHref) {
-		itineraryDAO.adminCreateNewLandmark(landmarkTitle, landmarkDescription, landmarkLocation, landmarkCityState, landmarkHref);
+	public String adminCreateNewLandmark(ModelMap model, @RequestParam String landmarkTitle, @RequestParam String landmarkDescription, 
+			@RequestParam (required = false) String imageName, @RequestParam String landmarkCityState, @RequestParam String landmarkHref) {
+		
+		imageName = "DEFAULT";
+		itineraryDAO.adminCreateNewLandmark(landmarkTitle, landmarkDescription, imageName, landmarkCityState, landmarkHref);
 		return "redirect:/users/userDash";
 	}
 }
