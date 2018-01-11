@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.citymap.model.Constants;
 import com.techelevator.citymap.model.ItineraryDAO;
+import com.techelevator.citymap.model.User;
 import com.techelevator.citymap.model.UserDAO;
 
 @Controller
@@ -47,8 +48,12 @@ public class UserController {
 	}
 	
 	@RequestMapping(path="/users/{userName}/changePassword", method=RequestMethod.POST)
-	public String changePassword(@PathVariable String userName, @RequestParam String password) {
-		userDAO.updatePassword(userName, password);
-		return "userDash";
+	public String changePassword(@PathVariable String userName, @RequestParam String password, HttpSession session, ModelMap model) {
+		User user = (User)model.get(Constants.NAME);
+		String username = user.getUserName();
+		model.put("username", username);
+		userDAO.updatePassword(username, password);
+		model.put("landmarks", itineraryDAO.getFeaturedLandmarks());
+		return "home";
 	}
 }

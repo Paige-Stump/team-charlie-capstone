@@ -41,7 +41,7 @@ public class JDBCUserDAO implements UserDAO {
 		}
 	}
 
-	@Override
+	/*@Override
 	public boolean validatePassword(String userName, String password) {
 		String sqlSearchForUser = "SELECT * "+
 							      "FROM app_user "+
@@ -56,6 +56,17 @@ public class JDBCUserDAO implements UserDAO {
 		} else {
 			return false;
 		}
+	}*/
+	
+	@Override
+	public boolean validateUserName(String userName) {
+		boolean isValidUser = false;
+		String sqlGetUser = "Select * FROM app_user WHERE UPPER(user_name) = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetUser, userName.toUpperCase());
+		if (results.next()) {
+			isValidUser = true;
+		}
+		return isValidUser;
 	}
 
 	@Override

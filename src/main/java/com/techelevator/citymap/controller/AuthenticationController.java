@@ -41,27 +41,29 @@ public class AuthenticationController {
 		return "login";
 	}
 	
-	@RequestMapping(path="/login", method=RequestMethod.POST)
-	public String login(ModelMap model, 
-						@RequestParam String userName, 
-						@RequestParam String password,
-						@RequestParam(required=false) String destination,
-						HttpSession session) {
-		
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
+	public String login(ModelMap model, @RequestParam String userName, @RequestParam String password,
+			@RequestParam(required = false) String destination, HttpSession session) {
+
 		String jspPage = "";
+		if (!userDAO.validateUserName(userName)) {
+			model.put("error", "Invalid password and/or username");
+			return "login";
+		}
 		User user = userDAO.getUser(userName);
-		if(Security.IsUserValid(user, password)) {
+		if (Security.IsUserValid(user, password)) {
 			session.setAttribute(Constants.NAME, user);
-			model.put(Constants.NAME, user);	
-			if(isValidRedirect(destination)) {
-				jspPage = "redirect:"+destination;
+			model.put(Constants.NAME, user);
+			if (isValidRedirect(destination)) {
+				jspPage = "redirect:" + destination;
 			} else {
-				jspPage = "redirect:/users/userDash"; 
+				jspPage = "redirect:/users/userDash";
 			}
 		} else {
-			model.put("error", "Invalid password");
+			model.put("error", "Invalid password and/or username");
 			jspPage = "login";
 		}
+
 		return jspPage;
 	}
 
@@ -70,7 +72,7 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
-	public String logout(Map<String, Object> model, HttpSession session) {
+	public String logout(ModelMap model, HttpSession session) {
 		model.remove(Constants.NAME);
 		session.removeAttribute(Constants.NAME);
 		return "redirect:/";

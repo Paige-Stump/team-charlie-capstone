@@ -1,13 +1,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <c:import url="/WEB-INF/jsp/header.jsp" />
+
 
 <h2>Add Landmarks to ${itineraryName} Itinerary</h2>
 <!-- ADD JAVASCRIPT BACK IN? -->
 
 <c:url var="formAction" value="/users/userDash">
 				<c:param name="itineraryStart">${itineraryStart}</c:param></c:url>
-<form method="POST" action="">
+
+<form method="POST" action="" id="searchForm">
+	<div class="form-group">
+		<div class="input-group">
+			<span class="input-group-btn">
+				<button class="btn btn-primary" type="submit">Find
+					landmark!</button>
+			</span> <input type="text" name="searchForLandmark" id="searchForLandmark"
+				name="search" placeholder="adventure awaits...">
+		</div>
+	</div>
+</form>
+<form method="POST" action="" id="landmarkForm">
 	<div class="form-group">
 		<p>Your starting point is: ${itineraryStart}</p>
 		<label for="changeStartingPoint">Change your Starting Point</label> <input
@@ -16,7 +30,7 @@
 			id="howToEnter" class="form-text text-muted">Please enter
 			starting point like '21 C Hotel, Cincinnati, OH' including all commas</small>
 	</div>
-
+<div class="resultsList">
 	<c:forEach items="${landmarks}" var="landmark">
 		<div class="feature">
 			<c:url var="landmarkHref" value="${landmark.landmarkLink}"></c:url>
@@ -37,8 +51,10 @@
 			</div>
 		</div>
 	</c:forEach>
-
+</div>
 	<button type="submit" class="btn btn-primary">Change My Itinerary</button>
+	<c:url var="goBack" value="/users/userDash"/>
+<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
 	
 </form>
 

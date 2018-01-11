@@ -76,12 +76,76 @@ public class ItineraryController {
 		return "redirect:/users/userDash";
 	}
 	
+	
+	
+	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
+	public String createItinerary(ModelMap model, @RequestParam (required=false) String startingPoint, 
+			@RequestParam (required=false) String itineraryName, 
+			HttpServletRequest request, HttpSession session, @RequestParam (required=false) String searchForLandmark) {
+		
+		User user = (User)model.get(Constants.NAME);
+		String username = user.getUserName();
+		model.put("username", username);
+		List<Landmark> landmarks = new ArrayList<>();
+		if (searchForLandmark != null) {
+			List<Landmark> landmarkSearch = new ArrayList<>();
+			landmarkSearch = itineraryDAO.searchForLandmarks(searchForLandmark);
+			model.put("landmarks", landmarkSearch);
+			return "/landmarks";
+		}
+		String [] landmarkIds = request.getParameterValues("landmarkId");
+			if("landmarkId" != null && landmarkIds.length > 0) {
+			for(int i = 0; i < landmarkIds.length; i++) {
+				Landmark landmark = new Landmark();
+				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);
+				landmarks.add(landmark);
+			}
+		}
+		model.put("itineraryName", itineraryName);
+		model.put("startingPoint", startingPoint);
+		itineraryDAO.createNewItinerary(itineraryName, startingPoint, user.getUserName(), landmarks);
+		return "redirect:/users/userDash";
+	}
+	
+	@RequestMapping(path="/landmarks", method=RequestMethod.GET)
+	public String showAllLandmarks(ModelMap model, HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
+		model.put("landmarks", itineraryDAO.getAllLandmarks());
+		return "landmarks";
+	}
+	
+	@RequestMapping(path= "/addLandmarks", method = RequestMethod.GET)
+	public String showAddLandmarks(ModelMap model, @RequestParam String itineraryName, @RequestParam String itineraryStart, HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
+		User user = (User)model.get(Constants.NAME);
+		String username = user.getUserName();
+		List<Landmark> ourLandmarks = new ArrayList<>();
+		ourLandmarks = itineraryDAO.getLandmarksNotInItinerary(username, itineraryName);
+		model.put("username", username);
+		model.put("itineraryName", itineraryName);
+		model.put("itineraryStart", itineraryStart);
+		model.put("landmarks",  ourLandmarks);
+		return "addLandmarks";
+	}
+	
 	@RequestMapping(path= "/addLandmarks", method = RequestMethod.POST)
-	public String addLandmarksToExistingItinerary(ModelMap model, @RequestParam String itineraryName, @RequestParam String itineraryStart, @RequestParam (required = false) String changeStartingPoint, HttpServletRequest request, HttpSession session) {
+	public String addLandmarksToExistingItinerary(ModelMap model, @RequestParam String itineraryName, @RequestParam String itineraryStart, 
+			@RequestParam (required = false) String changeStartingPoint, 
+			HttpServletRequest request, HttpSession session, @RequestParam (required = false) String searchForLandmark) {
 		User user = (User)model.get(Constants.NAME);
 		String username = user.getUserName();
 		model.put("username", username);
 		model.put("itineraryName", itineraryName);
+		if (searchForLandmark != null) {
+			List<Landmark> landmarkSearch = new ArrayList<>();
+			landmarkSearch = itineraryDAO.searchForLandmarks(searchForLandmark);
+			model.put("landmarks", landmarkSearch);
+			return "/addLandmarks";
+		}
 		int landmarksSelected = 0;
 		List<String> landmarkIdsList = new ArrayList<>();
 		if(request.getParameterValues("landmarkId") != null){
@@ -117,79 +181,5 @@ public class ItineraryController {
 			}
 		}
 		return "redirect:/users/userDash";
-	}
-	
-	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
-	public String createItinerary(ModelMap model, @RequestParam (required=false) String startingPoint, 
-			@RequestParam (required=false) String itineraryName, 
-			HttpServletRequest request, HttpSession session, @RequestParam (required=false) String searchForLandmark) {
-		
-		User user = (User)model.get(Constants.NAME);
-		String username = user.getUserName();
-		model.put("username", username);
-		List<Landmark> landmarks = new ArrayList<>();
-		if (searchForLandmark != null) {
-			List<Landmark> landmarkSearch = new ArrayList<>();
-			landmarkSearch = itineraryDAO.searchForLandmarks(searchForLandmark);
-			model.put("landmarks", landmarkSearch);
-			return "/landmarks";
-		}
-		String [] landmarkIds = request.getParameterValues("landmarkId");
-			if("landmarkId" != null && landmarkIds.length > 0) {
-			for(int i = 0; i < landmarkIds.length; i++) {
-				Landmark landmark = new Landmark();
-				landmark = itineraryDAO.getLandmarkById(landmarkIds[i]);
-				landmarks.add(landmark);
-			}
-		}
-		model.put("itineraryName", itineraryName);
-		model.put("startingPoint", startingPoint);
-		itineraryDAO.createNewItinerary(itineraryName, startingPoint, user.getUserName(), landmarks);
-		return "redirect:/users/userDash";
-	}
-	
-	@RequestMapping(path="/searchLandmarks", method=RequestMethod.GET)
-	public String showSearchForLandmarks(ModelMap model, HttpSession session) {
-		if(session.getAttribute(Constants.NAME) == null){
-			return "redirect:/login";
-		}
-		model.put("landmarks", itineraryDAO.getAllLandmarks());
-		return "searchLandmarks";
-	}
-	
-	@RequestMapping(path="/searchLandmarks", method=RequestMethod.POST)
-	public String showMatchingLandmarks(ModelMap model, @RequestParam String searchForLandmark, HttpSession session) {
-		User user = (User)model.get(Constants.NAME);
-		String username = user.getUserName();
-		model.put("username", username);
-		List<Landmark> landmarks = new ArrayList<>();
-		landmarks = itineraryDAO.searchForLandmarks(searchForLandmark);
-		model.put("landmarks", landmarks);
-		return "searchLandmarks";
-	}
-	
-	@RequestMapping(path="/landmarks", method=RequestMethod.GET)
-	public String showAllLandmarks(ModelMap model, HttpSession session) {
-		if(session.getAttribute(Constants.NAME) == null){
-			return "redirect:/login";
-		}
-		model.put("landmarks", itineraryDAO.getAllLandmarks());
-		return "landmarks";
-	}
-	
-	@RequestMapping(path= "/addLandmarks", method = RequestMethod.GET)
-	public String showAddLandmarks(ModelMap model, @RequestParam String itineraryName, @RequestParam String itineraryStart, HttpSession session) {
-		if(session.getAttribute(Constants.NAME) == null){
-			return "redirect:/login";
-		}
-		User user = (User)model.get(Constants.NAME);
-		String username = user.getUserName();
-		List<Landmark> ourLandmarks = new ArrayList<>();
-		ourLandmarks = itineraryDAO.getLandmarksNotInItinerary(username, itineraryName);
-		model.put("username", username);
-		model.put("itineraryName", itineraryName);
-		model.put("itineraryStart", itineraryStart);
-		model.put("landmarks",  ourLandmarks);
-		return "addLandmarks";
 	}
 }
