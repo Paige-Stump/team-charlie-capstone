@@ -30,35 +30,47 @@
 			errorClass: "error",
 			validClass: "valid"
 		});
+	
 		
 	$("#createItineraryForm").submit(function() {
 		
 		try {
-		var form = document.getElementById('createItineraryForm');
-		var elements = form.elements;
-		var options = elements.landmarkId;
-		var array = [];
-		var message = "";
-		for (var i = 0; i < options.length; i++) {
-				if (options[i].checked) {
-					array.push(options[i]);
-					message += options[i].value + ",";
+			var epicFail = false;
+			var form = document.getElementById('createItineraryForm');
+			var elements = form.elements;
+			var options = elements.landmarkId;
+			var array = [];
+			if (options == undefined) {
+				epicFail = true;
+			}
+			else if ('length' in options == false) {
+				if (options.checked == false) {
+					epicFail = true;
 				}
 			}
-		if(array.length < 1) {
-			alert("Please choose a landmark to create an itinerary");	//Put this in Javascript text instead somewhere on page
-			return false;
-		}
+			else {
+				for (var i = 0; i < options.length; i++) {
+					if (options[i].checked) {
+						array.push(options[i]);
+					}
+				}
+				if (array.length == 0 ) {
+					epicFail = true;
+				}
+			}
+			if(epicFail == true) {
+				alert("Please choose a landmark to create an itinerary","Urban Advisor");	//Put this in Javascript text instead somewhere on page
+				return false;
+			}
 		}
 		catch(e) {
-			alert(e.message);
+			alert(e.message, "Urban Advisor");
 		}
 
-			//alert("You did not enter a required field."); //loop through all the landmarks see if they are checked, 
 
-			return true;
-		});
+		return true;
 	});
+});
 </script>
 
 <form method="POST" action="" id="searchForm">
