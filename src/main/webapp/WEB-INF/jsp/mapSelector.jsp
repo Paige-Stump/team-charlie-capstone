@@ -1,11 +1,9 @@
-<!--  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
  <c:import url="/WEB-INF/jsp/header.jsp" />  
 
-</div>
 <style>
       #right-panel {
-        font-family: 'Roboto','sans-serif';
         line-height: 30px;
         padding-left: 10px;
       }
@@ -21,53 +19,45 @@
       #right-panel i {
         font-size: 12px;
       }
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
       #map {
         height: 500px;
-        float: left;
-        width: 70%;
-        margin-top: 100px;
-        margin-left: 40px;
       }
       #right-panel {
-        margin: 20px;
-        width: 20%;
         height: 400px;
-        float: left;
         text-align: left;
-        padding-top: 36px;
       }
       #directions-panel {
-        margin-top: 10px;
         background-color: #f2f1fe;
         padding: 10px;
         overflow: scroll;
         height: 500px;
       }
-      #footer {
-      	margin-top: 600px;
+      #google {
+      	margin-top: 2rem;
       }
     </style>
-<c:url var="goBack" value="/users/userDash"/>
-	<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
-	
-	
+    
 
-<div id="map"></div> 
-<div id="right-panel">
+<h2>${itineraryName} Itinerary Route</h2>
+
+<c:url var="goBack" value="/users/userDash"/>
+<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
 	
-		<div id="waypoints">
-		
+<div class="row" id="google">
+    <div class="col-sm-8">
+		<div id="map"></div> 
+	</div>
+
+	<div class="col-sm-4">	
+		<div id="right-panel">
+			<div id="waypoints">
+			</div>
+			<div id="directions-panel">
+			</div>
 		</div>
-		
-	
-	
-	<div id="directions-panel"></div>
+	</div>
 </div>
+
 <script type="text/javascript">
 	function initMap() {
 		var directionsService = new google.maps.DirectionsService;
@@ -133,10 +123,10 @@
 		});
 	}
 </script>
+
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyG_Bzw3pK-8mlytLJy-JgUvNzgkzO4d4&callback=initMap">
 	
 </script>
 
-<p id="footer"></p>
 <c:import url="/WEB-INF/jsp/footer.jsp" />

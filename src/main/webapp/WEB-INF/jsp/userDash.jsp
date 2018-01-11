@@ -4,10 +4,7 @@
 
 <h2>${currentUser.firstName}'s Itinerary Dashboard</h2>
 <c:url var="allLandmarks" value="/landmarks"/>
-<c:url var="searchLandmarks" value="/searchLandmarks"/>
-
 <a href="${allLandmarks}"><button type="button" class="btn btn-primary">Create New Itinerary</button></a>
-<a href="${searchLandmarks}"><button type="button" class="btn btn-primary">Search for Landmarks</button></a>
 
 	<c:forEach items="${itineraries}" var="itinerary">
 		<div class="feature">
