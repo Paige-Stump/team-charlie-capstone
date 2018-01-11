@@ -45,23 +45,29 @@
 						<c:choose>
 							<c:when test="${empty currentUser}">
 								<c:url var="loginHref" value="/login" />
-								<li><a href="${loginHref}"><button type="button" class="btn btn-default navbar-btn ">Log In</button></a></li>
+								<li><a href="${loginHref}"><button type="button" class="btn btn-default navbar-btn">Log In</button></a></li>
 							</c:when>
 							<c:otherwise>
 							<div id="currentUser">
 								<p>Welcome,<p>
 								<div class="dropdown">
-								  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+								  <button class="btn dropdown-toggle navbar-btn" type="button" data-toggle="dropdown">
 								  ${currentUser.firstName}
 								  <span class="caret"></span></button>
 									  <ul class="dropdown-menu">
 										<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 										<li><a href="${changePasswordHref}">
-										User Settings</a></li>
+										Change Password</a></li>
 										
 										<c:url var="dashboardHref" value="/users/userDash" />
 										<li><a href="${dashboardHref}">
 										View Dashboard</a></li>
+										
+										<c:if test= "${currentUser.admin}" >
+										<c:url var="adminCreateLandmark" value="/adminCreateLandmark"/>
+										<li><a href="${adminCreateLandmark}">
+										Create New Landmark</a></li>
+										</c:if>
 										
 										<li class="divider"></li>
 										
