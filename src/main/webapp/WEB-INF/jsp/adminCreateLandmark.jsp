@@ -1,13 +1,42 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
+<script>
+	$(document).ready(function() {
+
+		$("form").validate({
+
+			rules : {
+				landmarkTitle : {
+					required : true
+				},
+
+				landmarkCityState : {
+					required : true
+				},
+
+				landmarkDescription : {
+					required : true
+				},
+
+				landmarkLocation : {
+					required : true,
+				},
+
+				landmarkHrefs : {
+					required : true,
+				}
+			}
+		});
+	});
+</script>
 
 <h2>Create a New Landmark</h2>
 
 <form method="POST" action="">
 	<div class="form-group">
 		<label for="landmarkTitle">Title</label> 
-		<input type="text" class="form-control" name="landmarkTitle"> 
+		<input type="text" class="form-control" name="landmarkTitle" id="landmarkTitle"> 
 		<small id="titleInstruction" class="form-text text-muted">Enter a title for the landmark</small>
 	</div>
 	
@@ -94,23 +123,23 @@
 	
 	<div class="form-group">
 		<label for="landmarkCityState">City, State</label> 
-		<input type="text" class="form-control" name="landmarkCityState"> 
+		<input type="text" class="form-control" name="landmarkCityState" id="landmarkCityState"> 
 		<small id="cityStateInstruction" class="form-text text-muted">Please enter City and State, like 'Cincinnati, OH'.</small>
 	</div>
 	
 	<div class="form-group">
 		<label for="landmarkDescription">Description</label> 
-		<input type="text" class="form-control" name="landmarkDescription"> 
+		<input type="text" class="form-control" name="landmarkDescription" id="landmarkDescription"> 
 		<small id="descriptionInstruction" class="form-text text-muted">Enter a short description (about 100 words). Suggested: use the synopsis provided by Wikipedia on a Google search of this location.</small>
 	</div>
 	<div class="form-group">
 		<label for="landmarkLocation">Google Place ID</label> 
-		<input type="text" class="form-control" name="landmarkLocation"> 
+		<input type="text" class="form-control" name="landmarkLocation" id="landmarkLocation"> 
 		<small id="locationInstruction" class="form-text text-muted">Get the Google Place ID from the address form above.</small>
 	</div>
 	<div class="form-group">
 		<label for="landmarkHref">Details</label> 
-		<input type="text" class="form-control" name="landmarkHref"> 
+		<input type="text" class="form-control" name="landmarkHref" id="landmarkHref"> 
 		<small id="landmarkHrefInstruction" class="form-text text-muted">Enter the HTTP address from the Wikipedia page for your landmark.</small>
 	</div>
 	<div class="featureText">

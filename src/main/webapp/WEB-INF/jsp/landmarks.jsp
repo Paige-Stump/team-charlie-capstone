@@ -43,7 +43,6 @@
 				if (options[i].checked) {
 					array.push(options[i]);
 					message += options[i].value + ",";
-					
 				}
 			}
 		if(array.length < 1) {
