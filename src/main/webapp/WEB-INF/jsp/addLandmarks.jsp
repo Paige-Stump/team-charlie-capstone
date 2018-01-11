@@ -13,11 +13,20 @@
 <form method="POST" action="" id="searchForm">
 	<div class="form-group">
 		<div class="input-group">
+		
+ 
 			<span class="input-group-btn">
 				<button class="btn btn-primary" type="submit">Find
 					landmark!</button>
-			</span> <input type="text" name="searchForLandmark" id="searchForLandmark"
+			</span> 
+			
+			<input type="text" name="searchForLandmark" id="searchForLandmark" class="form-control"
 				name="search" placeholder="adventure awaits...">
+				
+			<span class="input-group-btn">
+				<button class="btn btn-danger" type="reset" class="reset">&#9747;</button>
+			</span>
+				
 		</div>
 	</div>
 </form>
