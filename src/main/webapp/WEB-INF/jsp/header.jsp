@@ -45,7 +45,7 @@
 						<c:choose>
 							<c:when test="${empty currentUser}">
 								<c:url var="loginHref" value="/login" />
-								<li><a href="${loginHref}"><button type="button" class="btn btn-default">Log In</button></a></li>
+								<li><a href="${loginHref}"><button type="button" class="btn btn-default navbar-btn ">Log In</button></a></li>
 							</c:when>
 							<c:otherwise>
 							<div id="currentUser">

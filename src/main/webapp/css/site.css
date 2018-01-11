@@ -222,3 +222,16 @@ input:required:focus {
 	padding-right: 1rem;
 	margin-bottom: 2rem;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+    .navbar-brand img{
+	display: none;
+	}
+	header {
+	height: 80px;
+	}
+}
