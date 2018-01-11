@@ -29,6 +29,9 @@ public class MapController {
 	
 	@RequestMapping(path = "/mapSelector", method = RequestMethod.GET)
 	public String showMapSelector(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName, HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		List<Landmark> ourLandmarks = new ArrayList<>();
 		User user = (User)model.get(Constants.NAME);
 		model.put("username", user.getUserName());

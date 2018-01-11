@@ -32,6 +32,9 @@ public class ItineraryController {
 	
 	@RequestMapping(path="/itinerary", method=RequestMethod.GET)
 	public String displayItinerary(ModelMap model, @RequestParam String itineraryStart, @RequestParam String itineraryName, HttpSession session){
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		User user = (User)model.get(Constants.NAME);
 		model.put("username", user.getUserName());
 		model.put("itineraryName", itineraryName);
@@ -53,6 +56,9 @@ public class ItineraryController {
 	
 	@RequestMapping(path="/itineraryDelete", method=RequestMethod.GET)
 	public String confirmItineraryDelete(ModelMap model, @RequestParam(required=false) String itineraryStart, @RequestParam String itineraryDeleteButton, HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		User user = (User)model.get(Constants.NAME);
 		model.put("userName", user.getUserName());
 		model.put("itineraryName", itineraryDeleteButton);
@@ -114,13 +120,20 @@ public class ItineraryController {
 	}
 	
 	@RequestMapping(path="/landmarks", method=RequestMethod.POST)
-	public String createItinerary(ModelMap model, @RequestParam (required=false) String startingPoint, @RequestParam (required=false) String itineraryName, 
-			HttpServletRequest request, HttpSession session) {
+	public String createItinerary(ModelMap model, @RequestParam (required=false) String startingPoint, 
+			@RequestParam (required=false) String itineraryName, 
+			HttpServletRequest request, HttpSession session, @RequestParam (required=false) String searchForLandmark) {
 		
 		User user = (User)model.get(Constants.NAME);
 		String username = user.getUserName();
 		model.put("username", username);
 		List<Landmark> landmarks = new ArrayList<>();
+		if (searchForLandmark != null) {
+			List<Landmark> landmarkSearch = new ArrayList<>();
+			landmarkSearch = itineraryDAO.searchForLandmarks(searchForLandmark);
+			model.put("landmarks", landmarkSearch);
+			return "/landmarks";
+		}
 		String [] landmarkIds = request.getParameterValues("landmarkId");
 			if("landmarkId" != null && landmarkIds.length > 0) {
 			for(int i = 0; i < landmarkIds.length; i++) {
@@ -137,6 +150,9 @@ public class ItineraryController {
 	
 	@RequestMapping(path="/searchLandmarks", method=RequestMethod.GET)
 	public String showSearchForLandmarks(ModelMap model, HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		model.put("landmarks", itineraryDAO.getAllLandmarks());
 		return "searchLandmarks";
 	}
@@ -154,12 +170,18 @@ public class ItineraryController {
 	
 	@RequestMapping(path="/landmarks", method=RequestMethod.GET)
 	public String showAllLandmarks(ModelMap model, HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		model.put("landmarks", itineraryDAO.getAllLandmarks());
 		return "landmarks";
 	}
 	
 	@RequestMapping(path= "/addLandmarks", method = RequestMethod.GET)
 	public String showAddLandmarks(ModelMap model, @RequestParam String itineraryName, @RequestParam String itineraryStart, HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		User user = (User)model.get(Constants.NAME);
 		String username = user.getUserName();
 		List<Landmark> ourLandmarks = new ArrayList<>();

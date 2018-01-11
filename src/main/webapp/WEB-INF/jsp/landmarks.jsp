@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$("form").validate({
+		$(document).validate({
 			
 			rules : {
 				itineraryName : {
@@ -31,17 +31,14 @@
 			validClass: "valid"
 		});
 		
-	$("form").submit(function() {
+	$("#createItineraryForm").submit(function() {
 		
 		try {
-		var form = document.getElementById('landmarkForm');
-		
+		var form = document.getElementById('createItineraryForm');
 		var elements = form.elements;
 		var options = elements.landmarkId;
-		
 		var array = [];
 		var message = "";
-		
 		for (var i = 0; i < options.length; i++) {
 				if (options[i].checked) {
 					array.push(options[i]);
@@ -50,7 +47,7 @@
 				}
 			}
 		if(array.length < 1) {
-			alert("Choose a landmark");	//Put this in Javascript text instead somewhere on page
+			alert("Please choose a landmark to create an itinerary");	//Put this in Javascript text instead somewhere on page
 			return false;
 		}
 		}
@@ -65,10 +62,20 @@
 	});
 </script>
 
-
+<form method="POST" action="" id="searchForm">
+	<div class="form-group">
+		<div class="input-group">
+			<span class="input-group-btn">
+				<button class="btn btn-primary" type="submit">Find
+					landmark!</button>
+			</span> <input type="text" name="searchForLandmark" id="searchForLandmark"
+				name="search" placeholder="adventure awaits...">
+		</div>
+	</div>
+</form>
 
 <c:url var="formAction" value="/users/userDash" />
-<form method="POST" action="" id="landmarkForm">
+<form method="POST" action="" id="createItineraryForm">
 	<div class="form-group">
 		<label class="required" for="itineraryName">Itinerary Name</label> 
 		<input type="text" class="form-control" id="itineraryName" placeholder="My Itinerary Name" name="itineraryName" required>
@@ -80,6 +87,9 @@
 		<input type="text" required class="form-control" name="startingPoint" placeholder="21 C Hotel, Cincinnati, OH"> 
 		<small id="startingPoint" class="form-text text-muted">Please enter a starting point.</small>
 	</div>
+	
+	
+	
 	<h3 class="required" >Landmarks</h3>
 	<small id="itineraryName" class="form-text text-muted">Please select at least one landmark.</small>
 	
@@ -107,6 +117,8 @@
 		</div>
 
 	<button type="submit" class="btn btn-primary">Create My Itinerary</button>
+	<c:url var="goBack" value="/users/userDash"/>
+	<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
 </form>
 
 <!-- <button type="button" class="btn btn-primary">Add to My Itinerary</button>  -->

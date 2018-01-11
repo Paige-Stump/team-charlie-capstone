@@ -78,7 +78,9 @@ public class AuthenticationController {
 	
 	@RequestMapping(path="/users/userDash", method=RequestMethod.GET) 
 	public String displayDash(ModelMap model, HttpSession session) {
-		
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		User user = (User)model.get(Constants.NAME);
 		session.getAttribute(Constants.NAME);
 		model.put("username", user.getUserName());
@@ -88,7 +90,10 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
-	public String displayNewUserForm() {
+	public String displayNewUserForm(HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		return "newUser";
 	}
 	
@@ -103,7 +108,10 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(path="/adminCreateLandmark", method=RequestMethod.GET)
-	public String displayAdminCreateLandmark() {
+	public String displayAdminCreateLandmark(HttpSession session) {
+		if(session.getAttribute(Constants.NAME) == null){
+			return "redirect:/login";
+		}
 		return "adminCreateLandmark";
 	}
 	
