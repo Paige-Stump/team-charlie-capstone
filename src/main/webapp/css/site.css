@@ -1,6 +1,9 @@
+body {
+	background:  linear-gradient(to right, #f9fafc, white 10%, white 90%, #f9fafc);
+}
+
 header {
-	border-bottom: solid thin #DDD;
-	background-color: #f2f1fe;
+	background: linear-gradient(#b8c1db, #e7e6f7 20px, #f2f1fe 90px, #e7e6f7);
 	margin-bottom: 2rem;
 	height: 100px;
 }
@@ -112,12 +115,14 @@ container {
 }
 
 #currentUser p {
-	display: inline-block;
 }
 
 .dropdown-toggle {
 	margin-top : -6px;
 	border: solid thin white; 
+	box-shadow: 
+	4px 4px 5px -5px RGBA(0,0,0,.3),
+	inset -3px -3px 5px 0px RGBA(255,255,255,.4);
 	border-radius: 6px;
 }
 
@@ -169,6 +174,7 @@ input[type="button" i], input[type="submit" i], input[type="reset" i], input[typ
 footer {
 	text-align : center;
 	margin-top: 2rem;
+	margin-botton: 0;
 	padding-top: 20px;
     height: 6rem;
 	background-color: #f2f1fe;
@@ -234,4 +240,5 @@ input:required:focus {
 	header {
 	height: 80px;
 	}
+	
 }
