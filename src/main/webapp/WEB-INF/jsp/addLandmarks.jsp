@@ -31,6 +31,12 @@
 	</div>
 </form>
 <form method="POST" action="" id="landmarkForm">
+
+	<button type="submit" class="btn btn-primary">Change My Itinerary</button>
+	<c:url var="goBack" value="/users/userDash"/>
+<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
+
+
 	<div class="form-group">
 		<p>Your starting point is: ${itineraryStart}</p>
 		<label for="changeStartingPoint">Change your Starting Point</label> <input
@@ -61,9 +67,6 @@
 		</div>
 	</c:forEach>
 </div>
-	<button type="submit" class="btn btn-primary">Change My Itinerary</button>
-	<c:url var="goBack" value="/users/userDash"/>
-<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
 	
 </form>
 

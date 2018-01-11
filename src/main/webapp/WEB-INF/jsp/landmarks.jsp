@@ -76,17 +76,29 @@
 <form method="POST" action="" id="searchForm">
 	<div class="form-group">
 		<div class="input-group">
+		
+		 
 			<span class="input-group-btn">
 				<button class="btn btn-primary" type="submit">Find
 					landmark!</button>
-			</span> <input type="text" name="searchForLandmark" id="searchForLandmark"
+			</span> 
+			
+			<input type="text" name="searchForLandmark" id="searchForLandmark" class="form-control"
 				name="search" placeholder="adventure awaits...">
+				
+			<span class="input-group-btn">
+				<button class="btn btn-danger" type="reset" class="reset">&#9747;</button>
+			</span>
+		
 		</div>
 	</div>
 </form>
 
+<br>
+
 <c:url var="formAction" value="/users/userDash" />
 <form method="POST" action="" id="createItineraryForm">
+
 	<div class="form-group">
 		<label class="required" for="itineraryName">Itinerary Name</label> 
 		<input type="text" class="form-control" id="itineraryName" placeholder="My Itinerary Name" name="itineraryName" required>
@@ -126,10 +138,12 @@
 			</div>
 		</c:forEach>
 		</div>
-
+<div class="form-inline">
 	<button type="submit" class="btn btn-primary">Create My Itinerary</button>
 	<c:url var="goBack" value="/users/userDash"/>
-	<a href="${goBack}"><button type="button" class="btn btn-primary">Return to My Itineraries</button></a>
+	<a href="${goBack}"><button type="button" class="btn btn-default">Return to My Itineraries</button></a>
+</div>
+
 </form>
 
 <!-- <button type="button" class="btn btn-primary">Add to My Itinerary</button>  -->

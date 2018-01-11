@@ -41,14 +41,13 @@
 					<h1>urban</h1><h2>advisor</h2></a>
 				</nav>
 				<nav class="navbar">
-					<ul class="nav navbar-nav navbar-right">
+					<div class="nav navbar-nav navbar-right" id="currentUser">
 						<c:choose>
 							<c:when test="${empty currentUser}">
 								<c:url var="loginHref" value="/login" />
-								<li><a href="${loginHref}"><button type="button" class="btn btn-default navbar-btn">Log In</button></a></li>
+								<a href="${loginHref}"><button type="button" class="btn dropdown-toggle navbar-btn">Log In</button></a>
 							</c:when>
 							<c:otherwise>
-							<div id="currentUser">
 								<p>Welcome,<p>
 								<div class="dropdown">
 								  <button class="btn dropdown-toggle navbar-btn" type="button" data-toggle="dropdown">
@@ -77,10 +76,9 @@
 										Log Out</a></li>
 									  </ul>
 								</div>
-							</div>
 							</c:otherwise>
 						</c:choose>
-					</ul>
+					</div>
 				</nav>
 			</div>
 		</header>

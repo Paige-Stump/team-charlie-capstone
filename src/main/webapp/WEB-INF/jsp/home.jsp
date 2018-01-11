@@ -22,13 +22,13 @@
 	</c:choose>
 		
 </div>
-<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+<!-- <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
 	<ol class="carousel-indicators">
 	    <li data-target="#carousel" data-slide-to="0" class="active"></li>
 	    <li data-target="#carousel" data-slide-to="1"></li>
 	    <li data-target="#carousel" data-slide-to="2"></li>
 	</ol>
-	<!-- Carousel items -->
+	Carousel items
 	<div class="carousel-inner carousel-zoom">
 	    <div class="active item"><img class="img-responsive" src="https://images.unsplash.com/photo-1419064642531-e575728395f2?crop=entropy&fit=crop&fm=jpg&h=400&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1200">
 	      <div class="carousel-caption">
@@ -49,7 +49,7 @@
 	      </div>
 	    </div>
 	</div>
-</div>
+</div> -->
 
 <div class="row">
 	<div class="col-sm-1 features"></div>
