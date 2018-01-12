@@ -125,7 +125,6 @@ public class JDBCMessageDAO implements MessageDAO {
 		return messageList;
 	}
 	
-
 	private Message mapRowToMessage(SqlRowSet results) {
 		Message message = new Message();
 		message.setId(results.getLong("message_id"));
@@ -142,6 +141,5 @@ public class JDBCMessageDAO implements MessageDAO {
 		Long id = result.getLong(1);
 		return id;
 	}
-
 }
 */

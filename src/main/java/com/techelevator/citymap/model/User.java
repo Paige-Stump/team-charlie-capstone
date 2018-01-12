@@ -3,8 +3,6 @@ package com.techelevator.citymap.model;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-// this is a simple JavaBean that holds a userName and a password
-
 public class User {
 	private String userName;
 	
@@ -57,5 +55,4 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 }

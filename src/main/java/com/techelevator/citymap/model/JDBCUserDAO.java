@@ -1,13 +1,11 @@
 package com.techelevator.citymap.model;
 
 import javax.sql.DataSource;
-
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
 import com.techelevator.citymap.security.PasswordHasher;
 import com.techelevator.citymap.model.User;
 

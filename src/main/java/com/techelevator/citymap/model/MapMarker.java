@@ -31,7 +31,5 @@ public class MapMarker {
 	}
 	public void setEnd(String end) {
 		this.end = end;
-	}
-	
-
+	}	
 }

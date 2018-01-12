@@ -54,7 +54,4 @@ public class Landmark {
 	public void setLandmarkCity(String landmarkCity) {
 		this.landmarkCity = landmarkCity;
 	}
-	
-	
-
 }

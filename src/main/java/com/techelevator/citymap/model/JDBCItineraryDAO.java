@@ -2,9 +2,7 @@ package com.techelevator.citymap.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -78,7 +76,6 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		return allLandmarks;
 	}
 
-	//can't remember why we need this method
 	@Override
 	public Landmark getLandmarkById(String landmarkId) {
 		int landmarkInt = Integer.parseInt(landmarkId);
@@ -160,8 +157,6 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	
 	public void createNewItinerary(String itineraryName, String startingPoint, String userName, List<Landmark> landmarks) {
 		for (Landmark landmark : landmarks) {
-			String ourString = landmark.getLandmarkId();
-			
 			int ourInt = Integer.parseInt(landmark.getLandmarkId());
 			String sqlCreateNewItinerary = "INSERT INTO itinerary (user_name, itinerary_name, starting_point, landmark_id) " +
 					"VALUES (?, ?, ?, ?)";
@@ -210,6 +205,5 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		String sqlCreateNewLandmark = "INSERT INTO landmark (landmark_title, landmark_description, landmark_location, landmark_city, wikipedia) " +
 				"VALUES (?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sqlCreateNewLandmark, landmarkTitle, landmarkDescription, landmarkLocation, landmarkCityState, landmarkHref);
-		
 	}
 }
