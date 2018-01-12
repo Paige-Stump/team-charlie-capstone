@@ -79,9 +79,6 @@ public class AuthenticationController {
 	
 	@RequestMapping(path="/users/new", method=RequestMethod.GET)
 	public String displayNewUserForm(HttpSession session) {
-		if(session.getAttribute(Constants.NAME) == null){
-			return "redirect:/login";
-		}
 		return "newUser";
 	}
 	
